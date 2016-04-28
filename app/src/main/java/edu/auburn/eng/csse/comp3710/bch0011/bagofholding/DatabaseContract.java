@@ -125,6 +125,7 @@ public final class DatabaseContract {
             "DROP TABLE IF EXISTS " + Alignment.TABLE_NAME + ";" +
             "DROP TABLE IF EXISTS " + Gender.TABLE_NAME + ";" +
             "DROP TABLE IF EXISTS " + Stat.TABLE_NAME + ";" +
+            "DROP TABLE IF EXISTS " + Attribute.TABLE_NAME + ";" +
             "DROP TABLE IF EXISTS " + Proficiency.TABLE_NAME + ";";
 
     public static class CharacterSheetDbHelper extends SQLiteOpenHelper {
