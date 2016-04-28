@@ -1,9 +1,11 @@
 package edu.auburn.eng.csse.comp3710.bch0011.bagofholding;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
+import java.sql.Statement;
 
 public final class DatabaseContract {
     // To prevent someone from accidentally instantiating the contract class, give it an empty constructor.
@@ -43,7 +45,12 @@ public final class DatabaseContract {
 
     public static abstract class Stat implements BaseColumns {
         public static final String TABLE_NAME = "Stat";
-        public static final String COLUMN_NAME_STATS_NAME = "StatName";
+        public static final String COLUMN_NAME_STRENGTH = "Strength";
+        public static final String COLUMN_NAME_DEXTERITY = "Dexterity";
+        public static final String COLUMN_NAME_CONSTITUTION = "Constitution";
+        public static final String COLUMN_NAME_INTELLIGENCE = "Intelligence";
+        public static final String COLUMN_NAME_WISDOM = "Wisdom";
+        public static final String COLUMN_NAME_CHARISMA = "Charisma";
     }
 
     public static abstract class Proficiency implements BaseColumns {
@@ -82,7 +89,12 @@ public final class DatabaseContract {
             " );" +
             "CREATE TABLE " + Stat.TABLE_NAME + " (" +
                     Stat._ID + " INTEGER PRIMARY KEY," +
-                    Stat.COLUMN_NAME_STATS_NAME + TEXT_TYPE + COMMA_SEP +
+                    Stat.COLUMN_NAME_STRENGTH + TEXT_TYPE + COMMA_SEP +
+                    Stat.COLUMN_NAME_DEXTERITY + TEXT_TYPE + COMMA_SEP +
+                    Stat.COLUMN_NAME_CONSTITUTION + TEXT_TYPE + COMMA_SEP +
+                    Stat.COLUMN_NAME_INTELLIGENCE + TEXT_TYPE + COMMA_SEP +
+                    Stat.COLUMN_NAME_WISDOM + TEXT_TYPE + COMMA_SEP +
+                    Stat.COLUMN_NAME_CHARISMA + TEXT_TYPE + COMMA_SEP +
             " );" +
             "CREATE TABLE " + Proficiency.TABLE_NAME + " (" +
                     Proficiency._ID + " INTEGER PRIMARY KEY," +
@@ -98,7 +110,7 @@ public final class DatabaseContract {
             "DROP TABLE IF EXISTS " + Stat.TABLE_NAME + ";" +
             "DROP TABLE IF EXISTS " + Proficiency.TABLE_NAME + ";";
 
-    public class CharacterSheetDbHelper extends SQLiteOpenHelper {
+    public static class CharacterSheetDbHelper extends SQLiteOpenHelper {
         // If you change the database schema, you must increment the database version.
         public static final int DATABASE_VERSION = 1;
         public static final String DATABASE_NAME = "CharacterSheet.db";
@@ -121,5 +133,26 @@ public final class DatabaseContract {
         public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             onUpgrade(db, oldVersion, newVersion);
         }
+    }
+
+    public void setCharacterValues(Models.CharacterModel model, Context context){
+        // Gets the data repository in write mode
+        DatabaseContract.CharacterSheetDbHelper mDbHelper = new DatabaseContract.CharacterSheetDbHelper(context);
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+        // Create a new map of values, where column names are the keys
+        ContentValues values = new ContentValues();
+        values.put(DatabaseContract.Character._ID, Statement.RETURN_GENERATED_KEYS);
+        values.put(DatabaseContract.Character.COLUMN_NAME_CHARACTER_NAME, model.getCharacterName());
+        values.put(DatabaseContract.Character.COLUMN_NAME_RACE_ID, model.getRace().getRaceID());
+        values.put(DatabaseContract.Character.COLUMN_NAME_CLASS_ID, model.getCharacterClass().getClassID());
+        values.put(DatabaseContract.Character.COLUMN_NAME_ALIGNMENT_ID, model.getAlignment().getAlignmentID());
+        values.put(DatabaseContract.Character.COLUMN_NAME_STATS_ID, model.getStats().getStatID());
+        values.put(DatabaseContract.Character.COLUMN_NAME_PROFICIENCY_ID, model.getProficiencies().getProficiencyID());
+        values.put(DatabaseContract.Character.COLUMN_NAME_EQUIPMENT_ID, model.getEquipment().getEquipmentID());
+
+        // Insert the new row, returning the primary key value of the new row
+        //long newRowId;
+        //newRowId = db.insert(DatabaseContract.Character.TABLE_NAME, null, values);
     }
 }
