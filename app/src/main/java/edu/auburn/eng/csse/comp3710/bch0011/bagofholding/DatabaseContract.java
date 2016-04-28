@@ -19,6 +19,7 @@ public final class DatabaseContract {
         public static final String COLUMN_NAME_CLASS_ID = "ClassID";
         public static final String COLUMN_NAME_ALIGNMENT_ID = "AlignmentID";
         public static final String COLUMN_NAME_STATS_ID = "StatsID";
+        public static final String COLUMN_NAME_ATTRIBUTE_ID = "AttributeID";
         public static final String COLUMN_NAME_PROFICIENCY_ID = "ProficiencyID";
         public static final String COLUMN_NAME_EQUIPMENT_ID = "EquipmentID";
     }
@@ -77,6 +78,7 @@ public final class DatabaseContract {
                     Character.COLUMN_NAME_CLASS_ID + TEXT_TYPE + COMMA_SEP +
                     Character.COLUMN_NAME_ALIGNMENT_ID + TEXT_TYPE + COMMA_SEP +
                     Character.COLUMN_NAME_STATS_ID + TEXT_TYPE + COMMA_SEP +
+                    Character.COLUMN_NAME_ATTRIBUTE_ID + TEXT_TYPE + COMMA_SEP +
                     Character.COLUMN_NAME_PROFICIENCY_ID + TEXT_TYPE + COMMA_SEP +
                     Character.COLUMN_NAME_EQUIPMENT_ID + TEXT_TYPE + COMMA_SEP +
             " );" +

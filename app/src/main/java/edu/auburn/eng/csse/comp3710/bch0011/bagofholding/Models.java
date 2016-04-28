@@ -176,7 +176,6 @@ public class Models {
             return AttributeID;
         }
 
-
         public void setArmorClass(Short ArmorClass) {
             this.ArmorClass = ArmorClass;
         }
