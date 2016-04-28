@@ -53,6 +53,15 @@ public final class DatabaseContract {
         public static final String COLUMN_NAME_CHARISMA = "Charisma";
     }
 
+    public static abstract class Attribute implements BaseColumns {
+        public static final String TABLE_NAME = "Attribute";
+        public static final String COLUMN_NAME_ARMOR_CLASS = "ArmorClass";
+        public static final String COLUMN_NAME_INITIATIVE = "Initiative";
+        public static final String COLUMN_NAME_SPEED = "Speed";
+        public static final String COLUMN_NAME_MAX_HP = "MaxHP";
+        public static final String COLUMN_NAME_TEMP_HP = "TempHP";
+    }
+
     public static abstract class Proficiency implements BaseColumns {
         public static final String TABLE_NAME = "Proficiency";
         public static final String COLUMN_NAME_PROFICIENCY_NAME = "ProficiencyName";
@@ -95,6 +104,14 @@ public final class DatabaseContract {
                     Stat.COLUMN_NAME_INTELLIGENCE + TEXT_TYPE + COMMA_SEP +
                     Stat.COLUMN_NAME_WISDOM + TEXT_TYPE + COMMA_SEP +
                     Stat.COLUMN_NAME_CHARISMA + TEXT_TYPE + COMMA_SEP +
+            " );" +
+            "CREATE TABLE " + Attribute.TABLE_NAME + " (" +
+                    Attribute._ID + " INTEGER PRIMARY KEY," +
+                    Attribute.COLUMN_NAME_ARMOR_CLASS + TEXT_TYPE + COMMA_SEP +
+                    Attribute.COLUMN_NAME_INITIATIVE + TEXT_TYPE + COMMA_SEP +
+                    Attribute.COLUMN_NAME_SPEED + TEXT_TYPE + COMMA_SEP +
+                    Attribute.COLUMN_NAME_MAX_HP + TEXT_TYPE + COMMA_SEP +
+                    Attribute.COLUMN_NAME_TEMP_HP + TEXT_TYPE + COMMA_SEP +
             " );" +
             "CREATE TABLE " + Proficiency.TABLE_NAME + " (" +
                     Proficiency._ID + " INTEGER PRIMARY KEY," +
