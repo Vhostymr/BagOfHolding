@@ -5,13 +5,14 @@ public class Models {
         private Short CharacterID;
         private String CharacterName;
         private Short CharacterLevel;
+        private Integer CharacterExperience;
         private RaceModel Race;
         private ClassModel Class;
         private AlignmentModel Alignment;
+        private GenderModel Gender;
         private StatsModel Stats;
         private SecondaryStatsModel SecondaryStats;
         private ProficiencyModel Proficiency;
-        //private EquipmentModel Equipment;
 
         public void setCharacterID(Short CharacterID) {
             this.CharacterID = CharacterID;
@@ -27,6 +28,14 @@ public class Models {
 
         public String getCharacterName() {
             return CharacterName;
+        }
+
+        public void setCharacterExperience(Integer CharacterExperience) {
+            this.CharacterExperience = CharacterExperience;
+        }
+
+        public Integer getCharacterExperience() {
+            return CharacterExperience;
         }
 
         public void setCharacterLevel(Short CharacterLevel) {
@@ -61,6 +70,14 @@ public class Models {
             return Alignment;
         }
 
+        public void setGender(GenderModel Gender) {
+            this.Gender = Gender;
+        }
+
+        public GenderModel getGender() {
+            return Gender;
+        }
+
         public void setStats(StatsModel Stats) {
             this.Stats = Stats;
         }
@@ -84,14 +101,6 @@ public class Models {
         public ProficiencyModel getProficiencies() {
             return Proficiency;
         }
-
-        /*public void setEquipment(EquipmentModel Equipment) {
-            this.Equipment = Equipment;
-        }
-
-        public EquipmentModel getEquipment() {
-            return Equipment;
-        }*/
     }
 
     public final class StatsModel {
@@ -219,7 +228,7 @@ public class Models {
 
     public final class RaceModel {
         private Short RaceID;
-        private String Race;
+        private String RaceName;
 
         public void setRaceID(Short RaceID) {
             this.RaceID = RaceID;
@@ -229,12 +238,12 @@ public class Models {
             return RaceID;
         }
 
-        public void setRace(String Race) {
-            this.Race = Race;
+        public void setRaceName(String RaceName) {
+            this.RaceName = RaceName;
         }
 
-        public String getRace() {
-            return Race;
+        public String getRaceName() {
+            return RaceName;
         }
     }
 
@@ -271,12 +280,33 @@ public class Models {
             return AlignmentID;
         }
 
-        public void setAlignment(String Alignment) {
+        public void setAlignmentName(String Alignment) {
             this.Alignment = Alignment;
         }
 
-        public String getAlignment() {
+        public String getAlignmentName() {
             return Alignment;
+        }
+    }
+
+    public final class GenderModel {
+        private Short GenderID;
+        private String GenderName;
+
+        public void setGenderID(Short GenderID) {
+            this.GenderID = GenderID;
+        }
+
+        public Short getGenderID() {
+            return GenderID;
+        }
+
+        public void setGenderName(String GenderName) {
+            this.GenderName = GenderName;
+        }
+
+        public String getGenderName() {
+            return GenderName;
         }
     }
 
@@ -519,25 +549,4 @@ public class Models {
             return Persuasion;
         }
     }
-
-    /*public final class EquipmentModel {
-        private Short EquipmentID;
-        private String Equipment;
-
-        public void setEquipmentID(Short EquipmentID) {
-            this.EquipmentID = EquipmentID;
-        }
-
-        public Short getEquipmentID() {
-            return EquipmentID;
-        }
-
-        public void setEquipment(String Equipment) {
-            this.Equipment = Equipment;
-        }
-
-        public String getEquipment() {
-            return Equipment;
-        }
-    }*/
 }
