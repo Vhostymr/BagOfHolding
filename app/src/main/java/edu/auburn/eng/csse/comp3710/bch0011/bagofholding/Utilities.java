@@ -42,11 +42,19 @@ public final class Utilities {
         return (short) Math.floor(calculatedValue);
     }
 
-    public static short GetProficiencyBonus() {
+    public static short GetProficiencyBonus(short level) {
+        //Get proficiency from db.
         return 1;
     }
 
-    public static short CalculateProficiency() {
-        return 1;
+    public static short CalculateProficiency(short level, short abilityModifier, boolean isProficient) {
+        short result = abilityModifier;
+
+        if (isProficient) {
+            short proficiency = GetProficiencyBonus(level);
+            result += proficiency;
+        }
+
+        return result;
     }
 }
