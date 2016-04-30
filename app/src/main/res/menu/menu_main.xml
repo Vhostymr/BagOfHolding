@@ -2,6 +2,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="edu.auburn.eng.csse.comp3710.bch0011.bagofholding.MainActivity">
+    <!--<item-->
+        <!--android:id="@+id/action_search"-->
+        <!--android:orderInCategory="200"-->
+        <!--android:title="Search"-->
+        <!--android:icon="@drawable/"-->
+        <!--app:showAsAction="ifRoom"-->
+        <!--></item>-->
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
