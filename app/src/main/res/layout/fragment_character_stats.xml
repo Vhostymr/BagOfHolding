@@ -14,8 +14,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:baselineAligned="false">
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -24,79 +24,133 @@
                 android:orientation="vertical"
                 android:paddingLeft="15sp">
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="horizontal">
+                    android:layout_height="200dp"
+                    android:orientation="vertical">
 
-                    <EditText
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:ems="2"
+                            android:gravity="right"
+                            android:inputType="number"
+                            android:maxLength="2"
+                            android:singleLine="true" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|right"
+                            android:layout_marginLeft="10dp"
+                            android:text="Strength"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <CheckBox
+                        android:id="@+id/strength_saving_throws"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:gravity="right"
-                        android:inputType="number"
-                        android:maxLength="2"
-                        android:ems="2"
-                        android:singleLine="true" />
+                        android:text="Saving Throws" />
 
-                    <TextView
+                    <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|right"
-                        android:text="Strength"
-                        android:textSize="17sp"
-                        android:layout_marginLeft="10dp"/>
+                        android:text="Athletics" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="horizontal">
+                    android:layout_height="200dp"
+                    android:orientation="vertical">
 
-                    <EditText
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:ems="2"
+                            android:gravity="right"
+                            android:inputType="number"
+                            android:maxLength="2"
+                            android:singleLine="true" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|right"
+                            android:layout_marginLeft="10dp"
+                            android:text="Dexterity"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:gravity="right"
-                        android:inputType="number"
-                        android:maxLength="2"
-                        android:ems="2"
-                        android:singleLine="true" />
+                        android:text="Saving Throws" />
 
-                    <TextView
+                    <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|right"
-                        android:text="Dexterity"
-                        android:textSize="17sp"
-                        android:layout_marginLeft="10dp"/>
+                        android:text="Athletics" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Saving Throws" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Athletics" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="horizontal">
+                    android:layout_height="200dp"
+                    android:orientation="vertical">
 
-                    <EditText
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:ems="2"
+                            android:gravity="right"
+                            android:inputType="number"
+                            android:maxLength="2"
+                            android:singleLine="true" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|right"
+                            android:layout_marginLeft="10dp"
+                            android:text="Constitution"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:gravity="right"
-                        android:inputType="number"
-                        android:maxLength="2"
-                        android:ems="2"
-                        android:singleLine="true" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|right"
-                        android:text="Constitution"
-                        android:textSize="17sp"
-                        android:layout_marginLeft="10dp"/>
+                        android:text="Saving Throws" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -109,77 +163,171 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="horizontal">
+                    android:layout_height="200dp"
+                    android:orientation="vertical">
 
-                    <EditText
-                        android:id="@+id/editText"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/editText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:ems="2"
+                            android:gravity="right"
+                            android:inputType="number"
+                            android:maxLength="2"
+                            android:singleLine="true" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|right"
+                            android:layout_marginLeft="10dp"
+                            android:text="Intelligence"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:gravity="right"
-                        android:inputType="number"
-                        android:maxLength="2"
-                        android:ems="2"
-                        android:singleLine="true" />
+                        android:text="Saving Throws" />
 
-                    <TextView
+                    <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|right"
-                        android:text="Intelligence"
-                        android:textSize="17sp"
-                        android:layout_marginLeft="10dp"/>
+                        android:text="Athletics" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Saving Throws" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Athletics" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Saving Throws" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="horizontal">
+                    android:layout_height="200dp"
+                    android:orientation="vertical">
 
-                    <EditText
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:ems="2"
+                            android:gravity="right"
+                            android:inputType="number"
+                            android:maxLength="2"
+                            android:singleLine="true" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|right"
+                            android:layout_marginLeft="10dp"
+                            android:text="Wisdom"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:gravity="right"
-                        android:inputType="number"
-                        android:maxLength="2"
-                        android:ems="2"
-                        android:singleLine="true" />
+                        android:text="Saving Throws" />
 
-                    <TextView
+                    <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|right"
-                        android:text="Wisdom"
-                        android:textSize="17sp"
-                        android:layout_marginLeft="10dp"/>
+                        android:text="Athletics" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Saving Throws" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Athletics" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Saving Throws" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="horizontal">
+                    android:layout_height="200dp"
+                    android:orientation="vertical">
 
-                    <EditText
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:ems="2"
+                            android:gravity="right"
+                            android:inputType="number"
+                            android:maxLength="2"
+                            android:singleLine="true" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|right"
+                            android:layout_marginLeft="10dp"
+                            android:text="Charisma"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:gravity="right"
-                        android:inputType="number"
-                        android:maxLength="2"
-                        android:ems="2"
-                        android:singleLine="true" />
+                        android:text="Saving Throws" />
 
-                    <TextView
+                    <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|right"
-                        android:text="Charisma"
-                        android:textSize="17sp"
-                        android:layout_marginLeft="10dp"/>
+                        android:text="Athletics" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Saving Throws" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Athletics" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Saving Throws" />
                 </LinearLayout>
             </LinearLayout>
 
