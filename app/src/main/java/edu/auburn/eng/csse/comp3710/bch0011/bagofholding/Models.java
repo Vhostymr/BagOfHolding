@@ -9,9 +9,9 @@ public class Models {
         private ClassModel Class;
         private AlignmentModel Alignment;
         private StatsModel Stats;
-        private AttributesModel Attribute;
+        private SecondaryStatsModel SecondaryStats;
         private ProficiencyModel Proficiency;
-        private EquipmentModel Equipment;
+        //private EquipmentModel Equipment;
 
         public void setCharacterID(Short CharacterID) {
             this.CharacterID = CharacterID;
@@ -69,12 +69,12 @@ public class Models {
             return Stats;
         }
 
-        public void setAttributes(AttributesModel Attribute) {
-            this.Attribute = Attribute;
+        public void setSecondaryStats(SecondaryStatsModel SecondaryStats) {
+            this.SecondaryStats = SecondaryStats;
         }
 
-        public AttributesModel getAttributes() {
-            return Attribute;
+        public SecondaryStatsModel getSecondaryStats() {
+            return SecondaryStats;
         }
 
         public void setProficiencies(ProficiencyModel Proficiency) {
@@ -85,13 +85,13 @@ public class Models {
             return Proficiency;
         }
 
-        public void setEquipment(EquipmentModel Equipment) {
+        /*public void setEquipment(EquipmentModel Equipment) {
             this.Equipment = Equipment;
         }
 
         public EquipmentModel getEquipment() {
             return Equipment;
-        }
+        }*/
     }
 
     public final class StatsModel {
@@ -160,20 +160,20 @@ public class Models {
         }
     }
 
-    public final class AttributesModel {
-        private Short AttributeID;
+    public final class SecondaryStatsModel {
+        private Short SecondaryStatsID;
         private Short ArmorClass;
         private Short Initiative;
         private Short Speed;
         private Short MaxHP;
         private Short TempHP;
 
-        public void setAttributeID(Short AttributeID) {
-            this.AttributeID = AttributeID;
+        public void setSecondaryStatsID(Short SecondaryStatsID) {
+            this.SecondaryStatsID = SecondaryStatsID;
         }
 
-        public Short getAttributeID() {
-            return AttributeID;
+        public Short getSecondaryStatsID() {
+            return SecondaryStatsID;
         }
 
         public void setArmorClass(Short ArmorClass) {
@@ -520,7 +520,7 @@ public class Models {
         }
     }
 
-    public final class EquipmentModel {
+    /*public final class EquipmentModel {
         private Short EquipmentID;
         private String Equipment;
 
@@ -539,5 +539,5 @@ public class Models {
         public String getEquipment() {
             return Equipment;
         }
-    }
+    }*/
 }
