@@ -19,9 +19,9 @@ public final class DatabaseContract {
         public static final String COLUMN_NAME_CLASS_ID = "ClassID";
         public static final String COLUMN_NAME_ALIGNMENT_ID = "AlignmentID";
         public static final String COLUMN_NAME_STATS_ID = "StatsID";
-        public static final String COLUMN_NAME_ATTRIBUTE_ID = "AttributeID";
+        public static final String COLUMN_NAME_SECONDARYSTATS_ID = "SecondaryStatsID";
         public static final String COLUMN_NAME_PROFICIENCY_ID = "ProficiencyID";
-        public static final String COLUMN_NAME_EQUIPMENT_ID = "EquipmentID";
+        //public static final String COLUMN_NAME_EQUIPMENT_ID = "EquipmentID";
     }
 
     public static abstract class Race implements BaseColumns {
@@ -54,8 +54,8 @@ public final class DatabaseContract {
         public static final String COLUMN_NAME_CHARISMA = "Charisma";
     }
 
-    public static abstract class Attribute implements BaseColumns {
-        public static final String TABLE_NAME = "Attribute";
+    public static abstract class SecondaryStats implements BaseColumns {
+        public static final String TABLE_NAME = "SecondaryStats";
         public static final String COLUMN_NAME_ARMOR_CLASS = "ArmorClass";
         public static final String COLUMN_NAME_INITIATIVE = "Initiative";
         public static final String COLUMN_NAME_SPEED = "Speed";
@@ -72,63 +72,63 @@ public final class DatabaseContract {
     private static final String COMMA_SEP = ",";
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + Character.TABLE_NAME + " (" +
-                    Character._ID + " INTEGER PRIMARY KEY," +
+                    Character._ID + " INTEGER PRIMARY KEY AUTOINCREMENT ," +
                     Character.COLUMN_NAME_CHARACTER_NAME + TEXT_TYPE + COMMA_SEP +
                     Character.COLUMN_NAME_RACE_ID + TEXT_TYPE + COMMA_SEP +
                     Character.COLUMN_NAME_CLASS_ID + TEXT_TYPE + COMMA_SEP +
                     Character.COLUMN_NAME_ALIGNMENT_ID + TEXT_TYPE + COMMA_SEP +
                     Character.COLUMN_NAME_STATS_ID + TEXT_TYPE + COMMA_SEP +
-                    Character.COLUMN_NAME_ATTRIBUTE_ID + TEXT_TYPE + COMMA_SEP +
+                    Character.COLUMN_NAME_SECONDARYSTATS_ID + TEXT_TYPE + COMMA_SEP +
                     Character.COLUMN_NAME_PROFICIENCY_ID + TEXT_TYPE + COMMA_SEP +
-                    Character.COLUMN_NAME_EQUIPMENT_ID + TEXT_TYPE + COMMA_SEP +
-            " );" +
-            "CREATE TABLE " + Race.TABLE_NAME + " (" +
-                    Race._ID + " INTEGER PRIMARY KEY," +
+                    //Character.COLUMN_NAME_EQUIPMENT_ID + TEXT_TYPE + COMMA_SEP +
+                    " );" +
+                    "CREATE TABLE " + Race.TABLE_NAME + " (" +
+                    Race._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     Race.COLUMN_NAME_RACE_NAME + TEXT_TYPE + COMMA_SEP +
-            " );" +
-            "CREATE TABLE " + Class.TABLE_NAME + " (" +
-                    Class._ID + " INTEGER PRIMARY KEY," +
+                    " );" +
+                    "CREATE TABLE " + Class.TABLE_NAME + " (" +
+                    Class._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     Class.COLUMN_NAME_CLASS_NAME + TEXT_TYPE + COMMA_SEP +
-            " );" +
-            "CREATE TABLE " + Alignment.TABLE_NAME + " (" +
-                    Alignment._ID + " INTEGER PRIMARY KEY," +
+                    " );" +
+                    "CREATE TABLE " + Alignment.TABLE_NAME + " (" +
+                    Alignment._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     Alignment.COLUMN_NAME_ALIGNMENT_NAME + TEXT_TYPE + COMMA_SEP +
-            " );" +
-            "CREATE TABLE " + Gender.TABLE_NAME + " (" +
-                    Gender._ID + " INTEGER PRIMARY KEY," +
+                    " );" +
+                    "CREATE TABLE " + Gender.TABLE_NAME + " (" +
+                    Gender._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     Gender.COLUMN_NAME_GENDER_NAME + TEXT_TYPE + COMMA_SEP +
-            " );" +
-            "CREATE TABLE " + Stat.TABLE_NAME + " (" +
-                    Stat._ID + " INTEGER PRIMARY KEY," +
+                    " );" +
+                    "CREATE TABLE " + Stat.TABLE_NAME + " (" +
+                    Stat._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     Stat.COLUMN_NAME_STRENGTH + TEXT_TYPE + COMMA_SEP +
                     Stat.COLUMN_NAME_DEXTERITY + TEXT_TYPE + COMMA_SEP +
                     Stat.COLUMN_NAME_CONSTITUTION + TEXT_TYPE + COMMA_SEP +
                     Stat.COLUMN_NAME_INTELLIGENCE + TEXT_TYPE + COMMA_SEP +
                     Stat.COLUMN_NAME_WISDOM + TEXT_TYPE + COMMA_SEP +
                     Stat.COLUMN_NAME_CHARISMA + TEXT_TYPE + COMMA_SEP +
-            " );" +
-            "CREATE TABLE " + Attribute.TABLE_NAME + " (" +
-                    Attribute._ID + " INTEGER PRIMARY KEY," +
-                    Attribute.COLUMN_NAME_ARMOR_CLASS + TEXT_TYPE + COMMA_SEP +
-                    Attribute.COLUMN_NAME_INITIATIVE + TEXT_TYPE + COMMA_SEP +
-                    Attribute.COLUMN_NAME_SPEED + TEXT_TYPE + COMMA_SEP +
-                    Attribute.COLUMN_NAME_MAX_HP + TEXT_TYPE + COMMA_SEP +
-                    Attribute.COLUMN_NAME_TEMP_HP + TEXT_TYPE + COMMA_SEP +
-            " );" +
-            "CREATE TABLE " + Proficiency.TABLE_NAME + " (" +
-                    Proficiency._ID + " INTEGER PRIMARY KEY," +
+                    " );" +
+                    "CREATE TABLE " + SecondaryStats.TABLE_NAME + " (" +
+                    SecondaryStats._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    SecondaryStats.COLUMN_NAME_ARMOR_CLASS + TEXT_TYPE + COMMA_SEP +
+                    SecondaryStats.COLUMN_NAME_INITIATIVE + TEXT_TYPE + COMMA_SEP +
+                    SecondaryStats.COLUMN_NAME_SPEED + TEXT_TYPE + COMMA_SEP +
+                    SecondaryStats.COLUMN_NAME_MAX_HP + TEXT_TYPE + COMMA_SEP +
+                    SecondaryStats.COLUMN_NAME_TEMP_HP + TEXT_TYPE + COMMA_SEP +
+                    " );" +
+                    "CREATE TABLE " + Proficiency.TABLE_NAME + " (" +
+                    Proficiency._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     Proficiency.COLUMN_NAME_PROFICIENCY_NAME + TEXT_TYPE + COMMA_SEP +
-            " );";
+                    " );";
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + Character.TABLE_NAME + ";" +
-            "DROP TABLE IF EXISTS " + Race.TABLE_NAME + ";" +
-            "DROP TABLE IF EXISTS " + Class.TABLE_NAME + ";" +
-            "DROP TABLE IF EXISTS " + Alignment.TABLE_NAME + ";" +
-            "DROP TABLE IF EXISTS " + Gender.TABLE_NAME + ";" +
-            "DROP TABLE IF EXISTS " + Stat.TABLE_NAME + ";" +
-            "DROP TABLE IF EXISTS " + Attribute.TABLE_NAME + ";" +
-            "DROP TABLE IF EXISTS " + Proficiency.TABLE_NAME + ";";
+                    "DROP TABLE IF EXISTS " + Race.TABLE_NAME + ";" +
+                    "DROP TABLE IF EXISTS " + Class.TABLE_NAME + ";" +
+                    "DROP TABLE IF EXISTS " + Alignment.TABLE_NAME + ";" +
+                    "DROP TABLE IF EXISTS " + Gender.TABLE_NAME + ";" +
+                    "DROP TABLE IF EXISTS " + Stat.TABLE_NAME + ";" +
+                    "DROP TABLE IF EXISTS " + SecondaryStats.TABLE_NAME + ";" +
+                    "DROP TABLE IF EXISTS " + Proficiency.TABLE_NAME + ";";
 
     public static class CharacterSheetDbHelper extends SQLiteOpenHelper {
         // If you change the database schema, you must increment the database version.
@@ -169,10 +169,11 @@ public final class DatabaseContract {
         values.put(DatabaseContract.Character.COLUMN_NAME_ALIGNMENT_ID, model.getAlignment().getAlignmentID());
         values.put(DatabaseContract.Character.COLUMN_NAME_STATS_ID, model.getStats().getStatID());
         values.put(DatabaseContract.Character.COLUMN_NAME_PROFICIENCY_ID, model.getProficiencies().getProficiencyID());
-        values.put(DatabaseContract.Character.COLUMN_NAME_EQUIPMENT_ID, model.getEquipment().getEquipmentID());
+        //values.put(DatabaseContract.Character.COLUMN_NAME_EQUIPMENT_ID, model.getEquipment().getEquipmentID());
 
         // Insert the new row, returning the primary key value of the new row
         //long newRowId;
         //newRowId = db.insert(DatabaseContract.Character.TABLE_NAME, null, values);
     }
+
 }
