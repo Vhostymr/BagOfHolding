@@ -14,8 +14,46 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Edit Text Fields
+    //Stats
     EditText strengthET;
+    EditText dexterityET;
+    EditText constitutionET;
+    EditText intelligenceET;
+    EditText wisdomET;
+    EditText charismaET;
 
+    //Check Boxes
+    //Proficiencies
+    CheckBox savingThrowsStrengthCB;
+    CheckBox athleticsStrengthCB;
+
+    CheckBox savingThrowsDexterityCB;
+    CheckBox acrobaticsDexterityCB;
+    CheckBox sleightOfHandDexterityCB;
+    CheckBox stealthDexterityCB;
+
+    CheckBox savingThrowsConstitutionCB;
+
+    CheckBox savingThrowsIntelligenceCB;
+    CheckBox arcanaIntelligenceCB;
+    CheckBox historyIntelligenceCB;
+    CheckBox investigationIntelligenceCB;
+    CheckBox natureIntelligenceCB;
+    CheckBox religionIntelligenceCB;
+
+    CheckBox savingThrowsWisdomCB;
+    CheckBox animalHandlingWisdomCB;
+    CheckBox insightWisdomCB;
+    CheckBox medicineWisdomCB;
+    CheckBox perceptionWisdomCB;
+    CheckBox survivalWisdomCB;
+
+    CheckBox savingThrowsCharismaCB;
+    CheckBox deceptionCharismaCB;
+    CheckBox intimidationCharismaCB;
+    CheckBox performanceCharismaCB;
+    CheckBox persuasionCharismaCB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,37 +68,45 @@ public class MainActivity extends AppCompatActivity {
 
         Models.ProficiencyModel pm = new Models.ProficiencyModel();
         final Models.StatsModel sm = new Models.StatsModel();
-        strengthET = (EditText) findViewById(R.id.et_strength);
+
+        //EditTextSetters
+//        strengthET = (EditText) findViewById(R.id.et_strength);
+//        dexterityET = (EditText) findViewById(R.id.et_dexterity);
+//        constitutionET = (EditText) findViewById(R.id.et_constitution);
+//        intelligenceET = (EditText) findViewById(R.id.et_intelligence);
+//        wisdomET = (EditText) findViewById(R.id.et_wisdom);
+//        charismaET = (EditText) findViewById(R.id.et_charisma);
 
 
 
-        strengthET.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String textIn = String.valueOf(strengthET.getText());
-                sm.setStrength(Short.parseShort(textIn));
-                sm.setCharisma((short) 0);
-                sm.setConstitution((short) 0);
-                sm.setDexterity((short) 0);
-                sm.setIntelligence((short) 0);
-                sm.setWisdom((short) 0);
-
-                cm.setStats(sm);
-
-                ContentValues values = DatabaseContract.setStatValues(cm);
-                DatabaseContract.create("Character", values, getApplicationContext());
-            }
-        });
+//        strengthET.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                String textIn = String.valueOf(strengthET.getText());
+//                sm.setStrength(Short.parseShort(textIn));
+//                sm.setCharisma((short) 0);
+//                sm.setConstitution((short) 0);
+//                sm.setDexterity((short) 0);
+//                sm.setIntelligence((short) 0);
+//                sm.setWisdom((short) 0);
+//
+//                cm.setStats(sm);
+//
+//                ContentValues values = DatabaseContract.setStatValues(cm);
+//                DatabaseContract.create("Character", values, getApplicationContext());
+//            }
+//        });
 
 
 

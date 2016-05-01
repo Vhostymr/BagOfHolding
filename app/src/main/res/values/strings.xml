@@ -32,4 +32,7 @@
     <string name="intimidation">Intimidation</string>
     <string name="performance">Performance</string>
     <string name="persuasion">Persuasion</string>
+
+    <!--  Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
