@@ -108,21 +108,10 @@ public final class DatabaseContract {
     private static final String TEXT_TYPE = " TEXT";
     private static final String INTEGER = " INTEGER";
     private static final String PRIMARY_KEY = " PRIMARY KEY AUTOINCREMENT";
+    private static final String FOREIGN_KEY = "FOREIGN KEY(";
+    private static final String REFERENCES = ") REFERENCES ";
     private static final String COMMA_SEP = ",";
     private static final String SQL_CREATE_ENTRIES =
-            "CREATE TABLE " + Character.TABLE_NAME + " (" +
-                    Character._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
-                    Character.COLUMN_NAME_CHARACTER_NAME + TEXT_TYPE + COMMA_SEP +
-                    Character.COLUMN_NAME_LEVEL + INTEGER + COMMA_SEP +
-                    Character.COLUMN_NAME_EXPERIENCE + INTEGER + COMMA_SEP +
-                    Character.COLUMN_NAME_RACE_ID + INTEGER + COMMA_SEP +
-                    Character.COLUMN_NAME_CLASS_ID + INTEGER + COMMA_SEP +
-                    Character.COLUMN_NAME_ALIGNMENT_ID + INTEGER + COMMA_SEP +
-                    Character.COLUMN_NAME_GENDER_ID + INTEGER + COMMA_SEP +
-                    Character.COLUMN_NAME_STATS_ID + INTEGER + COMMA_SEP +
-                    Character.COLUMN_NAME_SECONDARY_STATS_ID + INTEGER + COMMA_SEP +
-                    Character.COLUMN_NAME_PROFICIENCY_ID + INTEGER + COMMA_SEP +
-            " );" +
             "CREATE TABLE " + Race.TABLE_NAME + " (" +
                     Race._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
                     Race.COLUMN_NAME_RACE_NAME + TEXT_TYPE + COMMA_SEP +
@@ -187,6 +176,28 @@ public final class DatabaseContract {
                     Proficiency.COLUMN_NAME_INTIMIDATION + INTEGER + COMMA_SEP +
                     Proficiency.COLUMN_NAME_PERFORMANCE + INTEGER + COMMA_SEP +
                     Proficiency.COLUMN_NAME_PERSUASION + INTEGER + COMMA_SEP +
+            " );" +
+            "CREATE TABLE " + Character.TABLE_NAME + " (" +
+                    Character._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
+
+                    Character.COLUMN_NAME_CHARACTER_NAME + TEXT_TYPE + COMMA_SEP +
+                    Character.COLUMN_NAME_LEVEL + INTEGER + COMMA_SEP +
+                    Character.COLUMN_NAME_EXPERIENCE + INTEGER + COMMA_SEP +
+                    Character.COLUMN_NAME_RACE_ID + INTEGER + COMMA_SEP +
+                    Character.COLUMN_NAME_CLASS_ID + INTEGER + COMMA_SEP +
+                    Character.COLUMN_NAME_ALIGNMENT_ID + INTEGER + COMMA_SEP +
+                    Character.COLUMN_NAME_GENDER_ID + INTEGER + COMMA_SEP +
+                    Character.COLUMN_NAME_STATS_ID + INTEGER + COMMA_SEP +
+                    Character.COLUMN_NAME_SECONDARY_STATS_ID + INTEGER + COMMA_SEP +
+                    Character.COLUMN_NAME_PROFICIENCY_ID + INTEGER + COMMA_SEP +
+
+                    FOREIGN_KEY + Character.COLUMN_NAME_RACE_ID + REFERENCES + "Race(_ID)" +
+                    FOREIGN_KEY + Character.COLUMN_NAME_CLASS_ID + REFERENCES + "Class(_ID)" +
+                    FOREIGN_KEY + Character.COLUMN_NAME_ALIGNMENT_ID + REFERENCES + "Alignment(_ID)" +
+                    FOREIGN_KEY + Character.COLUMN_NAME_GENDER_ID + REFERENCES + "Gender(_ID)" +
+                    FOREIGN_KEY + Character.COLUMN_NAME_STATS_ID + REFERENCES + "Stats(_ID)" +
+                    FOREIGN_KEY + Character.COLUMN_NAME_SECONDARY_STATS_ID + REFERENCES + "SecondaryStats(_ID)" +
+                    FOREIGN_KEY + Character.COLUMN_NAME_PROFICIENCY_ID + REFERENCES + "Proficiency(_ID)" +
             " );";
 
     private static final String SQL_DELETE_ENTRIES =
