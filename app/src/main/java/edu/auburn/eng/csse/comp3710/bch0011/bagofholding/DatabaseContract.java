@@ -258,118 +258,118 @@ public final class DatabaseContract {
         return values;
     }
 
-    public static ContentValues setRaceValues(Models.CharacterModel model) {
+    public static ContentValues setRaceValues(Models.RaceModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(Race._ID, Statement.RETURN_GENERATED_KEYS);
-        values.put(Race.COLUMN_NAME_RACE_NAME, model.getRace().getRaceName());
+        values.put(Race.COLUMN_NAME_RACE_NAME, model.getRaceName());
 
         return values;
     }
 
-    public static ContentValues setClassValues(Models.CharacterModel model) {
+    public static ContentValues setClassValues(Models.ClassModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(CharacterClass._ID, Statement.RETURN_GENERATED_KEYS);
-        values.put(CharacterClass.COLUMN_NAME_CLASS_NAME, model.getCharacterClass().getClassName());
+        values.put(CharacterClass.COLUMN_NAME_CLASS_NAME, model.getClassName());
 
         return values;
     }
 
-    public static ContentValues setAlignmentValues(Models.CharacterModel model) {
+    public static ContentValues setAlignmentValues(Models.AlignmentModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(Alignment._ID, Statement.RETURN_GENERATED_KEYS);
-        values.put(Alignment.COLUMN_NAME_ALIGNMENT_NAME, model.getAlignment().getAlignmentName());
+        values.put(Alignment.COLUMN_NAME_ALIGNMENT_NAME, model.getAlignmentName());
 
         return values;
     }
 
-    public static ContentValues setStatValues(Models.CharacterModel model) {
+    public static ContentValues setStatValues(Models.StatsModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(Stat._ID, Statement.RETURN_GENERATED_KEYS);
-        values.put(Stat.COLUMN_NAME_STRENGTH, model.getStats().getStrength());
-        values.put(Stat.COLUMN_NAME_DEXTERITY, model.getStats().getDexterity());
-        values.put(Stat.COLUMN_NAME_CONSTITUTION, model.getStats().getConstitution());
-        values.put(Stat.COLUMN_NAME_INTELLIGENCE, model.getStats().getIntelligence());
-        values.put(Stat.COLUMN_NAME_WISDOM, model.getStats().getWisdom());
-        values.put(Stat.COLUMN_NAME_CHARISMA, model.getStats().getCharisma());
+        values.put(Stat.COLUMN_NAME_STRENGTH, model.getStrength());
+        values.put(Stat.COLUMN_NAME_DEXTERITY, model.getDexterity());
+        values.put(Stat.COLUMN_NAME_CONSTITUTION, model.getConstitution());
+        values.put(Stat.COLUMN_NAME_INTELLIGENCE, model.getIntelligence());
+        values.put(Stat.COLUMN_NAME_WISDOM, model.getWisdom());
+        values.put(Stat.COLUMN_NAME_CHARISMA, model.getCharisma());
 
         return values;
     }
 
-    public static ContentValues setSecondaryStatValues(Models.CharacterModel model) {
+    public static ContentValues setSecondaryStatValues(Models.SecondaryStatsModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(SecondaryStats._ID, Statement.RETURN_GENERATED_KEYS);
-        values.put(SecondaryStats.COLUMN_NAME_ARMOR_CLASS, model.getSecondaryStats().getArmorClass());
-        values.put(SecondaryStats.COLUMN_NAME_INITIATIVE, model.getSecondaryStats().getInitiative());
-        values.put(SecondaryStats.COLUMN_NAME_SPEED, model.getSecondaryStats().getSpeed());
-        values.put(SecondaryStats.COLUMN_NAME_MAX_HP, model.getSecondaryStats().getMaxHP());
-        values.put(SecondaryStats.COLUMN_NAME_TEMP_HP, model.getSecondaryStats().getTempHP());
+        values.put(SecondaryStats.COLUMN_NAME_ARMOR_CLASS, model.getArmorClass());
+        values.put(SecondaryStats.COLUMN_NAME_INITIATIVE, model.getInitiative());
+        values.put(SecondaryStats.COLUMN_NAME_SPEED, model.getSpeed());
+        values.put(SecondaryStats.COLUMN_NAME_MAX_HP, model.getMaxHP());
+        values.put(SecondaryStats.COLUMN_NAME_TEMP_HP, model.getTempHP());
 
         return values;
     }
 
-    public static ContentValues setGenderValues(Models.CharacterModel model) {
+    public static ContentValues setGenderValues(Models.GenderModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(Gender._ID, Statement.RETURN_GENERATED_KEYS);
-        values.put(Gender.COLUMN_NAME_GENDER_NAME, model.getGender().getGenderName());
+        values.put(Gender.COLUMN_NAME_GENDER_NAME, model.getGenderName());
 
         return values;
     }
 
-    public static ContentValues setProficiencyValues(Models.CharacterModel model) {
+    public static ContentValues setProficiencyValues(Models.ProficiencyModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(Proficiency._ID, Statement.RETURN_GENERATED_KEYS);
 
         //Strength
-        values.put(Proficiency.COLUMN_NAME_STRENGTH_SAVING_THROW, model.getProficiencies().getStrengthSavingThrow());
-        values.put(Proficiency.COLUMN_NAME_ATHLETICS, model.getProficiencies().getAthletics());
+        values.put(Proficiency.COLUMN_NAME_STRENGTH_SAVING_THROW, model.getStrengthSavingThrow());
+        values.put(Proficiency.COLUMN_NAME_ATHLETICS, model.getAthletics());
 
         //Dexterity
-        values.put(Proficiency.COLUMN_NAME_DEXTERITY_SAVING_THROW, model.getProficiencies().getDexteritySavingThrow());
-        values.put(Proficiency.COLUMN_NAME_ACROBATICS, model.getProficiencies().getAcrobatics());
-        values.put(Proficiency.COLUMN_NAME_SLEIGHT_OF_HAND, model.getProficiencies().getSleightOfHand());
-        values.put(Proficiency.COLUMN_NAME_STEALTH, model.getProficiencies().getStealth());
+        values.put(Proficiency.COLUMN_NAME_DEXTERITY_SAVING_THROW, model.getDexteritySavingThrow());
+        values.put(Proficiency.COLUMN_NAME_ACROBATICS, model.getAcrobatics());
+        values.put(Proficiency.COLUMN_NAME_SLEIGHT_OF_HAND, model.getSleightOfHand());
+        values.put(Proficiency.COLUMN_NAME_STEALTH, model.getStealth());
 
         //Constitution
-        values.put(Proficiency.COLUMN_NAME_CONSTITUTION_SAVING_THROW, model.getProficiencies().getConstitutionSavingThrow());
+        values.put(Proficiency.COLUMN_NAME_CONSTITUTION_SAVING_THROW, model.getConstitutionSavingThrow());
 
         //Intelligence
-        values.put(Proficiency.COLUMN_NAME_INTELLIGENCE_SAVING_THROW, model.getProficiencies().getIntelligenceSavingThrow());
-        values.put(Proficiency.COLUMN_NAME_ARCANA, model.getProficiencies().getArcana());
-        values.put(Proficiency.COLUMN_NAME_HISTORY, model.getProficiencies().getHistory());
-        values.put(Proficiency.COLUMN_NAME_INVESTIGATION, model.getProficiencies().getInvestigation());
-        values.put(Proficiency.COLUMN_NAME_NATURE, model.getProficiencies().getNature());
-        values.put(Proficiency.COLUMN_NAME_RELIGION, model.getProficiencies().getReligion());
+        values.put(Proficiency.COLUMN_NAME_INTELLIGENCE_SAVING_THROW, model.getIntelligenceSavingThrow());
+        values.put(Proficiency.COLUMN_NAME_ARCANA, model.getArcana());
+        values.put(Proficiency.COLUMN_NAME_HISTORY, model.getHistory());
+        values.put(Proficiency.COLUMN_NAME_INVESTIGATION, model.getInvestigation());
+        values.put(Proficiency.COLUMN_NAME_NATURE, model.getNature());
+        values.put(Proficiency.COLUMN_NAME_RELIGION, model.getReligion());
 
         //Wisdom
-        values.put(Proficiency.COLUMN_NAME_WISDOM_SAVING_THROW, model.getProficiencies().getWisdomSavingThrow());
-        values.put(Proficiency.COLUMN_NAME_ANIMAL_HANDLING, model.getProficiencies().getAnimalHandling());
-        values.put(Proficiency.COLUMN_NAME_INSIGHT, model.getProficiencies().getInsight());
-        values.put(Proficiency.COLUMN_NAME_MEDICINE, model.getProficiencies().getMedicine());
-        values.put(Proficiency.COLUMN_NAME_PERCEPTION, model.getProficiencies().getPerception());
-        values.put(Proficiency.COLUMN_NAME_SURVIVAL, model.getProficiencies().getSurvival());
+        values.put(Proficiency.COLUMN_NAME_WISDOM_SAVING_THROW, model.getWisdomSavingThrow());
+        values.put(Proficiency.COLUMN_NAME_ANIMAL_HANDLING, model.getAnimalHandling());
+        values.put(Proficiency.COLUMN_NAME_INSIGHT, model.getInsight());
+        values.put(Proficiency.COLUMN_NAME_MEDICINE, model.getMedicine());
+        values.put(Proficiency.COLUMN_NAME_PERCEPTION, model.getPerception());
+        values.put(Proficiency.COLUMN_NAME_SURVIVAL, model.getSurvival());
 
         //Charisma
-        values.put(Proficiency.COLUMN_NAME_CHARISMA_SAVING_THROW, model.getProficiencies().getCharismaSavingThrows());
-        values.put(Proficiency.COLUMN_NAME_DECEPTION, model.getProficiencies().getDeception());
-        values.put(Proficiency.COLUMN_NAME_INTIMIDATION, model.getProficiencies().getIntimidation());
-        values.put(Proficiency.COLUMN_NAME_PERFORMANCE, model.getProficiencies().getPerformance());
-        values.put(Proficiency.COLUMN_NAME_PERSUASION, model.getProficiencies().getPersuasion());
+        values.put(Proficiency.COLUMN_NAME_CHARISMA_SAVING_THROW, model.getCharismaSavingThrows());
+        values.put(Proficiency.COLUMN_NAME_DECEPTION, model.getDeception());
+        values.put(Proficiency.COLUMN_NAME_INTIMIDATION, model.getIntimidation());
+        values.put(Proficiency.COLUMN_NAME_PERFORMANCE, model.getPerformance());
+        values.put(Proficiency.COLUMN_NAME_PERSUASION, model.getPersuasion());
 
         return values;
     }
 
-    public static void create(String tableName, ContentValues values, Context context) {
+    public static long create(String tableName, ContentValues values, Context context) {
         CharacterSheetDbHelper mDbHelper = new CharacterSheetDbHelper(context);
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
-        db.insert(tableName, null, values);
+        return db.insert(tableName, null, values);
     }
 
     public static Cursor read(String tableName, int primaryKey, Object object, Context context) {
@@ -392,14 +392,14 @@ public final class DatabaseContract {
         );
     }
 
-    public static void update(String tableName, int primaryKey, ContentValues values, Context context) {
+    public static int update(String tableName, int primaryKey, ContentValues values, Context context) {
         CharacterSheetDbHelper mDbHelper = new CharacterSheetDbHelper(context);
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         String selection = "_ID LIKE ?";
         String[] selectionArgs = { String.valueOf(primaryKey) };
 
-        db.update(tableName, values, selection, selectionArgs);
+        return db.update(tableName, values, selection, selectionArgs);
     }
 
     public static void delete(String tableName, int primaryKey, Context context) {

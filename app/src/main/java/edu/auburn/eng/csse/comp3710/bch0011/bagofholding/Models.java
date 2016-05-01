@@ -14,6 +14,20 @@ public class Models {
         private SecondaryStatsModel SecondaryStats;
         private ProficiencyModel Proficiency;
 
+        public CharacterModel() {
+            CharacterID = 0;
+            CharacterName = "";
+            CharacterLevel = 0;
+            CharacterExperience = 0;
+            Race = new RaceModel();
+            Class = new ClassModel();
+            Alignment = new AlignmentModel();
+            Gender = new GenderModel();
+            Stats = new StatsModel();
+            SecondaryStats = new SecondaryStatsModel();
+            Proficiency = new ProficiencyModel();
+        }
+
         public void setCharacterID(Short CharacterID) {
             this.CharacterID = CharacterID;
         }
@@ -548,5 +562,125 @@ public class Models {
         public Boolean getPersuasion() {
             return Persuasion;
         }
+    }
+
+    public static Models.StatsModel setStatsModel(String strength, String charisma, String constitution, String dexterity, String intelligence, String wisdom) {
+        Models.StatsModel statsModel = new Models.StatsModel();
+
+        statsModel.setStrength(Short.parseShort(strength));
+        statsModel.setDexterity(Short.parseShort(charisma));
+        statsModel.setConstitution(Short.parseShort(constitution));
+        statsModel.setIntelligence(Short.parseShort(dexterity));
+        statsModel.setWisdom(Short.parseShort(intelligence));
+        statsModel.setCharisma(Short.parseShort(wisdom));
+
+        return statsModel;
+    }
+
+    public static Models.ClassModel setClassModel(String className) {
+        Models.ClassModel classModel = new Models.ClassModel();
+
+        classModel.setClassName(className);
+
+        return classModel;
+    }
+
+    public static Models.RaceModel setRaceModel(String raceName) {
+        Models.RaceModel raceModel = new Models.RaceModel();
+
+        raceModel.setRaceName(raceName);
+
+        return raceModel;
+    }
+
+    public static Models.GenderModel setGenderModel(String genderName) {
+        Models.GenderModel genderModel = new Models.GenderModel();
+
+        genderModel.setGenderName(genderName);
+
+        return genderModel;
+    }
+
+    public static Models.AlignmentModel setAlignmentModel(String alignmentName) {
+        Models.AlignmentModel alignmentModel = new Models.AlignmentModel();
+
+        alignmentModel.setAlignmentName(alignmentName);
+
+        return alignmentModel;
+    }
+
+    public static Models.SecondaryStatsModel setSecondaryStatsModel(String armorClass, String initiative, String speed, String maxHP, String tempHP) {
+        Models.SecondaryStatsModel secondaryStatsModel = new Models.SecondaryStatsModel();
+
+        secondaryStatsModel.setArmorClass(Short.parseShort(armorClass));
+        secondaryStatsModel.setInitiative(Short.parseShort(initiative));
+        secondaryStatsModel.setSpeed(Short.parseShort(speed));
+        secondaryStatsModel.setMaxHP(Short.parseShort(maxHP));
+        secondaryStatsModel.setTempHP(Short.parseShort(tempHP));
+
+        return secondaryStatsModel;
+    }
+
+    public static Models.ProficiencyModel setProficiencyModel(boolean hasStrengthSavingThrow, boolean hasAthletics, boolean hasDexteritySavingThrow,
+                                                       boolean hasAcrobatics, boolean hasSleightOfHand, boolean hasStealth, boolean hasConstitutionSavingThrow,
+                                                       boolean hasIntelligenceSavingThrow, boolean hasArcana, boolean hasHistory, boolean hasInvestigation,
+                                                       boolean hasNature, boolean hasReligion, boolean hasWisdomSavingThrow, boolean hasAnimalHandling,
+                                                       boolean hasInsight, boolean hasMedicine, boolean hasPerception, boolean hasSurvival, boolean hasCharismaSavingThrow,
+                                                       boolean hasDeception, boolean hasIntimidation, boolean hasPerformance, boolean hasPersuasion) {
+
+        Models.ProficiencyModel proficiencyModel = new Models.ProficiencyModel();
+
+        proficiencyModel.setStrengthSavingThrow(hasStrengthSavingThrow);
+        proficiencyModel.setAthletics(hasAthletics);
+
+        proficiencyModel.setDexteritySavingThrow(hasDexteritySavingThrow);
+        proficiencyModel.setAcrobatics(hasAcrobatics);
+        proficiencyModel.setSleightOfHand(hasSleightOfHand);
+        proficiencyModel.setStealth(hasStealth);
+
+        proficiencyModel.setConstitutionSavingThrow(hasConstitutionSavingThrow);
+
+        proficiencyModel.setIntelligenceSavingThrow(hasIntelligenceSavingThrow);
+        proficiencyModel.setArcana(hasArcana);
+        proficiencyModel.setHistory(hasHistory);
+        proficiencyModel.setInvestigation(hasInvestigation);
+        proficiencyModel.setNature(hasNature);
+        proficiencyModel.setReligion(hasReligion);
+
+        proficiencyModel.setWisdomSavingThrow(hasWisdomSavingThrow);
+        proficiencyModel.setAnimalHandling(hasAnimalHandling);
+        proficiencyModel.setInsight(hasInsight);
+        proficiencyModel.setMedicine(hasMedicine);
+        proficiencyModel.setPerception(hasPerception);
+        proficiencyModel.setSurvival(hasSurvival);
+
+        proficiencyModel.setCharismaSavingThrows(hasCharismaSavingThrow);
+        proficiencyModel.setDeception(hasDeception);
+        proficiencyModel.setIntimidation(hasIntimidation);
+        proficiencyModel.setPerformance(hasPerformance);
+        proficiencyModel.setPersuasion(hasPersuasion);
+
+        return proficiencyModel;
+    }
+
+    public static Models.CharacterModel setCharacterModel(String characterName, String characterLevel, String characterClass,
+                                                   Models.ClassModel classModel, Models.RaceModel raceModel,
+                                                   Models.AlignmentModel alignmentModel, Models.GenderModel genderModel,
+                                                   Models.StatsModel statsModel, Models.SecondaryStatsModel secondaryStatsModel,
+                                                   Models.ProficiencyModel proficiencyModel) {
+
+        Models.CharacterModel characterModel = new Models.CharacterModel();
+        characterModel.setCharacterName(characterName);
+        characterModel.setCharacterLevel(Short.parseShort(characterLevel));
+        characterModel.setCharacterExperience(Integer.parseInt(characterClass));
+        characterModel.setCharacterClass(classModel);
+        characterModel.setRace(raceModel);
+        characterModel.setAlignment(alignmentModel);
+        characterModel.setGender(genderModel);
+        characterModel.setStats(statsModel);
+        characterModel.setSecondaryStats(secondaryStatsModel);
+        characterModel.setProficiencies(proficiencyModel);
+
+        return characterModel;
     }
 }

@@ -1,6 +1,7 @@
 package edu.auburn.eng.csse.comp3710.bch0011.bagofholding;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -26,13 +27,42 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final Models.CharacterModel cm = new Models.CharacterModel();
+        Context context = getApplicationContext();
 
-        Models.ProficiencyModel pm = new Models.ProficiencyModel();
-        final Models.StatsModel sm = new Models.StatsModel();
-        strengthET = (EditText) findViewById(R.id.et_strength);
+        Models.ClassModel classModel = Models.setClassModel("");
+        long classPrimaryKey = DatabaseContract.create("CharacterClass", DatabaseContract.setClassValues(classModel), context);
+        classModel.setClassID((short) classPrimaryKey);
 
+        Models.RaceModel raceModel = Models.setRaceModel("");
+        long racePrimaryKey = DatabaseContract.create("Race", DatabaseContract.setRaceValues(raceModel), context);
+        raceModel.setRaceID((short) racePrimaryKey);
 
+        Models.GenderModel genderModel = Models.setGenderModel("");
+        long genderPrimaryKey = DatabaseContract.create("Gender", DatabaseContract.setGenderValues(genderModel), context);
+        genderModel.setGenderID((short) genderPrimaryKey);
+
+        Models.AlignmentModel alignmentModel = Models.setAlignmentModel("");
+        long alignmentPrimaryKey = DatabaseContract.create("Alignment", DatabaseContract.setAlignmentValues(alignmentModel), context);
+        alignmentModel.setAlignment((short) alignmentPrimaryKey);
+
+        Models.StatsModel statsModel = Models.setStatsModel("", "", "", "", "", "");
+        long statsPrimaryKey = DatabaseContract.create("Stat", DatabaseContract.setStatValues(statsModel), context);
+        statsModel.setStatID((short) statsPrimaryKey);
+        
+        Models.SecondaryStatsModel secondaryStatsModel = Models.setSecondaryStatsModel("", "", "", "", "");
+        long secondaryStatsPrimaryKey = DatabaseContract.create("SecondaryStat", DatabaseContract.setSecondaryStatValues(secondaryStatsModel), context);
+        secondaryStatsModel.setSecondaryStatsID((short) secondaryStatsPrimaryKey);
+
+        Models.ProficiencyModel proficiencyModel = Models.setProficiencyModel(true, true, true, true, true, true, true, true,
+                                                                              true, true, true, true, true, true, true, true,
+                                                                              true, true, true, true, true, true, true, true);
+        long newPrimaryKey = DatabaseContract.create("Proficiency", DatabaseContract.setProficiencyValues(proficiencyModel), getApplicationContext());
+        proficiencyModel.setProficiencyID((short) newPrimaryKey);
+
+        Models.CharacterModel characterModel = Models.setCharacterModel("", "", "", classModel,
+                                                                        raceModel, alignmentModel, genderModel,
+                                                                        statsModel, secondaryStatsModel, proficiencyModel);
+        DatabaseContract.create("PlayerCharacter", DatabaseContract.setCharacterValues(characterModel), getApplicationContext());
 
         strengthET.addTextChangedListener(new TextWatcher() {
             @Override
@@ -47,18 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                String textIn = String.valueOf(strengthET.getText());
-                sm.setStrength(Short.parseShort(textIn));
-                sm.setCharisma((short) 0);
-                sm.setConstitution((short) 0);
-                sm.setDexterity((short) 0);
-                sm.setIntelligence((short) 0);
-                sm.setWisdom((short) 0);
 
-                cm.setStats(sm);
-
-                ContentValues values = DatabaseContract.setStatValues(cm);
-                DatabaseContract.create("Character", values, getApplicationContext());
             }
         });
 
