@@ -1,7 +1,7 @@
 package edu.auburn.eng.csse.comp3710.bch0011.bagofholding;
 
 public class Models {
-    public final class CharacterModel {
+    public static final class CharacterModel {
         private Short CharacterID;
         private String CharacterName;
         private Short CharacterLevel;
@@ -103,7 +103,7 @@ public class Models {
         }
     }
 
-    public final class StatsModel {
+    public static final class StatsModel {
         private Short StatID;
         private Short Strength;
         private Short Dexterity;
@@ -169,7 +169,7 @@ public class Models {
         }
     }
 
-    public final class SecondaryStatsModel {
+    public static final class SecondaryStatsModel {
         private Short SecondaryStatsID;
         private Short ArmorClass;
         private Short Initiative;
@@ -226,7 +226,7 @@ public class Models {
         }
     }
 
-    public final class RaceModel {
+    public static final class RaceModel {
         private Short RaceID;
         private String RaceName;
 
@@ -247,7 +247,7 @@ public class Models {
         }
     }
 
-    public final class ClassModel {
+    public static final class ClassModel {
         private Short ClassID;
         private String ClassName;
 
@@ -268,7 +268,7 @@ public class Models {
         }
     }
 
-    public final class AlignmentModel {
+    public static final class AlignmentModel {
         private Short AlignmentID;
         private String Alignment;
 
@@ -289,7 +289,7 @@ public class Models {
         }
     }
 
-    public final class GenderModel {
+    public static final class GenderModel {
         private Short GenderID;
         private String GenderName;
 
@@ -310,7 +310,7 @@ public class Models {
         }
     }
 
-    public final class ProficiencyModel {
+    public static final class ProficiencyModel {
         private Short ProficiencyID;
 
         //Strength
