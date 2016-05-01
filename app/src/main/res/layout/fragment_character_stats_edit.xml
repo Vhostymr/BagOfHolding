@@ -36,6 +36,7 @@
                         android:orientation="horizontal">
 
                         <EditText
+                            android:id="@+id/et_strength"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
@@ -50,20 +51,20 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom|right"
                             android:layout_marginLeft="10dp"
-                            android:text="Strength"
+                            android:text="@string/strength"
                             android:textSize="17sp" />
                     </LinearLayout>
 
                     <CheckBox
-                        android:id="@+id/strength_saving_throws"
+                        android:id="@+id/cb_saving_throws_strength"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Saving Throws" />
+                        android:text="@string/saving_throws"/>
 
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Athletics" />
+                        android:text="@string/athletics" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -78,6 +79,7 @@
                         android:orientation="horizontal">
 
                         <EditText
+                            android:id="@+id/et_dexterity"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
@@ -92,29 +94,33 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom|right"
                             android:layout_marginLeft="10dp"
-                            android:text="Dexterity"
+                            android:text="@string/dexterity"
                             android:textSize="17sp" />
                     </LinearLayout>
 
                     <CheckBox
+                        android:id="@+id/cb_saving_throws_dexterity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Saving Throws" />
+                        android:text="@string/saving_throws" />
 
                     <CheckBox
+                        android:id="@+id/cb_acrobatics_dexterity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Athletics" />
+                        android:text="@string/acrobatics" />
 
                     <CheckBox
+                        android:id="@+id/cb_sleight_of_hand_dexterity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Saving Throws" />
+                        android:text="@string/sleight_of_hand" />
 
                     <CheckBox
+                        android:id="@+id/cb_stealth_dexterity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Athletics" />
+                        android:text="@string/stealth" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -129,6 +135,7 @@
                         android:orientation="horizontal">
 
                         <EditText
+                            android:id="@+id/et_constitution"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
@@ -143,14 +150,15 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom|right"
                             android:layout_marginLeft="10dp"
-                            android:text="Constitution"
+                            android:text="@string/constitution"
                             android:textSize="17sp" />
                     </LinearLayout>
 
                     <CheckBox
+                        android:id="@+id/cb_saving_throws_constitution"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Saving Throws" />
+                        android:text="@string/saving_throws" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -173,7 +181,7 @@
                         android:orientation="horizontal">
 
                         <EditText
-                            android:id="@+id/editText"
+                            android:id="@+id/et_intelligence"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
@@ -188,34 +196,39 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom|right"
                             android:layout_marginLeft="10dp"
-                            android:text="Intelligence"
+                            android:text="@string/intelligence"
                             android:textSize="17sp" />
                     </LinearLayout>
 
                     <CheckBox
+                        android:id="@+id/cb_saving_throws_intelligence"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Saving Throws" />
+                        android:text="@string/saving_throws" />
 
                     <CheckBox
+                        android:id="@+id/cb_arcana_intelligence"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Athletics" />
+                        android:text="@string/arcana" />
 
                     <CheckBox
+                        android:id="@+id/cb_history_intelligence"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Saving Throws" />
+                        android:text="@string/history" />
 
                     <CheckBox
+                        android:id="@+id/cb_investigation_intelligence"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Athletics" />
+                        android:text="@string/investigation" />
 
                     <CheckBox
+                        android:id="@+id/cb_nature_intelligence"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Saving Throws" />
+                        android:text="@string/nature" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -230,6 +243,7 @@
                         android:orientation="horizontal">
 
                         <EditText
+                            android:id="@+id/et_wisdom"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
@@ -244,34 +258,39 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom|right"
                             android:layout_marginLeft="10dp"
-                            android:text="Wisdom"
+                            android:text="@string/wisdom"
                             android:textSize="17sp" />
                     </LinearLayout>
 
                     <CheckBox
+                        android:id="@+id/cb_saving_throws_wisdom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Saving Throws" />
+                        android:text="@string/saving_throws" />
 
                     <CheckBox
+                        android:id="@+id/cb_animal_handling_wisdom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Athletics" />
+                        android:text="@string/animal_handling" />
 
                     <CheckBox
+                        android:id="@+id/cb_insight_wisdom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Saving Throws" />
+                        android:text="@string/insight" />
 
                     <CheckBox
+                        android:id="@+id/cb_medicine_wisdom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Athletics" />
+                        android:text="@string/medicine" />
 
                     <CheckBox
+                        android:id="@+id/cb_perception_wisdom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Saving Throws" />
+                        android:text="@string/perception" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -286,6 +305,7 @@
                         android:orientation="horizontal">
 
                         <EditText
+                            android:id="@+id/et_charisma"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
@@ -300,34 +320,39 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom|right"
                             android:layout_marginLeft="10dp"
-                            android:text="Charisma"
+                            android:text="@string/charisma"
                             android:textSize="17sp" />
                     </LinearLayout>
 
                     <CheckBox
+                        android:id="@+id/cb_saving_throws_charisma"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Saving Throws" />
+                        android:text="@string/saving_throws" />
 
                     <CheckBox
+                        android:id="@+id/cb_deception_charisma"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Athletics" />
+                        android:text="@string/deception" />
 
                     <CheckBox
+                        android:id="@+id/cb_intimidation_charisma"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Saving Throws" />
+                        android:text="@string/intimidation" />
 
                     <CheckBox
+                        android:id="@+id/cb_performance_charisma"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Athletics" />
+                        android:text="@string/performance" />
 
                     <CheckBox
+                        android:id="@+id/cb_persuasion_charisma"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Saving Throws" />
+                        android:text="@string/persuasion" />
                 </LinearLayout>
             </LinearLayout>
 

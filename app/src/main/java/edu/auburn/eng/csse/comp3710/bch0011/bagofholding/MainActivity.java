@@ -1,22 +1,69 @@
 package edu.auburn.eng.csse.comp3710.bch0011.bagofholding;
 
+import android.content.ContentValues;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
+
+    EditText strengthET;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_character_stats);
+        setContentView(R.layout.fragment_character_stats_details);
+        //final View view = inflater.inflate(R.layout.fragment_character_stats_edit, container, false);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        final Models.CharacterModel cm = new Models.CharacterModel();
+
+        Models.ProficiencyModel pm = new Models.ProficiencyModel();
+        final Models.StatsModel sm = new Models.StatsModel();
+        strengthET = (EditText) findViewById(R.id.et_strength);
+
+
+
+        strengthET.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String textIn = String.valueOf(strengthET.getText());
+                sm.setStrength(Short.parseShort(textIn));
+                sm.setCharisma((short) 0);
+                sm.setConstitution((short) 0);
+                sm.setDexterity((short) 0);
+                sm.setIntelligence((short) 0);
+                sm.setWisdom((short) 0);
+
+                cm.setStats(sm);
+
+                ContentValues values = DatabaseContract.setStatValues(cm);
+                DatabaseContract.create("Character", values, getApplicationContext());
+            }
+        });
+
+
+
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -26,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+
+
+
     }
 
     @Override
