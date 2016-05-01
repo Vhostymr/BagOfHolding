@@ -2,17 +2,22 @@ package edu.auburn.eng.csse.comp3710.bch0011.bagofholding;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
+
+import java.lang.reflect.Field;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class DatabaseContract {
     // To prevent someone from accidentally instantiating the contract class, give it an empty constructor.
     public DatabaseContract() {}
 
     /* Inner class that defines the table contents */
-    public static abstract class Character implements BaseColumns {
+    public static abstract class PlayerCharacter implements BaseColumns {
         public static final String TABLE_NAME = "Character";
         public static final String COLUMN_NAME_CHARACTER_NAME = "CharacterName";
         public static final String COLUMN_NAME_LEVEL = "Level";
@@ -31,7 +36,7 @@ public final class DatabaseContract {
         public static final String COLUMN_NAME_RACE_NAME = "RaceName";
     }
 
-    public static abstract class Class implements BaseColumns {
+    public static abstract class CharacterClass implements BaseColumns {
         public static final String TABLE_NAME = "Class";
         public static final String COLUMN_NAME_CLASS_NAME = "ClassName";
     }
@@ -116,9 +121,9 @@ public final class DatabaseContract {
                     Race._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
                     Race.COLUMN_NAME_RACE_NAME + TEXT_TYPE + COMMA_SEP +
             " );" +
-            "CREATE TABLE " + Class.TABLE_NAME + " (" +
-                    Class._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
-                    Class.COLUMN_NAME_CLASS_NAME + TEXT_TYPE + COMMA_SEP +
+            "CREATE TABLE " + CharacterClass.TABLE_NAME + " (" +
+                    CharacterClass._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
+                    CharacterClass.COLUMN_NAME_CLASS_NAME + TEXT_TYPE + COMMA_SEP +
             " );" +
             "CREATE TABLE " + Alignment.TABLE_NAME + " (" +
                     Alignment._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
@@ -177,38 +182,38 @@ public final class DatabaseContract {
                     Proficiency.COLUMN_NAME_PERFORMANCE + INTEGER + COMMA_SEP +
                     Proficiency.COLUMN_NAME_PERSUASION + INTEGER + COMMA_SEP +
             " );" +
-            "CREATE TABLE " + Character.TABLE_NAME + " (" +
-                    Character._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
+            "CREATE TABLE " + PlayerCharacter.TABLE_NAME + " (" +
+                    PlayerCharacter._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
 
-                    Character.COLUMN_NAME_CHARACTER_NAME + TEXT_TYPE + COMMA_SEP +
-                    Character.COLUMN_NAME_LEVEL + INTEGER + COMMA_SEP +
-                    Character.COLUMN_NAME_EXPERIENCE + INTEGER + COMMA_SEP +
-                    Character.COLUMN_NAME_RACE_ID + INTEGER + COMMA_SEP +
-                    Character.COLUMN_NAME_CLASS_ID + INTEGER + COMMA_SEP +
-                    Character.COLUMN_NAME_ALIGNMENT_ID + INTEGER + COMMA_SEP +
-                    Character.COLUMN_NAME_GENDER_ID + INTEGER + COMMA_SEP +
-                    Character.COLUMN_NAME_STATS_ID + INTEGER + COMMA_SEP +
-                    Character.COLUMN_NAME_SECONDARY_STATS_ID + INTEGER + COMMA_SEP +
-                    Character.COLUMN_NAME_PROFICIENCY_ID + INTEGER + COMMA_SEP +
+                    PlayerCharacter.COLUMN_NAME_CHARACTER_NAME + TEXT_TYPE + COMMA_SEP +
+                    PlayerCharacter.COLUMN_NAME_LEVEL + INTEGER + COMMA_SEP +
+                    PlayerCharacter.COLUMN_NAME_EXPERIENCE + INTEGER + COMMA_SEP +
+                    PlayerCharacter.COLUMN_NAME_RACE_ID + INTEGER + COMMA_SEP +
+                    PlayerCharacter.COLUMN_NAME_CLASS_ID + INTEGER + COMMA_SEP +
+                    PlayerCharacter.COLUMN_NAME_ALIGNMENT_ID + INTEGER + COMMA_SEP +
+                    PlayerCharacter.COLUMN_NAME_GENDER_ID + INTEGER + COMMA_SEP +
+                    PlayerCharacter.COLUMN_NAME_STATS_ID + INTEGER + COMMA_SEP +
+                    PlayerCharacter.COLUMN_NAME_SECONDARY_STATS_ID + INTEGER + COMMA_SEP +
+                    PlayerCharacter.COLUMN_NAME_PROFICIENCY_ID + INTEGER + COMMA_SEP +
 
-                    FOREIGN_KEY + Character.COLUMN_NAME_RACE_ID + REFERENCES + "Race(_ID)" +
-                    FOREIGN_KEY + Character.COLUMN_NAME_CLASS_ID + REFERENCES + "Class(_ID)" +
-                    FOREIGN_KEY + Character.COLUMN_NAME_ALIGNMENT_ID + REFERENCES + "Alignment(_ID)" +
-                    FOREIGN_KEY + Character.COLUMN_NAME_GENDER_ID + REFERENCES + "Gender(_ID)" +
-                    FOREIGN_KEY + Character.COLUMN_NAME_STATS_ID + REFERENCES + "Stats(_ID)" +
-                    FOREIGN_KEY + Character.COLUMN_NAME_SECONDARY_STATS_ID + REFERENCES + "SecondaryStats(_ID)" +
-                    FOREIGN_KEY + Character.COLUMN_NAME_PROFICIENCY_ID + REFERENCES + "Proficiency(_ID)" +
+                    FOREIGN_KEY + PlayerCharacter.COLUMN_NAME_RACE_ID + REFERENCES + "Race(_ID)" +
+                    FOREIGN_KEY + PlayerCharacter.COLUMN_NAME_CLASS_ID + REFERENCES + "Class(_ID)" +
+                    FOREIGN_KEY + PlayerCharacter.COLUMN_NAME_ALIGNMENT_ID + REFERENCES + "Alignment(_ID)" +
+                    FOREIGN_KEY + PlayerCharacter.COLUMN_NAME_GENDER_ID + REFERENCES + "Gender(_ID)" +
+                    FOREIGN_KEY + PlayerCharacter.COLUMN_NAME_STATS_ID + REFERENCES + "Stats(_ID)" +
+                    FOREIGN_KEY + PlayerCharacter.COLUMN_NAME_SECONDARY_STATS_ID + REFERENCES + "SecondaryStats(_ID)" +
+                    FOREIGN_KEY + PlayerCharacter.COLUMN_NAME_PROFICIENCY_ID + REFERENCES + "Proficiency(_ID)" +
             " );";
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + Race.TABLE_NAME + ";" +
-            "DROP TABLE IF EXISTS " + Class.TABLE_NAME + ";" +
+            "DROP TABLE IF EXISTS " + CharacterClass.TABLE_NAME + ";" +
             "DROP TABLE IF EXISTS " + Alignment.TABLE_NAME + ";" +
             "DROP TABLE IF EXISTS " + Gender.TABLE_NAME + ";" +
             "DROP TABLE IF EXISTS " + Stat.TABLE_NAME + ";" +
             "DROP TABLE IF EXISTS " + SecondaryStats.TABLE_NAME + ";" +
             "DROP TABLE IF EXISTS " + Proficiency.TABLE_NAME + ";" +
-            "DROP TABLE IF EXISTS " + Character.TABLE_NAME + ";";
+            "DROP TABLE IF EXISTS " + PlayerCharacter.TABLE_NAME + ";";
 
     public static class CharacterSheetDbHelper extends SQLiteOpenHelper {
         // If you change the database schema, you must increment the database version.
@@ -235,80 +240,52 @@ public final class DatabaseContract {
         }
     }
 
-    public void setCharacterValues(Models.CharacterModel model, Context context){
-        // Gets the data repository in write mode
-        CharacterSheetDbHelper mDbHelper = new CharacterSheetDbHelper(context);
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
+    public static ContentValues setCharacterValues(Models.CharacterModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-        values.put(Character._ID, Statement.RETURN_GENERATED_KEYS);
-        values.put(Character.COLUMN_NAME_CHARACTER_NAME, model.getCharacterName());
-        values.put(Character.COLUMN_NAME_LEVEL, model.getCharacterLevel());
-        values.put(Character.COLUMN_NAME_EXPERIENCE, model.getCharacterExperience());
-        values.put(Character.COLUMN_NAME_RACE_ID, model.getRace().getRaceID());
-        values.put(Character.COLUMN_NAME_CLASS_ID, model.getCharacterClass().getClassID());
-        values.put(Character.COLUMN_NAME_ALIGNMENT_ID, model.getAlignment().getAlignmentID());
-        values.put(Character.COLUMN_NAME_GENDER_ID, model.getGender().getGenderID());
-        values.put(Character.COLUMN_NAME_STATS_ID, model.getStats().getStatID());
-        values.put(Character.COLUMN_NAME_SECONDARY_STATS_ID, model.getSecondaryStats().getSecondaryStatsID());
-        values.put(Character.COLUMN_NAME_PROFICIENCY_ID, model.getProficiencies().getProficiencyID());
+        values.put(PlayerCharacter._ID, Statement.RETURN_GENERATED_KEYS);
+        values.put(PlayerCharacter.COLUMN_NAME_CHARACTER_NAME, model.getCharacterName());
+        values.put(PlayerCharacter.COLUMN_NAME_LEVEL, model.getCharacterLevel());
+        values.put(PlayerCharacter.COLUMN_NAME_EXPERIENCE, model.getCharacterExperience());
+        values.put(PlayerCharacter.COLUMN_NAME_RACE_ID, model.getRace().getRaceID());
+        values.put(PlayerCharacter.COLUMN_NAME_CLASS_ID, model.getCharacterClass().getClassID());
+        values.put(PlayerCharacter.COLUMN_NAME_ALIGNMENT_ID, model.getAlignment().getAlignmentID());
+        values.put(PlayerCharacter.COLUMN_NAME_GENDER_ID, model.getGender().getGenderID());
+        values.put(PlayerCharacter.COLUMN_NAME_STATS_ID, model.getStats().getStatID());
+        values.put(PlayerCharacter.COLUMN_NAME_SECONDARY_STATS_ID, model.getSecondaryStats().getSecondaryStatsID());
+        values.put(PlayerCharacter.COLUMN_NAME_PROFICIENCY_ID, model.getProficiencies().getProficiencyID());
 
-        // Insert the new row, returning the primary key value of the new row
-        //long newRowId;
-        //newRowId = db.insert(DatabaseContract.Character.TABLE_NAME, null, values);
+        return values;
     }
 
-    public void setRaceValues(Models.CharacterModel model, Context context){
-        // Gets the data repository in write mode
-        CharacterSheetDbHelper mDbHelper = new CharacterSheetDbHelper(context);
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
+    public static ContentValues setRaceValues(Models.CharacterModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(Race._ID, Statement.RETURN_GENERATED_KEYS);
         values.put(Race.COLUMN_NAME_RACE_NAME, model.getRace().getRaceName());
 
-        // Insert the new row, returning the primary key value of the new row
-        //long newRowId;
-        //newRowId = db.insert(DatabaseContract.Character.TABLE_NAME, null, values);
+        return values;
     }
 
-    public void setClassValues(Models.CharacterModel model, Context context){
-        // Gets the data repository in write mode
-        CharacterSheetDbHelper mDbHelper = new CharacterSheetDbHelper(context);
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
+    public static ContentValues setClassValues(Models.CharacterModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-        values.put(Class._ID, Statement.RETURN_GENERATED_KEYS);
-        values.put(Class.COLUMN_NAME_CLASS_NAME, model.getCharacterClass().getClassName());
+        values.put(CharacterClass._ID, Statement.RETURN_GENERATED_KEYS);
+        values.put(CharacterClass.COLUMN_NAME_CLASS_NAME, model.getCharacterClass().getClassName());
 
-        // Insert the new row, returning the primary key value of the new row
-        //long newRowId;
-        //newRowId = db.insert(DatabaseContract.Character.TABLE_NAME, null, values);
+        return values;
     }
 
-    public void setAlignmentValues(Models.CharacterModel model, Context context){
-        // Gets the data repository in write mode
-        CharacterSheetDbHelper mDbHelper = new CharacterSheetDbHelper(context);
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
+    public static ContentValues setAlignmentValues(Models.CharacterModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(Alignment._ID, Statement.RETURN_GENERATED_KEYS);
         values.put(Alignment.COLUMN_NAME_ALIGNMENT_NAME, model.getAlignment().getAlignmentName());
 
-        // Insert the new row, returning the primary key value of the new row
-        //long newRowId;
-        //newRowId = db.insert(DatabaseContract.Character.TABLE_NAME, null, values);
+        return values;
     }
 
-    public void setStatValues(Models.CharacterModel model, Context context){
-        // Gets the data repository in write mode
-        CharacterSheetDbHelper mDbHelper = new CharacterSheetDbHelper(context);
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
+    public static ContentValues setStatValues(Models.CharacterModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(Stat._ID, Statement.RETURN_GENERATED_KEYS);
@@ -319,16 +296,10 @@ public final class DatabaseContract {
         values.put(Stat.COLUMN_NAME_WISDOM, model.getStats().getWisdom());
         values.put(Stat.COLUMN_NAME_CHARISMA, model.getStats().getCharisma());
 
-        // Insert the new row, returning the primary key value of the new row
-        //long newRowId;
-        //newRowId = db.insert(DatabaseContract.Character.TABLE_NAME, null, values);
+        return values;
     }
 
-    public void setSecondaryStatValues(Models.CharacterModel model, Context context){
-        // Gets the data repository in write mode
-        CharacterSheetDbHelper mDbHelper = new CharacterSheetDbHelper(context);
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
+    public static ContentValues setSecondaryStatValues(Models.CharacterModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(SecondaryStats._ID, Statement.RETURN_GENERATED_KEYS);
@@ -338,31 +309,19 @@ public final class DatabaseContract {
         values.put(SecondaryStats.COLUMN_NAME_MAX_HP, model.getSecondaryStats().getMaxHP());
         values.put(SecondaryStats.COLUMN_NAME_TEMP_HP, model.getSecondaryStats().getTempHP());
 
-        // Insert the new row, returning the primary key value of the new row
-        //long newRowId;
-        //newRowId = db.insert(DatabaseContract.Character.TABLE_NAME, null, values);
+        return values;
     }
 
-    public void setGenderValues(Models.CharacterModel model, Context context){
-        // Gets the data repository in write mode
-        CharacterSheetDbHelper mDbHelper = new CharacterSheetDbHelper(context);
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
+    public static ContentValues setGenderValues(Models.CharacterModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(Gender._ID, Statement.RETURN_GENERATED_KEYS);
         values.put(Gender.COLUMN_NAME_GENDER_NAME, model.getGender().getGenderName());
 
-        // Insert the new row, returning the primary key value of the new row
-        //long newRowId;
-        //newRowId = db.insert(DatabaseContract.Character.TABLE_NAME, null, values);
+        return values;
     }
 
-    public void setProficiencyValues(Models.CharacterModel model, Context context){
-        // Gets the data repository in write mode
-        CharacterSheetDbHelper mDbHelper = new CharacterSheetDbHelper(context);
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
+    public static ContentValues setProficiencyValues(Models.CharacterModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(Proficiency._ID, Statement.RETURN_GENERATED_KEYS);
@@ -403,8 +362,62 @@ public final class DatabaseContract {
         values.put(Proficiency.COLUMN_NAME_PERFORMANCE, model.getProficiencies().getPerformance());
         values.put(Proficiency.COLUMN_NAME_PERSUASION, model.getProficiencies().getPersuasion());
 
-        // Insert the new row, returning the primary key value of the new row
-        //long newRowId;
-        //newRowId = db.insert(DatabaseContract.Character.TABLE_NAME, null, values);
+        return values;
+    }
+
+    public static void create(String tableName, ContentValues values, Context context) {
+        CharacterSheetDbHelper mDbHelper = new CharacterSheetDbHelper(context);
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+        db.insert(tableName, null, values);
+    }
+
+    public static void read(String tableName, int primaryKey, Object object, Context context) {
+        CharacterSheetDbHelper mDbHelper = new CharacterSheetDbHelper(context);
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+        String[] projection = getProperties(object);
+
+        String selection = "_ID LIKE ?";
+        String[] selectionArgs = { String.valueOf(primaryKey) };
+
+        Cursor cursor = db.query(
+                tableName,                                // The table to query
+                projection,                               // The columns to return
+                selection,                                // The columns for the WHERE clause
+                selectionArgs,                            // The values for the WHERE clause
+                null,                                     // don't group the rows
+                null,                                     // don't filter by row groups
+                ""                                        // The sort order
+        );
+    }
+
+    public static void update(String tableName, int primaryKey, ContentValues values, Context context) {
+        CharacterSheetDbHelper mDbHelper = new CharacterSheetDbHelper(context);
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+        String selection = "_ID LIKE ?";
+        String[] selectionArgs = { String.valueOf(primaryKey) };
+
+        db.update(tableName, values, selection, selectionArgs);
+    }
+
+    public static void delete(String tableName, int primaryKey, Context context) {
+        CharacterSheetDbHelper mDbHelper = new CharacterSheetDbHelper(context);
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+        String selection = "_ID LIKE ?";
+        String[] selectionArgs = { String.valueOf(primaryKey) };
+
+        db.delete(tableName, selection, selectionArgs);
+    }
+
+    public static String[] getProperties(Object object) {
+        List<String> list = new ArrayList<>();
+        for (Field field : object.getClass().getDeclaredFields()) {
+            list.add(field.getName());
+        }
+
+        return list.toArray(new String[list.size()]);
     }
 }
