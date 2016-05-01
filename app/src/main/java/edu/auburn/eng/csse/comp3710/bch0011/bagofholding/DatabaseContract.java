@@ -372,7 +372,7 @@ public final class DatabaseContract {
         db.insert(tableName, null, values);
     }
 
-    public static void read(String tableName, int primaryKey, Object object, Context context) {
+    public static Cursor read(String tableName, int primaryKey, Object object, Context context) {
         CharacterSheetDbHelper mDbHelper = new CharacterSheetDbHelper(context);
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
@@ -381,7 +381,7 @@ public final class DatabaseContract {
         String selection = "_ID LIKE ?";
         String[] selectionArgs = { String.valueOf(primaryKey) };
 
-        Cursor cursor = db.query(
+        return db.query(
                 tableName,                                // The table to query
                 projection,                               // The columns to return
                 selection,                                // The columns for the WHERE clause
@@ -412,7 +412,7 @@ public final class DatabaseContract {
         db.delete(tableName, selection, selectionArgs);
     }
 
-    public static String[] getProperties(Object object) {
+    private static String[] getProperties(Object object) {
         List<String> list = new ArrayList<>();
         for (Field field : object.getClass().getDeclaredFields()) {
             list.add(field.getName());
