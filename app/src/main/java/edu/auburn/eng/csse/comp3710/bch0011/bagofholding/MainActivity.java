@@ -1,7 +1,10 @@
 package edu.auburn.eng.csse.comp3710.bch0011.bagofholding;
 
+
+
 import android.content.ContentValues;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -13,6 +16,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
+
+    FragmentManager fm;
 
     //Edit Text Fields
     //Stats
@@ -58,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_character_stats_details);
+        setContentView(R.layout.activity_character_info);
         //final View view = inflater.inflate(R.layout.fragment_character_stats_edit, container, false);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -69,44 +74,18 @@ public class MainActivity extends AppCompatActivity {
         Models.ProficiencyModel pm = new Models.ProficiencyModel();
         final Models.StatsModel sm = new Models.StatsModel();
 
-        //EditTextSetters
-//        strengthET = (EditText) findViewById(R.id.et_strength);
-//        dexterityET = (EditText) findViewById(R.id.et_dexterity);
-//        constitutionET = (EditText) findViewById(R.id.et_constitution);
-//        intelligenceET = (EditText) findViewById(R.id.et_intelligence);
-//        wisdomET = (EditText) findViewById(R.id.et_wisdom);
-//        charismaET = (EditText) findViewById(R.id.et_charisma);
+        if (findViewById(R.id.character_fragment_container) != null) {
+            // Create a new Fragment to be placed in the activity layout
+            CharacterStatsEditFragment characterFragment = new CharacterStatsEditFragment();
 
+            // In case this activity was started with special instructions from an
+            // intent, pass the Intent's extras to the fragment as arguments
+            characterFragment.setArguments(getIntent().getExtras());
 
-
-
-//        strengthET.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                String textIn = String.valueOf(strengthET.getText());
-//                sm.setStrength(Short.parseShort(textIn));
-//                sm.setCharisma((short) 0);
-//                sm.setConstitution((short) 0);
-//                sm.setDexterity((short) 0);
-//                sm.setIntelligence((short) 0);
-//                sm.setWisdom((short) 0);
-//
-//                cm.setStats(sm);
-//
-//                ContentValues values = DatabaseContract.setStatValues(cm);
-//                DatabaseContract.create("Character", values, getApplicationContext());
-//            }
-//        });
+            // Add the fragment to the 'fragment_container' FrameLayout
+            fm.beginTransaction()
+                    .add(R.id.character_fragment_container, characterFragment).commit();
+        }
 
 
 
