@@ -117,5 +117,24 @@ public class CharacterStatsEditFragment extends Fragment {
         return view;
     }
 
+    public Models.StatsModel getStatsModel(){
+        return Models.setStatsModel(strengthET.getText().toString(), charismaET.getText().toString(),
+                                                            constitutionET.getText().toString(), dexterityET.getText().toString(),
+                                                            intelligenceET.getText().toString(), wisdomET.getText().toString());
+    }
+    public Models.ProficiencyModel getProficiencyModel(){
+        return Models.setProficiencyModel(savingThrowsStrengthCB.isChecked(), athleticsStrengthCB.isChecked(),
+                                                                              savingThrowsDexterityCB.isChecked(), acrobaticsDexterityCB.isChecked(),
+                                                                              sleightOfHandDexterityCB.isChecked(), stealthDexterityCB.isChecked(),
+                                                                              savingThrowsConstitutionCB.isChecked(), savingThrowsIntelligenceCB.isChecked(),
+                                                                              arcanaIntelligenceCB.isChecked(), historyIntelligenceCB.isChecked(),
+                                                                              investigationIntelligenceCB.isChecked(), natureIntelligenceCB.isChecked(),
+                                                                              religionIntelligenceCB.isChecked(), savingThrowsWisdomCB.isChecked(),
+                                                                              animalHandlingWisdomCB.isChecked(), insightWisdomCB.isChecked(),
+                                                                              medicineWisdomCB.isChecked(), perceptionWisdomCB.isChecked(),
+                                                                              survivalWisdomCB.isChecked(), savingThrowsCharismaCB.isChecked(),
+                                                                              deceptionCharismaCB.isChecked(), intimidationCharismaCB.isChecked(),
+                                                                              performanceCharismaCB.isChecked(), persuasionCharismaCB.isChecked());
+    }
 
 }
