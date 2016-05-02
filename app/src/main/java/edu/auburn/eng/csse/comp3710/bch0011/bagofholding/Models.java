@@ -564,8 +564,15 @@ public class Models {
         }
     }
 
-    public static Models.StatsModel setStatsModel(String strength, String charisma, String constitution, String dexterity, String intelligence, String wisdom) {
+    public static Models.StatsModel setStatsModel(String strength, String dexterity, String constitution, String intelligence, String wisdom, String charisma) {
         Models.StatsModel statsModel = new Models.StatsModel();
+
+        strength = Utilities.isWholeNumber(strength) ? strength : "0";
+        dexterity = Utilities.isWholeNumber(dexterity) ? dexterity : "0";
+        constitution = Utilities.isWholeNumber(constitution) ? constitution : "0";
+        intelligence = Utilities.isWholeNumber(intelligence) ? intelligence : "0";
+        wisdom = Utilities.isWholeNumber(wisdom) ? wisdom : "0";
+        charisma = Utilities.isWholeNumber(charisma) ? charisma : "0";
 
         statsModel.setStrength(Short.parseShort(strength));
         statsModel.setDexterity(Short.parseShort(charisma));
@@ -611,6 +618,12 @@ public class Models {
 
     public static Models.SecondaryStatsModel setSecondaryStatsModel(String armorClass, String initiative, String speed, String maxHP, String tempHP) {
         Models.SecondaryStatsModel secondaryStatsModel = new Models.SecondaryStatsModel();
+
+        armorClass = Utilities.isWholeNumber(armorClass) ? armorClass : "0";
+        initiative = Utilities.isWholeNumber(initiative) ? initiative : "0";
+        speed = Utilities.isWholeNumber(speed) ? speed : "0";
+        maxHP = Utilities.isWholeNumber(maxHP) ? maxHP : "0";
+        tempHP = Utilities.isWholeNumber(tempHP) ? tempHP : "0";
 
         secondaryStatsModel.setArmorClass(Short.parseShort(armorClass));
         secondaryStatsModel.setInitiative(Short.parseShort(initiative));

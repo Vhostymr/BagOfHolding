@@ -3,9 +3,12 @@ package edu.auburn.eng.csse.comp3710.bch0011.bagofholding;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.MatrixCursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
+import android.util.Log;
 
 import java.lang.reflect.Field;
 import java.sql.Statement;
@@ -115,23 +118,23 @@ public final class DatabaseContract {
     private static final String PRIMARY_KEY = " PRIMARY KEY AUTOINCREMENT";
     private static final String FOREIGN_KEY = "FOREIGN KEY(";
     private static final String REFERENCES = ") REFERENCES ";
-    private static final String COMMA_SEP = ",";
+    private static final String COMMA_SEP = ", ";
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + Race.TABLE_NAME + " (" +
                     Race._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
-                    Race.COLUMN_NAME_RACE_NAME + TEXT_TYPE + COMMA_SEP +
+                    Race.COLUMN_NAME_RACE_NAME + TEXT_TYPE +
             " );" +
             "CREATE TABLE " + CharacterClass.TABLE_NAME + " (" +
                     CharacterClass._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
-                    CharacterClass.COLUMN_NAME_CLASS_NAME + TEXT_TYPE + COMMA_SEP +
+                    CharacterClass.COLUMN_NAME_CLASS_NAME + TEXT_TYPE +
             " );" +
             "CREATE TABLE " + Alignment.TABLE_NAME + " (" +
                     Alignment._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
-                    Alignment.COLUMN_NAME_ALIGNMENT_NAME + TEXT_TYPE + COMMA_SEP +
+                    Alignment.COLUMN_NAME_ALIGNMENT_NAME + TEXT_TYPE +
             " );" +
             "CREATE TABLE " + Gender.TABLE_NAME + " (" +
                     Gender._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
-                    Gender.COLUMN_NAME_GENDER_NAME + TEXT_TYPE + COMMA_SEP +
+                    Gender.COLUMN_NAME_GENDER_NAME + TEXT_TYPE +
             " );" +
             "CREATE TABLE " + Stat.TABLE_NAME + " (" +
                     Stat._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
@@ -140,7 +143,7 @@ public final class DatabaseContract {
                     Stat.COLUMN_NAME_CONSTITUTION + INTEGER + COMMA_SEP +
                     Stat.COLUMN_NAME_INTELLIGENCE + INTEGER + COMMA_SEP +
                     Stat.COLUMN_NAME_WISDOM + INTEGER + COMMA_SEP +
-                    Stat.COLUMN_NAME_CHARISMA + INTEGER + COMMA_SEP +
+                    Stat.COLUMN_NAME_CHARISMA + INTEGER +
             " );" +
             "CREATE TABLE " + SecondaryStats.TABLE_NAME + " (" +
                     SecondaryStats._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
@@ -148,7 +151,7 @@ public final class DatabaseContract {
                     SecondaryStats.COLUMN_NAME_INITIATIVE + INTEGER + COMMA_SEP +
                     SecondaryStats.COLUMN_NAME_SPEED + INTEGER + COMMA_SEP +
                     SecondaryStats.COLUMN_NAME_MAX_HP + INTEGER + COMMA_SEP +
-                    SecondaryStats.COLUMN_NAME_TEMP_HP + INTEGER + COMMA_SEP +
+                    SecondaryStats.COLUMN_NAME_TEMP_HP + INTEGER +
             " );" +
             "CREATE TABLE " + Proficiency.TABLE_NAME + " (" +
                     Proficiency._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
@@ -180,7 +183,7 @@ public final class DatabaseContract {
                     Proficiency.COLUMN_NAME_DECEPTION + INTEGER + COMMA_SEP +
                     Proficiency.COLUMN_NAME_INTIMIDATION + INTEGER + COMMA_SEP +
                     Proficiency.COLUMN_NAME_PERFORMANCE + INTEGER + COMMA_SEP +
-                    Proficiency.COLUMN_NAME_PERSUASION + INTEGER + COMMA_SEP +
+                    Proficiency.COLUMN_NAME_PERSUASION + INTEGER +
             " );" +
             "CREATE TABLE " + PlayerCharacter.TABLE_NAME + " (" +
                     PlayerCharacter._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
@@ -196,12 +199,12 @@ public final class DatabaseContract {
                     PlayerCharacter.COLUMN_NAME_SECONDARY_STATS_ID + INTEGER + COMMA_SEP +
                     PlayerCharacter.COLUMN_NAME_PROFICIENCY_ID + INTEGER + COMMA_SEP +
 
-                    FOREIGN_KEY + PlayerCharacter.COLUMN_NAME_RACE_ID + REFERENCES + "Race(_ID)" +
-                    FOREIGN_KEY + PlayerCharacter.COLUMN_NAME_CLASS_ID + REFERENCES + "Class(_ID)" +
-                    FOREIGN_KEY + PlayerCharacter.COLUMN_NAME_ALIGNMENT_ID + REFERENCES + "Alignment(_ID)" +
-                    FOREIGN_KEY + PlayerCharacter.COLUMN_NAME_GENDER_ID + REFERENCES + "Gender(_ID)" +
-                    FOREIGN_KEY + PlayerCharacter.COLUMN_NAME_STATS_ID + REFERENCES + "Stats(_ID)" +
-                    FOREIGN_KEY + PlayerCharacter.COLUMN_NAME_SECONDARY_STATS_ID + REFERENCES + "SecondaryStats(_ID)" +
+                    FOREIGN_KEY + PlayerCharacter.COLUMN_NAME_RACE_ID + REFERENCES + "Race(_ID)" + COMMA_SEP +
+                    FOREIGN_KEY + PlayerCharacter.COLUMN_NAME_CLASS_ID + REFERENCES + "Class(_ID)" + COMMA_SEP +
+                    FOREIGN_KEY + PlayerCharacter.COLUMN_NAME_ALIGNMENT_ID + REFERENCES + "Alignment(_ID)" + COMMA_SEP +
+                    FOREIGN_KEY + PlayerCharacter.COLUMN_NAME_GENDER_ID + REFERENCES + "Gender(_ID)" + COMMA_SEP +
+                    FOREIGN_KEY + PlayerCharacter.COLUMN_NAME_STATS_ID + REFERENCES + "Stats(_ID)" + COMMA_SEP +
+                    FOREIGN_KEY + PlayerCharacter.COLUMN_NAME_SECONDARY_STATS_ID + REFERENCES + "SecondaryStats(_ID)" + COMMA_SEP +
                     FOREIGN_KEY + PlayerCharacter.COLUMN_NAME_PROFICIENCY_ID + REFERENCES + "Proficiency(_ID)" +
             " );";
 
@@ -225,6 +228,7 @@ public final class DatabaseContract {
         }
 
         public void onCreate(SQLiteDatabase db) {
+            //db.execSQL(SQL_DELETE_ENTRIES); //For testing.
             db.execSQL(SQL_CREATE_ENTRIES);
         }
 
@@ -237,6 +241,56 @@ public final class DatabaseContract {
 
         public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             onUpgrade(db, oldVersion, newVersion);
+        }
+
+        //This method is for testing only. This is not a part of the project, and was obtained online.
+        //Its purpose is to help facilitate looking at the database and seeing the values entered.
+        public ArrayList<Cursor> getData(String Query){
+            //get writable database
+            SQLiteDatabase sqlDB = this.getWritableDatabase();
+            String[] columns = new String[] { "message" };
+            //an array list of cursor to save two cursors one has results from the query
+            //other cursor stores error message if any errors are triggered
+            ArrayList<Cursor> alc = new ArrayList<Cursor>(2);
+            MatrixCursor Cursor2= new MatrixCursor(columns);
+            alc.add(null);
+            alc.add(null);
+
+
+            try{
+                String maxQuery = Query ;
+                //execute the query results will be save in Cursor c
+                Cursor c = sqlDB.rawQuery(maxQuery, null);
+
+
+                //add value to cursor2
+                Cursor2.addRow(new Object[] { "Success" });
+
+                alc.set(1,Cursor2);
+                if (null != c && c.getCount() > 0) {
+
+
+                    alc.set(0,c);
+                    c.moveToFirst();
+
+                    return alc ;
+                }
+                return alc;
+            } catch(SQLException sqlEx){
+                Log.d("printing exception", sqlEx.getMessage());
+                //if any exceptions are triggered save the error message to cursor an return the arraylist
+                Cursor2.addRow(new Object[] { "" + sqlEx.getMessage() });
+                alc.set(1,Cursor2);
+                return alc;
+            } catch(Exception ex){
+
+                Log.d("printing exception", ex.getMessage());
+
+                //if any exceptions are triggered save the error message to cursor an return the arraylist
+                Cursor2.addRow(new Object[] { "" + ex.getMessage() });
+                alc.set(1,Cursor2);
+                return alc;
+            }
         }
     }
 
@@ -365,17 +419,11 @@ public final class DatabaseContract {
         return values;
     }
 
-    public static long create(String tableName, ContentValues values, Context context) {
-        CharacterSheetDbHelper mDbHelper = new CharacterSheetDbHelper(context);
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
+    public static long create(String tableName, ContentValues values, SQLiteDatabase db) {
         return db.insert(tableName, null, values);
     }
 
-    public static Cursor read(String tableName, int primaryKey, Object object, Context context) {
-        CharacterSheetDbHelper mDbHelper = new CharacterSheetDbHelper(context);
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
+    public static Cursor read(String tableName, int primaryKey, Object object, SQLiteDatabase db) {
         String[] projection = getProperties(object);
 
         String selection = "_ID LIKE ?";
@@ -392,24 +440,23 @@ public final class DatabaseContract {
         );
     }
 
-    public static int update(String tableName, int primaryKey, ContentValues values, Context context) {
-        CharacterSheetDbHelper mDbHelper = new CharacterSheetDbHelper(context);
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
+    public static int update(String tableName, int primaryKey, ContentValues values, SQLiteDatabase db) {
         String selection = "_ID LIKE ?";
         String[] selectionArgs = { String.valueOf(primaryKey) };
 
         return db.update(tableName, values, selection, selectionArgs);
     }
 
-    public static void delete(String tableName, int primaryKey, Context context) {
-        CharacterSheetDbHelper mDbHelper = new CharacterSheetDbHelper(context);
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
+    public static void delete(String tableName, int primaryKey, SQLiteDatabase db) {
         String selection = "_ID LIKE ?";
         String[] selectionArgs = { String.valueOf(primaryKey) };
 
         db.delete(tableName, selection, selectionArgs);
+    }
+
+    public static SQLiteDatabase getOpenDB(Context context){
+        CharacterSheetDbHelper mDbHelper = new CharacterSheetDbHelper(context);
+        return mDbHelper.getWritableDatabase();
     }
 
     private static String[] getProperties(Object object) {

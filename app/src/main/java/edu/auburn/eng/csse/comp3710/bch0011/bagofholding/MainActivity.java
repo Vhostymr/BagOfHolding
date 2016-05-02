@@ -5,6 +5,7 @@ package edu.auburn.eng.csse.comp3710.bch0011.bagofholding;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -53,44 +54,45 @@ public class MainActivity extends AppCompatActivity {
         saveme.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
 
-
-                Context context = getApplicationContext();
+                Context context = v.getContext();
+                SQLiteDatabase db = DatabaseContract.getOpenDB(context);
 
                 Models.ClassModel classModel = Models.setClassModel("Paladin");
-                long classPrimaryKey = DatabaseContract.create("CharacterClass", DatabaseContract.setClassValues(classModel), context);
+                long classPrimaryKey = DatabaseContract.create("CharacterClass", DatabaseContract.setClassValues(classModel), db);
                 classModel.setClassID((short) classPrimaryKey);
 
                 Models.RaceModel raceModel = Models.setRaceModel("Human");
-                long racePrimaryKey = DatabaseContract.create("Race", DatabaseContract.setRaceValues(raceModel), context);
+                long racePrimaryKey = DatabaseContract.create("Race", DatabaseContract.setRaceValues(raceModel), db);
                 raceModel.setRaceID((short) racePrimaryKey);
 
                 Models.GenderModel genderModel = Models.setGenderModel("Male");
-                long genderPrimaryKey = DatabaseContract.create("Gender", DatabaseContract.setGenderValues(genderModel), context);
+                long genderPrimaryKey = DatabaseContract.create("Gender", DatabaseContract.setGenderValues(genderModel), db);
                 genderModel.setGenderID((short) genderPrimaryKey);
 
                 Models.AlignmentModel alignmentModel = Models.setAlignmentModel("Lawful Good");
-                long alignmentPrimaryKey = DatabaseContract.create("Alignment", DatabaseContract.setAlignmentValues(alignmentModel), context);
+                long alignmentPrimaryKey = DatabaseContract.create("Alignment", DatabaseContract.setAlignmentValues(alignmentModel), db);
                 alignmentModel.setAlignment((short) alignmentPrimaryKey);
 
                 Models.StatsModel statsModel = characterFragment.getStatsModel();
-                long statsPrimaryKey = DatabaseContract.create("Stat", DatabaseContract.setStatValues(statsModel), context);
+                long statsPrimaryKey = DatabaseContract.create("Stat", DatabaseContract.setStatValues(statsModel), db);
                 statsModel.setStatID((short) statsPrimaryKey);
 
                 Models.SecondaryStatsModel secondaryStatsModel = Models.setSecondaryStatsModel("10", "10", "10", "10", "10");
-                long secondaryStatsPrimaryKey = DatabaseContract.create("SecondaryStat", DatabaseContract.setSecondaryStatValues(secondaryStatsModel), context);
+                long secondaryStatsPrimaryKey = DatabaseContract.create("SecondaryStat", DatabaseContract.setSecondaryStatValues(secondaryStatsModel), db);
                 secondaryStatsModel.setSecondaryStatsID((short) secondaryStatsPrimaryKey);
 
                 Models.ProficiencyModel proficiencyModel = Models.setProficiencyModel(true, true, true, true, true, true, true, true,
                         true, true, true, true, true, true, true, true,
                         true, true, true, true, true, true, true, true);
-                long newPrimaryKey = DatabaseContract.create("Proficiency", DatabaseContract.setProficiencyValues(proficiencyModel), getApplicationContext());
+                long newPrimaryKey = DatabaseContract.create("Proficiency", DatabaseContract.setProficiencyValues(proficiencyModel), db);
                 proficiencyModel.setProficiencyID((short) newPrimaryKey);
 
                 Models.CharacterModel characterModel = Models.setCharacterModel("Aaron Scherer", "43", "3", classModel,
                         raceModel, alignmentModel, genderModel,
                         statsModel, secondaryStatsModel, proficiencyModel);
-                DatabaseContract.create("PlayerCharacter", DatabaseContract.setCharacterValues(characterModel), getApplicationContext());
+                DatabaseContract.create("PlayerCharacter", DatabaseContract.setCharacterValues(characterModel), db);
 
+                db.close();
             }
         });
 

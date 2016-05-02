@@ -57,4 +57,14 @@ public final class Utilities {
 
         return result;
     }
+
+    public static boolean isWholeNumber(String string) {
+        if (string != null && !string.trim().isEmpty()) {
+            return string.matches("\\d*");
+        }
+
+        else {
+            return false;
+        }
+    }
 }
