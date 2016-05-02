@@ -6,7 +6,7 @@
         <!--android:id="@+id/action_search"-->
         <!--android:orderInCategory="200"-->
         <!--android:title="Search"-->
-        <!--android:icon="@drawable/"-->
+        <!--android:icon="@splash_screen/"-->
         <!--app:showAsAction="ifRoom"-->
         <!--></item>-->
     <item
