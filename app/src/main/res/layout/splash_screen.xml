@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".1"
+        android:text="Bag of Holding"
+        android:textStyle="bold"
+        android:textColor="#F00"
+        android:textSize="50sp"
+        android:background="#000"
+        android:textAlignment="center"/>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".6"
+        android:scaleType="fitCenter"
+        android:id="@+id/launcher_logo"
+        android:layout_gravity="center_horizontal"
+        android:src="@mipmap/splash_screen_icon"
+        android:background="#000"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".1"
+        android:text="Brandon Hurler, Aaron Scherer, RayShawn Ware"
+        android:textStyle="bold"
+        android:textColor="#F00"
+        android:textSize="17sp"
+        android:background="#000"
+        android:textAlignment="center" />
+
+</LinearLayout>
