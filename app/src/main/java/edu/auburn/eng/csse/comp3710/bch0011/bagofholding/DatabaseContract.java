@@ -36,22 +36,22 @@ public final class DatabaseContract {
 
     public static abstract class Race implements BaseColumns {
         public static final String TABLE_NAME = "Race";
-        public static final String COLUMN_NAME_RACE_NAME = "RaceName";
+        public static final String COLUMN_NAME_RACE_NAME = "Name";
     }
 
     public static abstract class CharacterClass implements BaseColumns {
         public static final String TABLE_NAME = "Class";
-        public static final String COLUMN_NAME_CLASS_NAME = "ClassName";
+        public static final String COLUMN_NAME_CLASS_NAME = "Name";
     }
 
     public static abstract class Alignment implements BaseColumns {
         public static final String TABLE_NAME = "Alignment";
-        public static final String COLUMN_NAME_ALIGNMENT_NAME = "AlignmentName";
+        public static final String COLUMN_NAME_ALIGNMENT_NAME = "Name";
     }
 
     public static abstract class Gender implements BaseColumns {
         public static final String TABLE_NAME = "Gender";
-        public static final String COLUMN_NAME_GENDER_NAME = "GenderName";
+        public static final String COLUMN_NAME_GENDER_NAME = "Name";
     }
 
     public static abstract class Stat implements BaseColumns {
@@ -115,27 +115,37 @@ public final class DatabaseContract {
 
     private static final String TEXT_TYPE = " TEXT";
     private static final String INTEGER = " INTEGER";
-    private static final String PRIMARY_KEY = " PRIMARY KEY AUTOINCREMENT";
+    private static final String PRIMARY_KEY = " PRIMARY KEY AUTOINCREMENT NOT NULL";
     private static final String FOREIGN_KEY = "FOREIGN KEY(";
     private static final String REFERENCES = ") REFERENCES ";
     private static final String COMMA_SEP = ", ";
-    private static final String SQL_CREATE_ENTRIES =
+    private static final String UNIQUE = " UNIQUE";
+
+    private static final String SQL_CREATE_RACE_TABLE =
             "CREATE TABLE " + Race.TABLE_NAME + " (" +
                     Race._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
-                    Race.COLUMN_NAME_RACE_NAME + TEXT_TYPE +
-            " );" +
+                    Race.COLUMN_NAME_RACE_NAME + TEXT_TYPE + UNIQUE +
+            " )";
+
+    private static final String SQL_CREATE_CHARACTER_CLASS_TABLE =
             "CREATE TABLE " + CharacterClass.TABLE_NAME + " (" +
                     CharacterClass._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
-                    CharacterClass.COLUMN_NAME_CLASS_NAME + TEXT_TYPE +
-            " );" +
+                    CharacterClass.COLUMN_NAME_CLASS_NAME + TEXT_TYPE + UNIQUE +
+            " )";
+
+    private static final String SQL_CREATE_ALIGNMENT_TABLE =
             "CREATE TABLE " + Alignment.TABLE_NAME + " (" +
                     Alignment._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
-                    Alignment.COLUMN_NAME_ALIGNMENT_NAME + TEXT_TYPE +
-            " );" +
+                    Alignment.COLUMN_NAME_ALIGNMENT_NAME + TEXT_TYPE + UNIQUE +
+            " )";
+
+    private static final String SQL_CREATE_GENDER_TABLE =
             "CREATE TABLE " + Gender.TABLE_NAME + " (" +
                     Gender._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
-                    Gender.COLUMN_NAME_GENDER_NAME + TEXT_TYPE +
-            " );" +
+                    Gender.COLUMN_NAME_GENDER_NAME + TEXT_TYPE + UNIQUE +
+            " )";
+
+    private static final String SQL_CREATE_STAT_TABLE =
             "CREATE TABLE " + Stat.TABLE_NAME + " (" +
                     Stat._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
                     Stat.COLUMN_NAME_STRENGTH + INTEGER + COMMA_SEP +
@@ -144,15 +154,19 @@ public final class DatabaseContract {
                     Stat.COLUMN_NAME_INTELLIGENCE + INTEGER + COMMA_SEP +
                     Stat.COLUMN_NAME_WISDOM + INTEGER + COMMA_SEP +
                     Stat.COLUMN_NAME_CHARISMA + INTEGER +
-            " );" +
+            " )";
+
+    private static final String SQL_CREATE_SECONDARY_STAT_TABLE =
             "CREATE TABLE " + SecondaryStats.TABLE_NAME + " (" +
                     SecondaryStats._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
                     SecondaryStats.COLUMN_NAME_ARMOR_CLASS + INTEGER + COMMA_SEP +
                     SecondaryStats.COLUMN_NAME_INITIATIVE + INTEGER + COMMA_SEP +
-                    SecondaryStats.COLUMN_NAME_SPEED + INTEGER + COMMA_SEP +
+                    SecondaryStats.COLUMN_NAME_SPEED + INTEGER +COMMA_SEP+
                     SecondaryStats.COLUMN_NAME_MAX_HP + INTEGER + COMMA_SEP +
                     SecondaryStats.COLUMN_NAME_TEMP_HP + INTEGER +
-            " );" +
+            " )";
+
+    private static final String SQL_CREATE_PROFICIENCY_TABLE =
             "CREATE TABLE " + Proficiency.TABLE_NAME + " (" +
                     Proficiency._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
                     Proficiency.COLUMN_NAME_STRENGTH_SAVING_THROW + INTEGER + COMMA_SEP +
@@ -161,7 +175,7 @@ public final class DatabaseContract {
                     Proficiency.COLUMN_NAME_DEXTERITY_SAVING_THROW + INTEGER + COMMA_SEP +
                     Proficiency.COLUMN_NAME_ACROBATICS + INTEGER + COMMA_SEP +
                     Proficiency.COLUMN_NAME_SLEIGHT_OF_HAND + INTEGER + COMMA_SEP +
-                    Proficiency.COLUMN_NAME_STEALTH + INTEGER + COMMA_SEP +
+                    Proficiency.COLUMN_NAME_STEALTH +INTEGER + COMMA_SEP +
 
                     Proficiency.COLUMN_NAME_CONSTITUTION_SAVING_THROW + INTEGER + COMMA_SEP +
 
@@ -184,7 +198,9 @@ public final class DatabaseContract {
                     Proficiency.COLUMN_NAME_INTIMIDATION + INTEGER + COMMA_SEP +
                     Proficiency.COLUMN_NAME_PERFORMANCE + INTEGER + COMMA_SEP +
                     Proficiency.COLUMN_NAME_PERSUASION + INTEGER +
-            " );" +
+            " )";
+
+    private static final String SQL_CREATE_PLAYER_CHARACTER_TABLE =
             "CREATE TABLE " + PlayerCharacter.TABLE_NAME + " (" +
                     PlayerCharacter._ID + INTEGER + PRIMARY_KEY + COMMA_SEP +
 
@@ -206,7 +222,7 @@ public final class DatabaseContract {
                     FOREIGN_KEY + PlayerCharacter.COLUMN_NAME_STATS_ID + REFERENCES + "Stats(_ID)" + COMMA_SEP +
                     FOREIGN_KEY + PlayerCharacter.COLUMN_NAME_SECONDARY_STATS_ID + REFERENCES + "SecondaryStats(_ID)" + COMMA_SEP +
                     FOREIGN_KEY + PlayerCharacter.COLUMN_NAME_PROFICIENCY_ID + REFERENCES + "Proficiency(_ID)" +
-            " );";
+            " )";
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + Race.TABLE_NAME + ";" +
@@ -229,7 +245,14 @@ public final class DatabaseContract {
 
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(SQL_DELETE_ENTRIES); //For testing.
-            db.execSQL(SQL_CREATE_ENTRIES);
+            db.execSQL(SQL_CREATE_RACE_TABLE);
+            db.execSQL(SQL_CREATE_CHARACTER_CLASS_TABLE);
+            db.execSQL(SQL_CREATE_ALIGNMENT_TABLE);
+            db.execSQL(SQL_CREATE_GENDER_TABLE);
+            db.execSQL(SQL_CREATE_STAT_TABLE);
+            db.execSQL(SQL_CREATE_SECONDARY_STAT_TABLE);
+            db.execSQL(SQL_CREATE_PROFICIENCY_TABLE);
+            db.execSQL(SQL_CREATE_PLAYER_CHARACTER_TABLE);
         }
 
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -256,12 +279,10 @@ public final class DatabaseContract {
             alc.add(null);
             alc.add(null);
 
-
             try{
                 String maxQuery = Query ;
                 //execute the query results will be save in Cursor c
                 Cursor c = sqlDB.rawQuery(maxQuery, null);
-
 
                 //add value to cursor2
                 Cursor2.addRow(new Object[] { "Success" });
@@ -297,7 +318,7 @@ public final class DatabaseContract {
     public static ContentValues setCharacterValues(Models.CharacterModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-        values.put(PlayerCharacter._ID, Statement.RETURN_GENERATED_KEYS);
+
         values.put(PlayerCharacter.COLUMN_NAME_CHARACTER_NAME, model.getCharacterName());
         values.put(PlayerCharacter.COLUMN_NAME_LEVEL, model.getCharacterLevel());
         values.put(PlayerCharacter.COLUMN_NAME_EXPERIENCE, model.getCharacterExperience());
@@ -315,7 +336,7 @@ public final class DatabaseContract {
     public static ContentValues setRaceValues(Models.RaceModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-        values.put(Race._ID, Statement.RETURN_GENERATED_KEYS);
+
         values.put(Race.COLUMN_NAME_RACE_NAME, model.getRaceName());
 
         return values;
@@ -324,7 +345,7 @@ public final class DatabaseContract {
     public static ContentValues setClassValues(Models.ClassModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-        values.put(CharacterClass._ID, Statement.RETURN_GENERATED_KEYS);
+
         values.put(CharacterClass.COLUMN_NAME_CLASS_NAME, model.getClassName());
 
         return values;
@@ -333,7 +354,7 @@ public final class DatabaseContract {
     public static ContentValues setAlignmentValues(Models.AlignmentModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-        values.put(Alignment._ID, Statement.RETURN_GENERATED_KEYS);
+
         values.put(Alignment.COLUMN_NAME_ALIGNMENT_NAME, model.getAlignmentName());
 
         return values;
@@ -342,7 +363,7 @@ public final class DatabaseContract {
     public static ContentValues setStatValues(Models.StatsModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-        values.put(Stat._ID, Statement.RETURN_GENERATED_KEYS);
+
         values.put(Stat.COLUMN_NAME_STRENGTH, model.getStrength());
         values.put(Stat.COLUMN_NAME_DEXTERITY, model.getDexterity());
         values.put(Stat.COLUMN_NAME_CONSTITUTION, model.getConstitution());
@@ -356,7 +377,6 @@ public final class DatabaseContract {
     public static ContentValues setSecondaryStatValues(Models.SecondaryStatsModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-        values.put(SecondaryStats._ID, Statement.RETURN_GENERATED_KEYS);
         values.put(SecondaryStats.COLUMN_NAME_ARMOR_CLASS, model.getArmorClass());
         values.put(SecondaryStats.COLUMN_NAME_INITIATIVE, model.getInitiative());
         values.put(SecondaryStats.COLUMN_NAME_SPEED, model.getSpeed());
@@ -369,7 +389,6 @@ public final class DatabaseContract {
     public static ContentValues setGenderValues(Models.GenderModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-        values.put(Gender._ID, Statement.RETURN_GENERATED_KEYS);
         values.put(Gender.COLUMN_NAME_GENDER_NAME, model.getGenderName());
 
         return values;
@@ -378,7 +397,6 @@ public final class DatabaseContract {
     public static ContentValues setProficiencyValues(Models.ProficiencyModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-        values.put(Proficiency._ID, Statement.RETURN_GENERATED_KEYS);
 
         //Strength
         values.put(Proficiency.COLUMN_NAME_STRENGTH_SAVING_THROW, model.getStrengthSavingThrow());
@@ -466,5 +484,42 @@ public final class DatabaseContract {
         }
 
         return list.toArray(new String[list.size()]);
+    }
+
+    public static boolean existsInDB(String tableName, String value, SQLiteDatabase db) {
+        Cursor c = null;
+        try {
+            String query = "SELECT 1 FROM " + tableName + " WHERE Name = ?";
+
+            c = db.rawQuery(query, new String[] { value });
+
+            if (c.moveToFirst()) {
+                return true;
+            }
+
+            return false;
+        }
+        finally {
+            if (c != null) {
+                c.close();
+            }
+        }
+    }
+
+    public static long getPrimaryKey(String tableName, String value, SQLiteDatabase db) {
+        Cursor c = null;
+        try {
+            String query = "SELECT _id FROM " + tableName + " WHERE Name = ?";
+            c = db.rawQuery(query, new String[] { value });
+            if (c.moveToFirst()) {
+                return c.getLong(0);
+            }
+            return 0;
+        }
+        finally {
+            if (c != null) {
+                c.close();
+            }
+        }
     }
 }

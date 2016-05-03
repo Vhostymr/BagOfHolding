@@ -65,42 +65,76 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Context context = v.getContext();
+                context.deleteDatabase(DatabaseContract.CharacterSheetDbHelper.DATABASE_NAME); //For Testing
                 SQLiteDatabase db = DatabaseContract.getOpenDB(context);
 
+                boolean exists = DatabaseContract.existsInDB(DatabaseContract.CharacterClass.TABLE_NAME, "Paladin", db);
                 Models.ClassModel classModel = Models.setClassModel("Paladin");
-                long classPrimaryKey = DatabaseContract.create("CharacterClass", DatabaseContract.setClassValues(classModel), db);
-                classModel.setClassID((short) classPrimaryKey);
+                long primaryKey = 0;
 
+                if (exists) {
+                    primaryKey = DatabaseContract.getPrimaryKey(DatabaseContract.CharacterClass.TABLE_NAME, "Paladin", db);
+                }
+                else {
+                    primaryKey = DatabaseContract.create(DatabaseContract.CharacterClass.TABLE_NAME, DatabaseContract.setClassValues(classModel), db);
+                }
+
+                classModel.setClassID((short) primaryKey);
+
+                exists = DatabaseContract.existsInDB(DatabaseContract.Race.TABLE_NAME, "Human", db);
                 Models.RaceModel raceModel = Models.setRaceModel("Human");
-                long racePrimaryKey = DatabaseContract.create("Race", DatabaseContract.setRaceValues(raceModel), db);
-                raceModel.setRaceID((short) racePrimaryKey);
 
+                if (exists) {
+                    primaryKey = DatabaseContract.getPrimaryKey(DatabaseContract.Race.TABLE_NAME, "Human", db);
+                }
+                else {
+                    primaryKey = DatabaseContract.create(DatabaseContract.Race.TABLE_NAME, DatabaseContract.setRaceValues(raceModel), db);
+                }
+
+                raceModel.setRaceID((short) primaryKey);
+
+                exists = DatabaseContract.existsInDB(DatabaseContract.Gender.TABLE_NAME, "Male", db);
                 Models.GenderModel genderModel = Models.setGenderModel("Male");
-                long genderPrimaryKey = DatabaseContract.create("Gender", DatabaseContract.setGenderValues(genderModel), db);
-                genderModel.setGenderID((short) genderPrimaryKey);
 
+                if (exists) {
+                    primaryKey = DatabaseContract.getPrimaryKey(DatabaseContract.Gender.TABLE_NAME, "Male", db);
+                }
+                else {
+                    primaryKey = DatabaseContract.create(DatabaseContract.Gender.TABLE_NAME, DatabaseContract.setGenderValues(genderModel), db);
+                }
+
+                genderModel.setGenderID((short) primaryKey);
+
+                exists = DatabaseContract.existsInDB(DatabaseContract.Alignment.TABLE_NAME, "Lawful Good", db);
                 Models.AlignmentModel alignmentModel = Models.setAlignmentModel("Lawful Good");
-                long alignmentPrimaryKey = DatabaseContract.create("Alignment", DatabaseContract.setAlignmentValues(alignmentModel), db);
-                alignmentModel.setAlignment((short) alignmentPrimaryKey);
+
+                if (exists) {
+                    primaryKey = DatabaseContract.getPrimaryKey(DatabaseContract.Alignment.TABLE_NAME, "Alignment", db);
+                }
+                else {
+                    primaryKey = DatabaseContract.create(DatabaseContract.Alignment.TABLE_NAME, DatabaseContract.setAlignmentValues(alignmentModel), db);
+                }
+
+                alignmentModel.setAlignment((short) primaryKey);
 
                 Models.StatsModel statsModel = characterFragment.getStatsModel();
-                long statsPrimaryKey = DatabaseContract.create("Stat", DatabaseContract.setStatValues(statsModel), db);
-                statsModel.setStatID((short) statsPrimaryKey);
+                primaryKey = DatabaseContract.create(DatabaseContract.Stat.TABLE_NAME, DatabaseContract.setStatValues(statsModel), db);
+                statsModel.setStatID((short) primaryKey);
 
                 Models.SecondaryStatsModel secondaryStatsModel = Models.setSecondaryStatsModel("10", "10", "10", "10", "10");
-                long secondaryStatsPrimaryKey = DatabaseContract.create("SecondaryStat", DatabaseContract.setSecondaryStatValues(secondaryStatsModel), db);
-                secondaryStatsModel.setSecondaryStatsID((short) secondaryStatsPrimaryKey);
+                primaryKey = DatabaseContract.create(DatabaseContract.SecondaryStats.TABLE_NAME, DatabaseContract.setSecondaryStatValues(secondaryStatsModel), db);
+                secondaryStatsModel.setSecondaryStatsID((short) primaryKey);
 
                 Models.ProficiencyModel proficiencyModel = Models.setProficiencyModel(true, true, true, true, true, true, true, true,
                         true, true, true, true, true, true, true, true,
                         true, true, true, true, true, true, true, true);
-                long newPrimaryKey = DatabaseContract.create("Proficiency", DatabaseContract.setProficiencyValues(proficiencyModel), db);
-                proficiencyModel.setProficiencyID((short) newPrimaryKey);
+                primaryKey = DatabaseContract.create(DatabaseContract.Proficiency.TABLE_NAME, DatabaseContract.setProficiencyValues(proficiencyModel), db);
+                proficiencyModel.setProficiencyID((short) primaryKey);
 
                 Models.CharacterModel characterModel = Models.setCharacterModel("Aaron Scherer", "43", "3", classModel,
                         raceModel, alignmentModel, genderModel,
                         statsModel, secondaryStatsModel, proficiencyModel);
-                DatabaseContract.create("PlayerCharacter", DatabaseContract.setCharacterValues(characterModel), db);
+                DatabaseContract.create(DatabaseContract.PlayerCharacter.TABLE_NAME, DatabaseContract.setCharacterValues(characterModel), db);
 
                 db.close();
             }
