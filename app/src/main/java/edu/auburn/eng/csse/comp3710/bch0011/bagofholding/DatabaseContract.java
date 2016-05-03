@@ -228,7 +228,7 @@ public final class DatabaseContract {
         }
 
         public void onCreate(SQLiteDatabase db) {
-            //db.execSQL(SQL_DELETE_ENTRIES); //For testing.
+            db.execSQL(SQL_DELETE_ENTRIES); //For testing.
             db.execSQL(SQL_CREATE_ENTRIES);
         }
 

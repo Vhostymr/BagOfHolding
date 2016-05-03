@@ -5,6 +5,7 @@ package edu.auburn.eng.csse.comp3710.bch0011.bagofholding;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     FragmentManager fm;
     Button saveme;
+    Button dbButton;
     CharacterStatsEditFragment characterFragment;
 
     @Override
@@ -36,7 +38,15 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         saveme = (Button) findViewById(R.id.saveButton);
+        dbButton = (Button) findViewById(R.id.dbButton);
 
+        dbButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+
+                Intent dbmanager = new Intent(getApplicationContext(), AndroidDatabaseManager.class);
+                startActivity(dbmanager);
+            }
+        });
 
         if (findViewById(R.id.character_fragment_container) != null) {
             // Create a new Fragment to be placed in the activity layout
