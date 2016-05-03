@@ -1,4 +1,6 @@
-package edu.auburn.eng.csse.comp3710.bch0011.bagofholding;
+package edu.auburn.eng.csse.comp3710.bch0011.bagofholding.Models;
+
+import edu.auburn.eng.csse.comp3710.bch0011.bagofholding.Utilities.Utilities;
 
 public class Models {
     public static final class CharacterModel {
@@ -564,8 +566,8 @@ public class Models {
         }
     }
 
-    public static Models.StatsModel setStatsModel(String strength, String dexterity, String constitution, String intelligence, String wisdom, String charisma) {
-        Models.StatsModel statsModel = new Models.StatsModel();
+    public static StatsModel setStatsModel(String strength, String dexterity, String constitution, String intelligence, String wisdom, String charisma) {
+        StatsModel statsModel = new StatsModel();
 
         strength = Utilities.isWholeNumber(strength) ? strength : "0";
         dexterity = Utilities.isWholeNumber(dexterity) ? dexterity : "0";
@@ -584,40 +586,40 @@ public class Models {
         return statsModel;
     }
 
-    public static Models.ClassModel setClassModel(String className) {
-        Models.ClassModel classModel = new Models.ClassModel();
+    public static ClassModel setClassModel(String className) {
+        ClassModel classModel = new ClassModel();
 
         classModel.setClassName(className);
 
         return classModel;
     }
 
-    public static Models.RaceModel setRaceModel(String raceName) {
-        Models.RaceModel raceModel = new Models.RaceModel();
+    public static RaceModel setRaceModel(String raceName) {
+        RaceModel raceModel = new RaceModel();
 
         raceModel.setRaceName(raceName);
 
         return raceModel;
     }
 
-    public static Models.GenderModel setGenderModel(String genderName) {
-        Models.GenderModel genderModel = new Models.GenderModel();
+    public static GenderModel setGenderModel(String genderName) {
+        GenderModel genderModel = new GenderModel();
 
         genderModel.setGenderName(genderName);
 
         return genderModel;
     }
 
-    public static Models.AlignmentModel setAlignmentModel(String alignmentName) {
-        Models.AlignmentModel alignmentModel = new Models.AlignmentModel();
+    public static AlignmentModel setAlignmentModel(String alignmentName) {
+        AlignmentModel alignmentModel = new AlignmentModel();
 
         alignmentModel.setAlignmentName(alignmentName);
 
         return alignmentModel;
     }
 
-    public static Models.SecondaryStatsModel setSecondaryStatsModel(String armorClass, String initiative, String speed, String maxHP, String tempHP) {
-        Models.SecondaryStatsModel secondaryStatsModel = new Models.SecondaryStatsModel();
+    public static SecondaryStatsModel setSecondaryStatsModel(String armorClass, String initiative, String speed, String maxHP, String tempHP) {
+        SecondaryStatsModel secondaryStatsModel = new SecondaryStatsModel();
 
         armorClass = Utilities.isWholeNumber(armorClass) ? armorClass : "0";
         initiative = Utilities.isWholeNumber(initiative) ? initiative : "0";
@@ -634,14 +636,14 @@ public class Models {
         return secondaryStatsModel;
     }
 
-    public static Models.ProficiencyModel setProficiencyModel(boolean hasStrengthSavingThrow, boolean hasAthletics, boolean hasDexteritySavingThrow,
+    public static ProficiencyModel setProficiencyModel(boolean hasStrengthSavingThrow, boolean hasAthletics, boolean hasDexteritySavingThrow,
                                                        boolean hasAcrobatics, boolean hasSleightOfHand, boolean hasStealth, boolean hasConstitutionSavingThrow,
                                                        boolean hasIntelligenceSavingThrow, boolean hasArcana, boolean hasHistory, boolean hasInvestigation,
                                                        boolean hasNature, boolean hasReligion, boolean hasWisdomSavingThrow, boolean hasAnimalHandling,
                                                        boolean hasInsight, boolean hasMedicine, boolean hasPerception, boolean hasSurvival, boolean hasCharismaSavingThrow,
                                                        boolean hasDeception, boolean hasIntimidation, boolean hasPerformance, boolean hasPersuasion) {
 
-        Models.ProficiencyModel proficiencyModel = new Models.ProficiencyModel();
+        ProficiencyModel proficiencyModel = new ProficiencyModel();
 
         proficiencyModel.setStrengthSavingThrow(hasStrengthSavingThrow);
         proficiencyModel.setAthletics(hasAthletics);
@@ -676,13 +678,13 @@ public class Models {
         return proficiencyModel;
     }
 
-    public static Models.CharacterModel setCharacterModel(String characterName, String characterLevel, String characterClass,
-                                                   Models.ClassModel classModel, Models.RaceModel raceModel,
-                                                   Models.AlignmentModel alignmentModel, Models.GenderModel genderModel,
-                                                   Models.StatsModel statsModel, Models.SecondaryStatsModel secondaryStatsModel,
-                                                   Models.ProficiencyModel proficiencyModel) {
+    public static CharacterModel setCharacterModel(String characterName, String characterLevel, String characterClass,
+                                                   ClassModel classModel, RaceModel raceModel,
+                                                   AlignmentModel alignmentModel, GenderModel genderModel,
+                                                   StatsModel statsModel, SecondaryStatsModel secondaryStatsModel,
+                                                   ProficiencyModel proficiencyModel) {
 
-        Models.CharacterModel characterModel = new Models.CharacterModel();
+        CharacterModel characterModel = new CharacterModel();
         characterModel.setCharacterName(characterName);
         characterModel.setCharacterLevel(Short.parseShort(characterLevel));
         characterModel.setCharacterExperience(Integer.parseInt(characterClass));

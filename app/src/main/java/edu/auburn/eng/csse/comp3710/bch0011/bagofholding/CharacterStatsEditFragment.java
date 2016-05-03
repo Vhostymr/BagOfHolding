@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import edu.auburn.eng.csse.comp3710.bch0011.bagofholding.Models.Models;
+
 
 public class CharacterStatsEditFragment extends Fragment {
 

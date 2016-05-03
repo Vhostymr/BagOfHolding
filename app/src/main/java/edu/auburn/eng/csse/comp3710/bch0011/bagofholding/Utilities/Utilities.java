@@ -1,4 +1,4 @@
-package edu.auburn.eng.csse.comp3710.bch0011.bagofholding;
+package edu.auburn.eng.csse.comp3710.bch0011.bagofholding.Utilities;
 
 import java.util.Random;
 

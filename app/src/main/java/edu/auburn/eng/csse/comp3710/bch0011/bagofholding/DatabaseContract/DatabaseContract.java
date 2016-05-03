@@ -1,4 +1,5 @@
-package edu.auburn.eng.csse.comp3710.bch0011.bagofholding;
+package edu.auburn.eng.csse.comp3710.bch0011.bagofholding.DatabaseContract;
+import edu.auburn.eng.csse.comp3710.bch0011.bagofholding.Models.Models.*;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,9 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 import android.util.Log;
-
 import java.lang.reflect.Field;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -315,7 +314,7 @@ public final class DatabaseContract {
         }
     }
 
-    public static ContentValues setCharacterValues(Models.CharacterModel model) {
+    public static ContentValues setCharacterValues(CharacterModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
 
@@ -333,7 +332,7 @@ public final class DatabaseContract {
         return values;
     }
 
-    public static ContentValues setRaceValues(Models.RaceModel model) {
+    public static ContentValues setRaceValues(RaceModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
 
@@ -342,7 +341,7 @@ public final class DatabaseContract {
         return values;
     }
 
-    public static ContentValues setClassValues(Models.ClassModel model) {
+    public static ContentValues setClassValues(ClassModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
 
@@ -351,7 +350,7 @@ public final class DatabaseContract {
         return values;
     }
 
-    public static ContentValues setAlignmentValues(Models.AlignmentModel model) {
+    public static ContentValues setAlignmentValues(AlignmentModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
 
@@ -360,7 +359,7 @@ public final class DatabaseContract {
         return values;
     }
 
-    public static ContentValues setStatValues(Models.StatsModel model) {
+    public static ContentValues setStatValues(StatsModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
 
@@ -374,7 +373,7 @@ public final class DatabaseContract {
         return values;
     }
 
-    public static ContentValues setSecondaryStatValues(Models.SecondaryStatsModel model) {
+    public static ContentValues setSecondaryStatValues(SecondaryStatsModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(SecondaryStats.COLUMN_NAME_ARMOR_CLASS, model.getArmorClass());
@@ -386,7 +385,7 @@ public final class DatabaseContract {
         return values;
     }
 
-    public static ContentValues setGenderValues(Models.GenderModel model) {
+    public static ContentValues setGenderValues(GenderModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(Gender.COLUMN_NAME_GENDER_NAME, model.getGenderName());
@@ -394,7 +393,7 @@ public final class DatabaseContract {
         return values;
     }
 
-    public static ContentValues setProficiencyValues(Models.ProficiencyModel model) {
+    public static ContentValues setProficiencyValues(ProficiencyModel model) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
 
