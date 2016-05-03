@@ -1,29 +1,19 @@
 package edu.auburn.eng.csse.comp3710.bch0011.bagofholding;
 
-
-
-import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
     FragmentManager fm;
-    Button saveme;
+    Button saveButton;
     Button dbButton;
     CharacterStatsEditFragment characterFragment;
 
@@ -37,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        saveme = (Button) findViewById(R.id.saveButton);
+        saveButton = (Button) findViewById(R.id.saveButton);
         dbButton = (Button) findViewById(R.id.dbButton);
 
         dbButton.setOnClickListener(new Button.OnClickListener() {
@@ -61,16 +51,16 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.character_fragment_container, characterFragment).commit();
         }
 
-        saveme.setOnClickListener(new Button.OnClickListener() {
+        saveButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
 
                 Context context = v.getContext();
-                context.deleteDatabase(DatabaseContract.CharacterSheetDbHelper.DATABASE_NAME); //For Testing
+                //context.deleteDatabase(DatabaseContract.CharacterSheetDbHelper.DATABASE_NAME); //For Testing
                 SQLiteDatabase db = DatabaseContract.getOpenDB(context);
 
                 boolean exists = DatabaseContract.existsInDB(DatabaseContract.CharacterClass.TABLE_NAME, "Paladin", db);
                 Models.ClassModel classModel = Models.setClassModel("Paladin");
-                long primaryKey = 0;
+                long primaryKey;
 
                 if (exists) {
                     primaryKey = DatabaseContract.getPrimaryKey(DatabaseContract.CharacterClass.TABLE_NAME, "Paladin", db);
