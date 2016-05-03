@@ -71,7 +71,7 @@ public class CharacterStatsEditFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         parentActivity = (MainActivity) getActivity();
-        final View view = inflater.inflate(R.layout.fragment_character_stats_edit, container, false);
+        final View view = inflater.inflate(R.layout.fragment_character_edit, container, false);
 
         //EditTextSetters
         strengthET = (EditText) view.findViewById(R.id.et_strength);

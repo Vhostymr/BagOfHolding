@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_info);
-        //final View view = inflater.inflate(R.layout.fragment_character_stats_edit, container, false);
+        //final View view = inflater.inflate(R.layout.fragment_character_edit, container, false);
 
         fm = getSupportFragmentManager();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
