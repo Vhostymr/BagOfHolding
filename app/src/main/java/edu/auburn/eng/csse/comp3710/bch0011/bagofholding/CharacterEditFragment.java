@@ -12,7 +12,7 @@ import android.widget.Spinner;
 import edu.auburn.eng.csse.comp3710.bch0011.bagofholding.Models.Models;
 
 
-public class CharacterStatsEditFragment extends Fragment {
+public class CharacterEditFragment extends Fragment {
 
     MainActivity parentActivity;
 
@@ -79,7 +79,7 @@ public class CharacterStatsEditFragment extends Fragment {
         CheckBox performanceCharismaCB;
         CheckBox persuasionCharismaCB;
 
-    public CharacterStatsEditFragment() {
+    public CharacterEditFragment() {
     }
 
     @Override
@@ -186,8 +186,8 @@ public class CharacterStatsEditFragment extends Fragment {
                 performanceCharismaCB.isChecked(), persuasionCharismaCB.isChecked());
     }
     public Models.SecondaryStatsModel getSecondaryStatsModel(){
-        return Models.setSecondaryStatsModel(armorClassET.getText().toString(),initiativeET.getText().toString(),
-                                             speedET.getText().toString(), maxHitPointsET.getText().toString(),
-                                             temporaryHitPointsET.getText().toString());
+        return Models.setSecondaryStatsModel(armorClassET.getText().toString(), initiativeET.getText().toString(),
+                speedET.getText().toString(), maxHitPointsET.getText().toString(),
+                temporaryHitPointsET.getText().toString());
     }
 }

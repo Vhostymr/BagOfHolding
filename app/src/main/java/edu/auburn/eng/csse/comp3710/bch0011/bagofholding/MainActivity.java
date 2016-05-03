@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager fm;
     Button saveButton;
     Button dbButton;
-    CharacterStatsEditFragment characterFragment;
+    CharacterEditFragment characterFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (findViewById(R.id.character_fragment_container) != null) {
             // Create a new Fragment to be placed in the activity layout
-            characterFragment = new CharacterStatsEditFragment();
+            characterFragment = new CharacterEditFragment();
 
             // In case this activity was started with special instructions from an
             // intent, pass the Intent's extras to the fragment as arguments
