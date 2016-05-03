@@ -4,7 +4,7 @@ import edu.auburn.eng.csse.comp3710.bch0011.bagofholding.Utilities.Utilities;
 
 public class Models {
     public static final class CharacterModel {
-        private Short CharacterID;
+        private long _id;
         private String CharacterName;
         private Short CharacterLevel;
         private Integer CharacterExperience;
@@ -17,7 +17,7 @@ public class Models {
         private ProficiencyModel Proficiency;
 
         public CharacterModel() {
-            CharacterID = 0;
+            _id = 0;
             CharacterName = "";
             CharacterLevel = 0;
             CharacterExperience = 0;
@@ -30,12 +30,12 @@ public class Models {
             Proficiency = new ProficiencyModel();
         }
 
-        public void setCharacterID(Short CharacterID) {
-            this.CharacterID = CharacterID;
+        public void setCharacterID(long CharacterID) {
+            this._id = CharacterID;
         }
 
-        public Short getCharacterID() {
-            return CharacterID;
+        public long getCharacterID() {
+            return _id;
         }
 
         public void setCharacterName(String CharacterName) {
@@ -120,7 +120,7 @@ public class Models {
     }
 
     public static final class StatsModel {
-        private Short StatID;
+        private long _id;
         private Short Strength;
         private Short Dexterity;
         private Short Constitution;
@@ -128,12 +128,12 @@ public class Models {
         private Short Wisdom;
         private Short Charisma;
 
-        public void setStatID(Short StatID) {
-            this.StatID = StatID;
+        public void setStatID(long _id) {
+            this._id = _id;
         }
 
-        public Short getStatID() {
-            return StatID;
+        public long getStatID() {
+            return _id;
         }
 
         public void setStrength(Short Strength) {
@@ -186,19 +186,19 @@ public class Models {
     }
 
     public static final class SecondaryStatsModel {
-        private Short SecondaryStatsID;
+        private long _id;
         private Short ArmorClass;
         private Short Initiative;
         private Short Speed;
         private Short MaxHP;
         private Short TempHP;
 
-        public void setSecondaryStatsID(Short SecondaryStatsID) {
-            this.SecondaryStatsID = SecondaryStatsID;
+        public void setSecondaryStatsID(long _id) {
+            this._id = _id;
         }
 
-        public Short getSecondaryStatsID() {
-            return SecondaryStatsID;
+        public long getSecondaryStatsID() {
+            return _id;
         }
 
         public void setArmorClass(Short ArmorClass) {
@@ -243,15 +243,15 @@ public class Models {
     }
 
     public static final class RaceModel {
-        private Short RaceID;
+        private long _id;
         private String RaceName;
 
-        public void setRaceID(Short RaceID) {
-            this.RaceID = RaceID;
+        public void setRaceID(long _id) {
+            this._id = _id;
         }
 
-        public Short getRaceID() {
-            return RaceID;
+        public long getRaceID() {
+            return _id;
         }
 
         public void setRaceName(String RaceName) {
@@ -264,15 +264,15 @@ public class Models {
     }
 
     public static final class ClassModel {
-        private Short ClassID;
+        private long _id;
         private String ClassName;
 
-        public void setClassID(Short ClassID) {
-            this.ClassID = ClassID;
+        public void setClassID(long _id) {
+            this._id = _id;
         }
 
-        public Short getClassID() {
-            return ClassID;
+        public long getClassID() {
+            return _id;
         }
 
         public void setClassName(String ClassName) {
@@ -285,15 +285,15 @@ public class Models {
     }
 
     public static final class AlignmentModel {
-        private Short AlignmentID;
+        private long _id;
         private String Alignment;
 
-        public void setAlignment(Short AlignmentID) {
-            this.AlignmentID = AlignmentID;
+        public void setAlignmentID(long _id) {
+            this._id = _id;
         }
 
-        public Short getAlignmentID() {
-            return AlignmentID;
+        public long getAlignmentID() {
+            return _id;
         }
 
         public void setAlignmentName(String Alignment) {
@@ -306,15 +306,15 @@ public class Models {
     }
 
     public static final class GenderModel {
-        private Short GenderID;
+        private long _id;
         private String GenderName;
 
-        public void setGenderID(Short GenderID) {
-            this.GenderID = GenderID;
+        public void setGenderID(long _id) {
+            this._id = _id;
         }
 
-        public Short getGenderID() {
-            return GenderID;
+        public long getGenderID() {
+            return _id;
         }
 
         public void setGenderName(String GenderName) {
@@ -327,7 +327,7 @@ public class Models {
     }
 
     public static final class ProficiencyModel {
-        private Short ProficiencyID;
+        private long _id;
 
         //Strength
         private Boolean StrengthSavingThrow;
@@ -365,12 +365,12 @@ public class Models {
         private Boolean Performance;
         private Boolean Persuasion;
 
-        public void setProficiencyID(Short ProficiencyID) {
-            this.ProficiencyID = ProficiencyID;
+        public void setProficiencyID(long _id) {
+            this._id = _id;
         }
 
-        public Short getProficiencyID() {
-            return ProficiencyID;
+        public long getProficiencyID() {
+            return _id;
         }
 
         public void setStrengthSavingThrow(Boolean StrengthSavingThrow) {

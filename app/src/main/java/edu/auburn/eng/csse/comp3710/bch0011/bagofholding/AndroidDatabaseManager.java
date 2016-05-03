@@ -1,4 +1,5 @@
 package edu.auburn.eng.csse.comp3710.bch0011.bagofholding;
+import static edu.auburn.eng.csse.comp3710.bch0011.bagofholding.DatabaseContract.DatabaseContract.*;
 
 //all required import files
 import java.util.ArrayList;
@@ -52,7 +53,7 @@ public class AndroidDatabaseManager extends Activity implements OnItemClickListe
 
     //in the below line Change the text 'yourCustomSqlHelper' with your custom sqlitehelper class name.
     //Do not change the variable name dbm
-    DatabaseContract.CharacterSheetDbHelper dbm;
+    CharacterSheetDbHelper dbm;
     TableLayout tableLayout;
     TableRow.LayoutParams tableRowParams;
     HorizontalScrollView hsv;
@@ -71,7 +72,7 @@ public class AndroidDatabaseManager extends Activity implements OnItemClickListe
 
 
         //in the below line Change the text 'yourCustomSqlHelper' with your custom sqlitehelper class name
-        dbm = new DatabaseContract.CharacterSheetDbHelper(AndroidDatabaseManager.this);
+        dbm = new CharacterSheetDbHelper(AndroidDatabaseManager.this);
 
         mainscrollview = new ScrollView(AndroidDatabaseManager.this);
 

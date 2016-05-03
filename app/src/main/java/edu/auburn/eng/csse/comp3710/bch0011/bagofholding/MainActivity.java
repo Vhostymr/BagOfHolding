@@ -4,6 +4,7 @@ import static edu.auburn.eng.csse.comp3710.bch0011.bagofholding.Models.Models.*;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -59,75 +60,77 @@ public class MainActivity extends AppCompatActivity {
                 Context context = v.getContext();
                 //context.deleteDatabase(CharacterSheetDbHelper.DATABASE_NAME); //For Testing
                 SQLiteDatabase db = getOpenDB(context);
+                ClassModel classModel = new ClassModel();
 
-
-                boolean exists = existsInDB(CharacterClass.TABLE_NAME, "Wizard", db);
-                ClassModel classModel = setClassModel("Wizard");
-                long primaryKey;
-
-                if (exists) {
-                    primaryKey = getPrimaryKey(CharacterClass.TABLE_NAME, "Wizard", db);
-                }
-                else {
-                    primaryKey = create(CharacterClass.TABLE_NAME, setClassValues(classModel), db);
-                }
-
-                classModel.setClassID((short) primaryKey);
-
-                exists = existsInDB(Race.TABLE_NAME, "Drow", db);
-                RaceModel raceModel = setRaceModel("Drow");
-
-                if (exists) {
-                    primaryKey = getPrimaryKey(Race.TABLE_NAME, "Drow", db);
-                }
-                else {
-                    primaryKey = create(Race.TABLE_NAME, setRaceValues(raceModel), db);
-                }
-
-                raceModel.setRaceID((short) primaryKey);
-
-                exists = existsInDB(Gender.TABLE_NAME, "Male", db);
-                GenderModel genderModel = setGenderModel("Male");
-
-                if (exists) {
-                    primaryKey = getPrimaryKey(Gender.TABLE_NAME, "Male", db);
-                }
-                else {
-                    primaryKey = create(Gender.TABLE_NAME, setGenderValues(genderModel), db);
-                }
-
-                genderModel.setGenderID((short) primaryKey);
-
-                exists = existsInDB(Alignment.TABLE_NAME, "Lawful Evil", db);
-                AlignmentModel alignmentModel = setAlignmentModel("Lawful Evil");
-
-                if (exists) {
-                    primaryKey = getPrimaryKey(Alignment.TABLE_NAME, "Alignment", db);
-                }
-                else {
-                    primaryKey = create(Alignment.TABLE_NAME, setAlignmentValues(alignmentModel), db);
-                }
-
-                alignmentModel.setAlignment((short) primaryKey);
-
-                StatsModel statsModel = characterFragment.getStatsModel();
-                primaryKey = create(Stat.TABLE_NAME, setStatValues(statsModel), db);
-                statsModel.setStatID((short) primaryKey);
-
-                SecondaryStatsModel secondaryStatsModel = setSecondaryStatsModel("18", "15", "13", "11", "10");
-                primaryKey = create(SecondaryStats.TABLE_NAME, setSecondaryStatValues(secondaryStatsModel), db);
-                secondaryStatsModel.setSecondaryStatsID((short) primaryKey);
-
-                ProficiencyModel proficiencyModel = setProficiencyModel(true, false, true, true, false, true, true, false,
-                        true, true, false, true, true, false, false, false,
-                        true, false, true, true, false, true, true, true);
-                primaryKey = create(Proficiency.TABLE_NAME, setProficiencyValues(proficiencyModel), db);
-                proficiencyModel.setProficiencyID((short) primaryKey);
-
-                CharacterModel characterModel = setCharacterModel("Gromph Baenre", "50", "45000", classModel,
-                        raceModel, alignmentModel, genderModel,
-                        statsModel, secondaryStatsModel, proficiencyModel);
-                create(PlayerCharacter.TABLE_NAME, setCharacterValues(characterModel), db);
+                Cursor c = read(CharacterClass.TABLE_NAME, 1, classModel, db);
+//
+//                boolean exists = existsInDB(CharacterClass.TABLE_NAME, "Wizard", db);
+//                ClassModel classModel = setClassModel("Wizard");
+//                long primaryKey;
+//
+//                if (exists) {
+//                    primaryKey = getPrimaryKey(CharacterClass.TABLE_NAME, "Wizard", db);
+//                }
+//                else {
+//                    primaryKey = create(CharacterClass.TABLE_NAME, setClassValues(classModel), db);
+//                }
+//
+//                classModel.setClassID(primaryKey);
+//
+//                exists = existsInDB(Race.TABLE_NAME, "Drow", db);
+//                RaceModel raceModel = setRaceModel("Drow");
+//
+//                if (exists) {
+//                    primaryKey = getPrimaryKey(Race.TABLE_NAME, "Drow", db);
+//                }
+//                else {
+//                    primaryKey = create(Race.TABLE_NAME, setRaceValues(raceModel), db);
+//                }
+//
+//                raceModel.setRaceID(primaryKey);
+//
+//                exists = existsInDB(Gender.TABLE_NAME, "Male", db);
+//                GenderModel genderModel = setGenderModel("Male");
+//
+//                if (exists) {
+//                    primaryKey = getPrimaryKey(Gender.TABLE_NAME, "Male", db);
+//                }
+//                else {
+//                    primaryKey = create(Gender.TABLE_NAME, setGenderValues(genderModel), db);
+//                }
+//
+//                genderModel.setGenderID(primaryKey);
+//
+//                exists = existsInDB(Alignment.TABLE_NAME, "Lawful Evil", db);
+//                AlignmentModel alignmentModel = setAlignmentModel("Lawful Evil");
+//
+//                if (exists) {
+//                    primaryKey = getPrimaryKey(Alignment.TABLE_NAME, "Alignment", db);
+//                }
+//                else {
+//                    primaryKey = create(Alignment.TABLE_NAME, setAlignmentValues(alignmentModel), db);
+//                }
+//
+//                alignmentModel.setAlignmentID(primaryKey);
+//
+//                StatsModel statsModel = characterFragment.getStatsModel();
+//                primaryKey = create(Stat.TABLE_NAME, setStatValues(statsModel), db);
+//                statsModel.setStatID(primaryKey);
+//
+//                SecondaryStatsModel secondaryStatsModel = setSecondaryStatsModel("18", "15", "13", "11", "10");
+//                primaryKey = create(SecondaryStats.TABLE_NAME, setSecondaryStatValues(secondaryStatsModel), db);
+//                secondaryStatsModel.setSecondaryStatsID(primaryKey);
+//
+//                ProficiencyModel proficiencyModel = setProficiencyModel(true, false, true, true, false, true, true, false,
+//                        true, true, false, true, true, false, false, false,
+//                        true, false, true, true, false, true, true, true);
+//                primaryKey = create(Proficiency.TABLE_NAME, setProficiencyValues(proficiencyModel), db);
+//                proficiencyModel.setProficiencyID(primaryKey);
+//
+//                CharacterModel characterModel = setCharacterModel("Gromph Baenre", "50", "45000", classModel,
+//                        raceModel, alignmentModel, genderModel,
+//                        statsModel, secondaryStatsModel, proficiencyModel);
+//                create(PlayerCharacter.TABLE_NAME, setCharacterValues(characterModel), db);
 
                 db.close();
             }
