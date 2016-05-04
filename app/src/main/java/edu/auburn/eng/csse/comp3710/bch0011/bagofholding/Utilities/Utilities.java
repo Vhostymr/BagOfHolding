@@ -48,8 +48,7 @@ public final class Utilities {
     }
 
     public static Integer getProficiencyBonus(Integer level) {
-        //Get proficiency from db.
-        return 1;
+        return ((level - 1) / 4) + 2;
     }
 
     public static Integer calculateProficiency(Integer level, Integer abilityModifier, boolean isProficient) {
