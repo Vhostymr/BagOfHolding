@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager fm;
     Button saveButton;
     Button dbButton;
+    CharacterDetailsFragment characterFragment1;
     CharacterEditFragment characterFragment;
     CharacterModel characterModel;
 
@@ -140,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
 
                 db.close();
 
-                //displayDetailsFragment();
+                displayDetailsFragment();
             }
         });
 
