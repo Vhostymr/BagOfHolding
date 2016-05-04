@@ -22,7 +22,7 @@
         android:scaleType="fitCenter"
         android:id="@+id/launcher_logo"
         android:layout_gravity="center_horizontal"
-        android:src="@mipmap/splashscreen_logo"
+        android:src="@mipmap/splash_screen_logo_v2"
         android:background="#000"/>
 
     <TextView
