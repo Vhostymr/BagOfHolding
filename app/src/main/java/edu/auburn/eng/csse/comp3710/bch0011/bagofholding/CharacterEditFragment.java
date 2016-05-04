@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -51,6 +52,11 @@ public class CharacterEditFragment extends Fragment {
         EditText speedET;
         EditText maxHitPointsET;
         EditText temporaryHitPointsET;
+
+        //New Spinner Item
+        EditText alignmentET;
+        EditText raceET;
+        EditText classET;
 
     //Spinners
         //CharacterInfo
@@ -128,6 +134,10 @@ public class CharacterEditFragment extends Fragment {
         speedET = (EditText) view.findViewById(R.id.et_speed);
         maxHitPointsET = (EditText) view.findViewById(R.id.et_max_hit_points);
         temporaryHitPointsET = (EditText) view.findViewById(R.id.et_temporary_hit_points);
+
+        alignmentET = (EditText) view.findViewById(R.id.et_new_alignment);
+        raceET = (EditText) view.findViewById(R.id.et_new_race);
+        classET = (EditText) view.findViewById(R.id.et_new_class);
         //SpinnerSetters
         alignmentSP = (Spinner) view.findViewById(R.id.sp_alignment);
         raceSP = (Spinner) view.findViewById(R.id.sp_race);
@@ -178,13 +188,15 @@ public class CharacterEditFragment extends Fragment {
             raceList = new ArrayList<>();
             classList = new ArrayList<>();
 
+            alignmentList.addAll(parentActivity.getAlignmentDatabaseItems());
+            raceList.addAll(parentActivity.getRaceDatabaseItems());
+            classList.addAll(parentActivity.getClassDatabaseItems());
 
 
 
-
-            alignmentList.add("Create new alignment");
-            raceList.add("Create new race");
-            classList.add("Create new Alignment");
+            alignmentList.add(getString(R.string.create_alignment));
+            raceList.add(getString(R.string.create_race));
+            classList.add(getString(R.string.create_class));
 
             stringDataAdapter = new ArrayAdapter(getActivity().getBaseContext(), android.R.layout.simple_spinner_dropdown_item, alignmentList);
             stringDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -245,6 +257,52 @@ public class CharacterEditFragment extends Fragment {
             temporaryHitPointsET.setText(String.valueOf(cm.getSecondaryStats().getTempHP()));
 
         }
+
+
+        alignmentSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int postion, long id) {
+                if (alignmentSP.getSelectedItem().toString().equals(getString(R.string.create_alignment))){
+                    alignmentET.setVisibility(View.VISIBLE);
+                }
+                else {
+                    alignmentET.setVisibility(View.GONE);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
+        });
+        raceSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int postion, long id) {
+                if (raceSP.getSelectedItem().toString().equals(getString(R.string.create_race))){
+                    raceET.setVisibility(View.VISIBLE);
+                }
+                else {
+                    raceET.setVisibility(View.GONE);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
+        });
+        classSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int postion, long id) {
+                if (classSP.getSelectedItem().toString().equals(getString(R.string.create_class))){
+                    classET.setVisibility(View.VISIBLE);
+                }
+                else {
+                    classET.setVisibility(View.GONE);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
+        });
+
+
         return view;
     }
 
@@ -283,6 +341,9 @@ public class CharacterEditFragment extends Fragment {
                 speedET.getText().toString(), maxHitPointsET.getText().toString(),
                 temporaryHitPointsET.getText().toString());
     }
+    public Models.GenderModel getGenderModel(){
+        return Models.setGenderModel("Male");
+    }
     public Models.ClassModel getClassModel(){
         return Models.setClassModel(classSP.getSelectedItem().toString());
     }
@@ -292,4 +353,12 @@ public class CharacterEditFragment extends Fragment {
     public Models.AlignmentModel getAlignmentModel(){
         return Models.setAlignmentModel(alignmentSP.getSelectedItem().toString());
     }
+
+    public Models.CharacterModel getCharacterModel(){
+        return Models.setCharacterModel(nameET.getText().toString(), levelET.getText().toString(),
+                                        experienceET.getText().toString(), getClassModel(),
+                                        getRaceModel(), getAlignmentModel(), getGenderModel(),
+                                        getStatsModel(), getSecondaryStatsModel(), getProficiencyModel());
+    }
+
 }

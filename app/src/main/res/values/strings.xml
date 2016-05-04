@@ -53,7 +53,9 @@
 
 
     <!--Add new field-->
-    <string name="enter_alignment">Enter new alignment</string>
+    <string name="create_alignment">Enter New Alignment</string>
+    <string name="create_race">Enter New Race</string>
+    <string name="create_class">Enter New Class</string>
 
     <!--  Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
