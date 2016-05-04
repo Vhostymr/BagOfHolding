@@ -10,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import edu.auburn.eng.csse.comp3710.bch0011.bagofholding.MainActivity;
+import edu.auburn.eng.csse.comp3710.bch0011.bagofholding.Models.Models;
 import edu.auburn.eng.csse.comp3710.bch0011.bagofholding.R;
+import edu.auburn.eng.csse.comp3710.bch0011.bagofholding.Utilities.Utilities;
 
 public class CharacterDetailsFragment extends Fragment {
 
@@ -159,42 +161,63 @@ public class CharacterDetailsFragment extends Fragment {
         passiveInsight = (TextView) view.findViewById(R.id.tv_passive_insight);
         passiveInsight = (TextView) view.findViewById(R.id.tv_passive_perception);
 
+
+        Models.CharacterModel cm = parentActivity.getCharacterModel();
         //Setup
-//        nameTV.setText();
-//        levelTV.setText();
-//        experienceTV.setText();
-//        alignmentTV.setText();
-//        raceTV.setText();
-//        classTV.setText();
-//        strengthModifierTV.setText();
-//        strengthTV.setText();
-//        savingThrowsStrengthTV.setText();
-//        athleticsStrengthTV.setText();
-//        intelligenceModifierTV.setText();
-//        intelligenceTV.setText();
-//        savingThrowsIntelligenceTV.setText();
-//        arcanaIntelligenceTV.setText();
-//        historyIntelligenceTV.setText();
-//        investigationIntelligenceTV.setText();
-//        natureIntelligenceTV.setText();
-//        religionIntelligenceTV.setText();
-//        constitutionModifierTV.setText();
-//        constitutionTV.setText();
-//        savingThrowsConstitutionTV.setText();
-//        charismaModifierTV.setText();
-//        charismaTV.setText();
-//        savingThrowsCharismaTV.setText();
-//        deceptionCharismaTV.setText();
-//        intimidationCharismaTV.setText();
-//        performanceCharismaTV.setText();
-//        persuasionCharismaTV.setText();
-//        passiveInsight.setText();
-//        passivePerceptionTV.setText();
-//        armorClassTV.setText();
-//        initiativeTV.setText();
-//        speedTV.setText();
-//        maxHitPointsTV.setText();
-//        temporaryHitPointsTV.setText();
+        nameTV.setText(cm.getCharacterName());
+        levelTV.setText(String.valueOf(cm.getCharacterLevel()));
+        experienceTV.setText(String.valueOf(cm.getCharacterExperience()));
+        alignmentTV.setText(String.valueOf(cm.getAlignment()));
+        raceTV.setText(String.valueOf(cm.getRace()));
+        classTV.setText(String.valueOf(cm.getClass()));
+
+        strengthModifierTV.setText(Utilities.getAbilityModifier(cm.getStats().getStrength()));
+        strengthTV.setText(String.valueOf(cm.getStats().getStrength()));
+        savingThrowsStrengthTV.setText(String.valueOf(cm.getProficiencies().getStrengthSavingThrow()));
+        athleticsStrengthTV.setText(String.valueOf(cm.getProficiencies().getAthletics()));
+
+        intelligenceModifierTV.setText(String.valueOf(cm.getProficiencies().getIntelligenceSavingThrow()));
+        intelligenceTV.setText(String.valueOf(cm.getStats().getIntelligence()));
+        savingThrowsIntelligenceTV.setText(String.valueOf(cm.getProficiencies().getIntelligenceSavingThrow()));
+        arcanaIntelligenceTV.setText(String.valueOf(cm.getProficiencies().getArcana()));
+        historyIntelligenceTV.setText(String.valueOf(cm.getProficiencies().getHistory()));
+        investigationIntelligenceTV.setText(String.valueOf(cm.getProficiencies().getInvestigation()));
+        natureIntelligenceTV.setText(String.valueOf(cm.getProficiencies().getNature()));
+        religionIntelligenceTV.setText(String.valueOf(cm.getProficiencies().getReligion()));
+
+        dexterityTV.setText(String.valueOf(cm.getStats().getDexterity()));
+        savingThrowsDexterityTV.setText(String.valueOf(cm.getProficiencies().getDexteritySavingThrow()));
+        acrobaticsDexterityTV.setText(String.valueOf(cm.getProficiencies().getAcrobatics()));
+        sleightOfHandDexterityTV.setText(String.valueOf(cm.getProficiencies().getSleightOfHand()));
+        stealthDexterityTV.setText(String.valueOf(cm.getProficiencies().getDexteritySavingThrow()));
+
+        wisdomTV.setText(String.valueOf(cm.getStats().getWisdom()));
+        savingThrowsWisdomTV.setText(String.valueOf(cm.getProficiencies().getWisdomSavingThrow()));
+        animalHandlingWisdomTV.setText(String.valueOf(cm.getProficiencies().getAnimalHandling()));
+        insightWisdomTV.setText(String.valueOf(cm.getProficiencies().getInsight()));
+        medicineWisdomTV.setText(String.valueOf(cm.getProficiencies().getMedicine()));
+        perceptionWisdomTV.setText(String.valueOf(cm.getProficiencies().getPerception()));
+        survivalWisdomTV.setText(String.valueOf(cm.getProficiencies().getSurvival()));
+
+        constitutionModifierTV.setText(Utilities.getAbilityModifier(cm.getStats().getConstitution()));
+        constitutionTV.setText(String.valueOf(cm.getStats().getConstitution()));
+        savingThrowsConstitutionTV.setText(String.valueOf(cm.getProficiencies().getConstitutionSavingThrow()));
+
+        charismaModifierTV.setText(Utilities.getAbilityModifier(cm.getStats().getCharisma()));
+        charismaTV.setText(String.valueOf(cm.getStats().getCharisma()));
+        savingThrowsCharismaTV.setText(String.valueOf(cm.getProficiencies().getCharismaSavingThrows()));
+        deceptionCharismaTV.setText(String.valueOf(cm.getProficiencies().getDeception()));
+        intimidationCharismaTV.setText(String.valueOf(cm.getProficiencies().getIntimidation()));
+        performanceCharismaTV.setText(String.valueOf(cm.getProficiencies().getPerformance()));
+        persuasionCharismaTV.setText(String.valueOf(cm.getProficiencies().getPersuasion()));
+
+        //passiveInsight.setText(String.valueOf(Utilities.get(cm.getStats().getStrength())));
+        //passivePerceptionTV.setText(String.valueOf("N/A"));
+        armorClassTV.setText(String.valueOf(cm.getSecondaryStats().getArmorClass()));
+        initiativeTV.setText(String.valueOf(cm.getSecondaryStats().getInitiative()));
+        speedTV.setText(String.valueOf(cm.getSecondaryStats().getSpeed()));
+        maxHitPointsTV.setText(String.valueOf(cm.getSecondaryStats().getMaxHP()));
+        temporaryHitPointsTV.setText(String.valueOf(cm.getSecondaryStats().getTempHP()));
 
         return view;
     }

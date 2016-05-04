@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     Button saveButton;
     Button dbButton;
     CharacterEditFragment characterFragment;
+    CharacterModel characterModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         fm = getSupportFragmentManager();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        generateCharacterModel();
 
         saveButton = (Button) findViewById(R.id.saveButton);
         dbButton = (Button) findViewById(R.id.dbButton);
@@ -63,39 +66,6 @@ public class MainActivity extends AppCompatActivity {
                 context.deleteDatabase(CharacterSheetDbHelper.DATABASE_NAME); //For Testing
                 SQLiteDatabase db = getOpenDB(context);
 
-//                RaceModel raceModel = new RaceModel();
-//                ClassModel classModel = new ClassModel();
-//                AlignmentModel alignmentModel = new AlignmentModel();
-//                GenderModel genderModel = new GenderModel();
-//                StatsModel statsModel = new StatsModel();
-//                SecondaryStatsModel secondaryStatsModel = new SecondaryStatsModel();
-//                ProficiencyModel proficiencyModel = new ProficiencyModel();
-//                CharacterDBModel characterDBModel = new CharacterDBModel();
-//
-//                getModelFromDB(PlayerCharacter.TABLE_NAME, characterDBModel, 1, db);
-//                getModelFromDB(Race.TABLE_NAME, raceModel, characterDBModel.getRaceID(), db);
-//                getModelFromDB(CharacterClass.TABLE_NAME, classModel, characterDBModel.getClassID(), db);
-//                getModelFromDB(Alignment.TABLE_NAME, alignmentModel, characterDBModel.getAlignmentID(), db);
-//                getModelFromDB(Gender.TABLE_NAME, genderModel, characterDBModel.getGenderID(), db);
-//                getModelFromDB(Stat.TABLE_NAME, statsModel, characterDBModel.getStatID(), db);
-//                getModelFromDB(SecondaryStats.TABLE_NAME, secondaryStatsModel, characterDBModel.getSecondaryStatsID(), db);
-//                getModelFromDB(Proficiency.TABLE_NAME, proficiencyModel, characterDBModel.getProficiencyID(), db);
-//
-//                CharacterModel characterModel = new CharacterModel();
-//                characterModel.setCharacterID(characterDBModel.getCharacterID());
-//                characterModel.setCharacterName(characterDBModel.getCharacterName());
-//                characterModel.setCharacterLevel(characterDBModel.getCharacterLevel());
-//                characterModel.setCharacterExperience(characterDBModel.getCharacterExperience());
-//                characterModel.setRace(raceModel);
-//                characterModel.setCharacterClass(classModel);
-//                characterModel.setAlignment(alignmentModel);
-//                characterModel.setGender(genderModel);
-//                characterModel.setStats(statsModel);
-//                characterModel.setSecondaryStats(secondaryStatsModel);
-//                characterModel.setProficiencies(proficiencyModel);
-
-///HASDFSAJFS:LDFJASJDGFASDJGALSDJGASDLKGJALKGJALGJAKLJGKALSDGJAKSLDGJADSKGJADKSGJALKSGJALKSDGJAKSDGJADKGJAG
-//
                 boolean exists = existsInDB(CharacterClass.TABLE_NAME, "Wizard", db);
                 ClassModel classModel = setClassModel("Wizard");
                 long primaryKey;
@@ -159,9 +129,11 @@ public class MainActivity extends AppCompatActivity {
                 primaryKey = create(Proficiency.TABLE_NAME, setProficiencyValues(proficiencyModel), db);
                 proficiencyModel.setProficiencyID(primaryKey);
 
-                CharacterModel characterModel = setCharacterModel("Gromph Baenre", "50", "45000", classModel,
+                characterModel = setCharacterModel("Gromph Baenre", "50", "45000", classModel,
                         raceModel, alignmentModel, genderModel,
                         statsModel, secondaryStatsModel, proficiencyModel);
+
+
                 create(PlayerCharacter.TABLE_NAME, setCharacterValues(characterModel), db);
 
                 db.close();
@@ -187,6 +159,12 @@ public class MainActivity extends AppCompatActivity {
 
     public CharacterModel getCharacterModel()
     {
+        return characterModel;
+    }
+
+    public void generateCharacterModel()
+    {
+
         Context context = getApplicationContext();
         //context.deleteDatabase(CharacterSheetDbHelper.DATABASE_NAME); //For Testing
         SQLiteDatabase db = getOpenDB(context);
@@ -209,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
         getModelFromDB(SecondaryStats.TABLE_NAME, secondaryStatsModel, characterDBModel.getSecondaryStatsID(), db);
         getModelFromDB(Proficiency.TABLE_NAME, proficiencyModel, characterDBModel.getProficiencyID(), db);
 
-        CharacterModel characterModel = new CharacterModel();
+        characterModel = new CharacterModel();
         characterModel.setCharacterID(characterDBModel.getCharacterID());
         characterModel.setCharacterName(characterDBModel.getCharacterName());
         characterModel.setCharacterLevel(characterDBModel.getCharacterLevel());
@@ -221,8 +199,30 @@ public class MainActivity extends AppCompatActivity {
         characterModel.setStats(statsModel);
         characterModel.setSecondaryStats(secondaryStatsModel);
         characterModel.setProficiencies(proficiencyModel);
-        return characterModel;
+
     }
+
+//    public boolean DisplayDetailsFragment() {
+//        Fragment fragment = fm.findFragmentById(R.id.secondary_fragment_container);
+//        FragmentTransaction transaction= getSupportFragmentManager().beginTransaction();
+//        HistoryFragment historyFragment = new HistoryFragment();
+//
+//        if (findViewById(R.id.main_fragment_container) != null && fragment == null) {
+//            // In case this activity was started with special instructions from an
+//            // intent, pass the Intent's extras to the fragment as arguments
+//            historyFragment.setArguments(getIntent().getExtras());
+//
+//            // Add the fragment to the 'fragment_container' FrameLayout
+//            transaction.add(R.id.secondary_fragment_container, historyFragment).commit();
+//        }
+//        else if (fragment != null) {
+//            Bundle args = new Bundle();
+//            transaction.replace(R.id.secondary_fragment_container, historyFragment);
+//            transaction.addToBackStack(null);
+//            transaction.commit();
+//        }
+//        return true;
+//    }
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
 //        // Inflate the menu; this adds items to the action bar if it is present.

@@ -230,9 +230,10 @@ public class CharacterEditFragment extends Fragment {
     }
 
     public String[] getBasicCharacterInfo(){
-        String[] basicInfo = new String[2];
+        String[] basicInfo = new String[3];
         basicInfo[0] = nameET.getText().toString();
         basicInfo[1] = levelET.getText().toString();
+        basicInfo[2] = experienceET.getText().toString();
         return basicInfo;
     }
 
@@ -259,5 +260,14 @@ public class CharacterEditFragment extends Fragment {
         return Models.setSecondaryStatsModel(armorClassET.getText().toString(), initiativeET.getText().toString(),
                 speedET.getText().toString(), maxHitPointsET.getText().toString(),
                 temporaryHitPointsET.getText().toString());
+    }
+    public Models.ClassModel getClassModel(){
+        return Models.setClassModel(classSP.getSelectedItem().toString());
+    }
+    public Models.RaceModel getRaceModel(){
+        return Models.setRaceModel(raceSP.getSelectedItem().toString());
+    }
+    public Models.AlignmentModel getAlignmentModel(){
+        return Models.setAlignmentModel(alignmentSP.getSelectedItem().toString());
     }
 }
