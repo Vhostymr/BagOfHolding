@@ -11,8 +11,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import edu.auburn.eng.csse.comp3710.bch0011.bagofholding.DatabaseContract.DatabaseContract;
 import edu.auburn.eng.csse.comp3710.bch0011.bagofholding.Models.Models;
+import edu.auburn.eng.csse.comp3710.bch0011.bagofholding.Utilities.Utilities;
 
 
 public class CharacterEditFragment extends Fragment {
@@ -174,6 +177,10 @@ public class CharacterEditFragment extends Fragment {
             alignmentList = new ArrayList<>();
             raceList = new ArrayList<>();
             classList = new ArrayList<>();
+
+
+
+
 
             alignmentList.add("Create new alignment");
             raceList.add("Create new race");
