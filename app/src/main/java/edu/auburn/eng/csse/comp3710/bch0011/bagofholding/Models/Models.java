@@ -1,12 +1,15 @@
 package edu.auburn.eng.csse.comp3710.bch0011.bagofholding.Models;
+import static edu.auburn.eng.csse.comp3710.bch0011.bagofholding.DatabaseContract.DatabaseContract.*;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import edu.auburn.eng.csse.comp3710.bch0011.bagofholding.Utilities.Utilities;
 
 public class Models {
     public static final class CharacterModel {
         private long _id;
         private String CharacterName;
-        private Short CharacterLevel;
+        private Integer CharacterLevel;
         private Integer CharacterExperience;
         private RaceModel Race;
         private ClassModel Class;
@@ -54,11 +57,11 @@ public class Models {
             return CharacterExperience;
         }
 
-        public void setCharacterLevel(Short CharacterLevel) {
+        public void setCharacterLevel(Integer CharacterLevel) {
             this.CharacterLevel = CharacterLevel;
         }
 
-        public Short getCharacterLevel() {
+        public Integer getCharacterLevel() {
             return CharacterLevel;
         }
 
@@ -121,12 +124,12 @@ public class Models {
 
     public static final class StatsModel {
         private long _id;
-        private Short Strength;
-        private Short Dexterity;
-        private Short Constitution;
-        private Short Intelligence;
-        private Short Wisdom;
-        private Short Charisma;
+        private Integer Strength;
+        private Integer Dexterity;
+        private Integer Constitution;
+        private Integer Intelligence;
+        private Integer Wisdom;
+        private Integer Charisma;
 
         public void setStatID(long _id) {
             this._id = _id;
@@ -136,62 +139,62 @@ public class Models {
             return _id;
         }
 
-        public void setStrength(Short Strength) {
+        public void setStrength(Integer Strength) {
             this.Strength = Strength;
         }
 
-        public Short getStrength() {
+        public Integer getStrength() {
             return Strength;
         }
 
-        public void setDexterity(Short Dexterity) {
+        public void setDexterity(Integer Dexterity) {
             this.Dexterity = Dexterity;
         }
 
-        public Short getDexterity() {
+        public Integer getDexterity() {
             return Dexterity;
         }
 
-        public void setConstitution(Short Constitution) {
+        public void setConstitution(Integer Constitution) {
             this.Constitution = Constitution;
         }
 
-        public Short getConstitution() {
+        public Integer getConstitution() {
             return Constitution;
         }
 
-        public void setIntelligence(Short Intelligence) {
+        public void setIntelligence(Integer Intelligence) {
             this.Intelligence = Intelligence;
         }
 
-        public Short getIntelligence() {
+        public Integer getIntelligence() {
             return Intelligence;
         }
 
-        public void setWisdom(Short Wisdom) {
+        public void setWisdom(Integer Wisdom) {
             this.Wisdom = Wisdom;
         }
 
-        public Short getWisdom() {
+        public Integer getWisdom() {
             return Wisdom;
         }
 
-        public void setCharisma(Short Charisma) {
+        public void setCharisma(Integer Charisma) {
             this.Charisma = Charisma;
         }
 
-        public Short getCharisma() {
+        public Integer getCharisma() {
             return Charisma;
         }
     }
 
     public static final class SecondaryStatsModel {
         private long _id;
-        private Short ArmorClass;
-        private Short Initiative;
-        private Short Speed;
-        private Short MaxHP;
-        private Short TempHP;
+        private Integer ArmorClass;
+        private Integer Initiative;
+        private Integer Speed;
+        private Integer MaxHP;
+        private Integer TempHP;
 
         public void setSecondaryStatsID(long _id) {
             this._id = _id;
@@ -201,50 +204,50 @@ public class Models {
             return _id;
         }
 
-        public void setArmorClass(Short ArmorClass) {
+        public void setArmorClass(Integer ArmorClass) {
             this.ArmorClass = ArmorClass;
         }
 
-        public Short getArmorClass() {
+        public Integer getArmorClass() {
             return ArmorClass;
         }
 
-        public void setInitiative(Short Initiative) {
+        public void setInitiative(Integer Initiative) {
             this.Initiative = Initiative;
         }
 
-        public Short getInitiative() {
+        public Integer getInitiative() {
             return Initiative;
         }
 
-        public void setSpeed(Short Speed) {
+        public void setSpeed(Integer Speed) {
             this.Speed = Speed;
         }
 
-        public Short getSpeed() {
+        public Integer getSpeed() {
             return Speed;
         }
 
-        public void setMaxHP(Short MaxHP) {
+        public void setMaxHP(Integer MaxHP) {
             this.MaxHP = MaxHP;
         }
 
-        public Short getMaxHP() {
+        public Integer getMaxHP() {
             return MaxHP;
         }
 
-        public void setTempHP(Short TempHP) {
+        public void setTempHP(Integer TempHP) {
             this.TempHP = TempHP;
         }
 
-        public Short getTempHP() {
+        public Integer getTempHP() {
             return TempHP;
         }
     }
 
     public static final class RaceModel {
         private long _id;
-        private String RaceName;
+        private String Name;
 
         public void setRaceID(long _id) {
             this._id = _id;
@@ -254,18 +257,18 @@ public class Models {
             return _id;
         }
 
-        public void setRaceName(String RaceName) {
-            this.RaceName = RaceName;
+        public void setRaceName(String Name) {
+            this.Name = Name;
         }
 
         public String getRaceName() {
-            return RaceName;
+            return Name;
         }
     }
 
     public static final class ClassModel {
         private long _id;
-        private String ClassName;
+        private String Name;
 
         public void setClassID(long _id) {
             this._id = _id;
@@ -275,18 +278,18 @@ public class Models {
             return _id;
         }
 
-        public void setClassName(String ClassName) {
-            this.ClassName = ClassName;
+        public void setClassName(String Name) {
+            this.Name = Name;
         }
 
         public String getClassName() {
-            return ClassName;
+            return Name;
         }
     }
 
     public static final class AlignmentModel {
         private long _id;
-        private String Alignment;
+        private String Name;
 
         public void setAlignmentID(long _id) {
             this._id = _id;
@@ -297,17 +300,17 @@ public class Models {
         }
 
         public void setAlignmentName(String Alignment) {
-            this.Alignment = Alignment;
+            this.Name = Name;
         }
 
         public String getAlignmentName() {
-            return Alignment;
+            return Name;
         }
     }
 
     public static final class GenderModel {
         private long _id;
-        private String GenderName;
+        private String Name;
 
         public void setGenderID(long _id) {
             this._id = _id;
@@ -318,11 +321,11 @@ public class Models {
         }
 
         public void setGenderName(String GenderName) {
-            this.GenderName = GenderName;
+            this.Name = Name;
         }
 
         public String getGenderName() {
-            return GenderName;
+            return Name;
         }
     }
 
@@ -576,14 +579,28 @@ public class Models {
         wisdom = Utilities.isWholeNumber(wisdom) ? wisdom : "0";
         charisma = Utilities.isWholeNumber(charisma) ? charisma : "0";
 
-        statsModel.setStrength(Short.parseShort(strength));
-        statsModel.setDexterity(Short.parseShort(charisma));
-        statsModel.setConstitution(Short.parseShort(constitution));
-        statsModel.setIntelligence(Short.parseShort(dexterity));
-        statsModel.setWisdom(Short.parseShort(intelligence));
-        statsModel.setCharisma(Short.parseShort(wisdom));
+        statsModel.setStrength(Integer.parseInt(strength));
+        statsModel.setDexterity(Integer.parseInt(charisma));
+        statsModel.setConstitution(Integer.parseInt(constitution));
+        statsModel.setIntelligence(Integer.parseInt(dexterity));
+        statsModel.setWisdom(Integer.parseInt(intelligence));
+        statsModel.setCharisma(Integer.parseInt(wisdom));
 
         return statsModel;
+    }
+
+    public static Object getModelFromDB(String tableName, Object model, long primaryKey, SQLiteDatabase db) {
+        String[] projection = Utilities.getProperties(model);
+
+        Cursor c = read(tableName, primaryKey, projection, db);
+        if (c.moveToFirst()) {
+            for (String property : projection) {
+                String value = c.getString(c.getColumnIndex(property));
+                Utilities.setField(model, property, value);
+            }
+        }
+
+        return model;
     }
 
     public static ClassModel setClassModel(String className) {
@@ -627,11 +644,11 @@ public class Models {
         maxHP = Utilities.isWholeNumber(maxHP) ? maxHP : "0";
         tempHP = Utilities.isWholeNumber(tempHP) ? tempHP : "0";
 
-        secondaryStatsModel.setArmorClass(Short.parseShort(armorClass));
-        secondaryStatsModel.setInitiative(Short.parseShort(initiative));
-        secondaryStatsModel.setSpeed(Short.parseShort(speed));
-        secondaryStatsModel.setMaxHP(Short.parseShort(maxHP));
-        secondaryStatsModel.setTempHP(Short.parseShort(tempHP));
+        secondaryStatsModel.setArmorClass(Integer.parseInt(armorClass));
+        secondaryStatsModel.setInitiative(Integer.parseInt(initiative));
+        secondaryStatsModel.setSpeed(Integer.parseInt(speed));
+        secondaryStatsModel.setMaxHP(Integer.parseInt(maxHP));
+        secondaryStatsModel.setTempHP(Integer.parseInt(tempHP));
 
         return secondaryStatsModel;
     }
@@ -686,7 +703,7 @@ public class Models {
 
         CharacterModel characterModel = new CharacterModel();
         characterModel.setCharacterName(characterName);
-        characterModel.setCharacterLevel(Short.parseShort(characterLevel));
+        characterModel.setCharacterLevel(Integer.parseInt(characterLevel));
         characterModel.setCharacterExperience(Integer.parseInt(characterClass));
         characterModel.setCharacterClass(classModel);
         characterModel.setRace(raceModel);

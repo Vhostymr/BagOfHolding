@@ -1,5 +1,4 @@
 package edu.auburn.eng.csse.comp3710.bch0011.bagofholding.DatabaseContract;
-import edu.auburn.eng.csse.comp3710.bch0011.bagofholding.Models.Models.*;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,9 +9,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 import android.util.Log;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.List;
+import edu.auburn.eng.csse.comp3710.bch0011.bagofholding.Models.Models.*;
 
 public final class DatabaseContract {
     // To prevent someone from accidentally instantiating the contract class, give it an empty constructor.
@@ -22,8 +20,8 @@ public final class DatabaseContract {
     public static abstract class PlayerCharacter implements BaseColumns {
         public static final String TABLE_NAME = "Character";
         public static final String COLUMN_NAME_CHARACTER_NAME = "CharacterName";
-        public static final String COLUMN_NAME_LEVEL = "Level";
-        public static final String COLUMN_NAME_EXPERIENCE = "Experience";
+        public static final String COLUMN_NAME_LEVEL = "CharacterLevel";
+        public static final String COLUMN_NAME_EXPERIENCE = "CharacterExperience";
         public static final String COLUMN_NAME_RACE_ID = "RaceID";
         public static final String COLUMN_NAME_CLASS_ID = "ClassID";
         public static final String COLUMN_NAME_ALIGNMENT_ID = "AlignmentID";
@@ -440,11 +438,10 @@ public final class DatabaseContract {
         return db.insert(tableName, null, values);
     }
 
-    public static Cursor read(String tableName, int primaryKey, Object object, SQLiteDatabase db) {
-        String[] projection = getProperties(object);
-
-        String selection = "_ID LIKE ?";
+    public static Cursor read(String tableName, long primaryKey, String[] projection, SQLiteDatabase db) {
+        String selection = "_id LIKE ?";
         String[] selectionArgs = { String.valueOf(primaryKey) };
+        String sortOrder = "";
 
         return db.query(
                 tableName,                                // The table to query
@@ -453,7 +450,7 @@ public final class DatabaseContract {
                 selectionArgs,                            // The values for the WHERE clause
                 null,                                     // don't group the rows
                 null,                                     // don't filter by row groups
-                ""                                        // The sort order
+                sortOrder                                 // The sort order
         );
     }
 
@@ -474,15 +471,6 @@ public final class DatabaseContract {
     public static SQLiteDatabase getOpenDB(Context context){
         CharacterSheetDbHelper mDbHelper = new CharacterSheetDbHelper(context);
         return mDbHelper.getWritableDatabase();
-    }
-
-    private static String[] getProperties(Object object) {
-        List<String> list = new ArrayList<>();
-        for (Field field : object.getClass().getDeclaredFields()) {
-            list.add(field.getName());
-        }
-
-        return list.toArray(new String[list.size()]);
     }
 
     public static boolean existsInDB(String tableName, String value, SQLiteDatabase db) {

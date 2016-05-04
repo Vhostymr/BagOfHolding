@@ -60,9 +60,25 @@ public class MainActivity extends AppCompatActivity {
                 Context context = v.getContext();
                 //context.deleteDatabase(CharacterSheetDbHelper.DATABASE_NAME); //For Testing
                 SQLiteDatabase db = getOpenDB(context);
-                ClassModel classModel = new ClassModel();
 
-                Cursor c = read(CharacterClass.TABLE_NAME, 1, classModel, db);
+                RaceModel raceModel = new RaceModel();
+                ClassModel classModel = new ClassModel();
+                AlignmentModel alignmentModel = new AlignmentModel();
+                GenderModel genderModel = new GenderModel();
+                StatsModel statsModel = new StatsModel();
+                SecondaryStatsModel secondaryStatsModel = new SecondaryStatsModel();
+                ProficiencyModel proficiencyModel = new ProficiencyModel();
+                CharacterModel characterModel = new CharacterModel();
+
+                getModelFromDB(PlayerCharacter.TABLE_NAME, characterModel, 2, db);
+                getModelFromDB(Race.TABLE_NAME, raceModel, characterModel.getRace().getRaceID(), db);
+                getModelFromDB(CharacterClass.TABLE_NAME, classModel, characterModel.getCharacterClass().getClassID(), db);
+                getModelFromDB(Alignment.TABLE_NAME, alignmentModel, characterModel.getAlignment().getAlignmentID(), db);
+                getModelFromDB(Gender.TABLE_NAME, genderModel, characterModel.getGender().getGenderID(), db);
+                getModelFromDB(Stat.TABLE_NAME, statsModel, characterModel.getStats().getStatID(), db);
+                getModelFromDB(SecondaryStats.TABLE_NAME, secondaryStatsModel, characterModel.getSecondaryStats().getSecondaryStatsID(), db);
+                getModelFromDB(Proficiency.TABLE_NAME, proficiencyModel, characterModel.getProficiencies().getProficiencyID(), db);
+
 //
 //                boolean exists = existsInDB(CharacterClass.TABLE_NAME, "Wizard", db);
 //                ClassModel classModel = setClassModel("Wizard");
