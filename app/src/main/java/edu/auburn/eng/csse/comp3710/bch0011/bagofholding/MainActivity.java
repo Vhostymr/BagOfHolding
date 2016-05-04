@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Context context = v.getContext();
-                context.deleteDatabase(CharacterSheetDbHelper.DATABASE_NAME); //For Testing
+                //context.deleteDatabase(CharacterSheetDbHelper.DATABASE_NAME); //For Testing
                 SQLiteDatabase db = getOpenDB(context);
 
                 boolean exists = existsInDB(CharacterClass.TABLE_NAME, "Wizard", db);

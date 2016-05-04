@@ -683,11 +683,11 @@ public class Models {
         charisma = Utilities.isWholeNumber(charisma) ? charisma : "0";
 
         statsModel.setStrength(Integer.parseInt(strength));
-        statsModel.setDexterity(Integer.parseInt(charisma));
+        statsModel.setDexterity(Integer.parseInt(dexterity));
         statsModel.setConstitution(Integer.parseInt(constitution));
-        statsModel.setIntelligence(Integer.parseInt(dexterity));
-        statsModel.setWisdom(Integer.parseInt(intelligence));
-        statsModel.setCharisma(Integer.parseInt(wisdom));
+        statsModel.setIntelligence(Integer.parseInt(intelligence));
+        statsModel.setWisdom(Integer.parseInt(wisdom));
+        statsModel.setCharisma(Integer.parseInt(charisma));
 
         return statsModel;
     }
