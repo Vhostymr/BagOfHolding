@@ -177,6 +177,7 @@ public class CharacterEditFragment extends Fragment {
 
 
 
+
         Models.CharacterModel cm = parentActivity.getCharacterModel();
         if (cm != null) {
             nameET.setText(cm.getCharacterName());
@@ -292,6 +293,10 @@ public class CharacterEditFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int postion, long id) {
                 if (classSP.getSelectedItem().toString().equals(getString(R.string.create_class))){
                     classET.setVisibility(View.VISIBLE);
+
+//                    Models.CharacterModel cm1 = populateModelFromView();
+//                    int i = 2;
+//                    int l = i + 1;
                 }
                 else {
                     classET.setVisibility(View.GONE);
@@ -319,8 +324,8 @@ public class CharacterEditFragment extends Fragment {
         String test = strengthET.getText().toString();
 
         return Models.setStatsModel(strengthET.getText().toString(), dexterityET.getText().toString(),
-                                                            constitutionET.getText().toString(), intelligenceET.getText().toString(),
-                                                            wisdomET.getText().toString(), charismaET.getText().toString());
+                constitutionET.getText().toString(), intelligenceET.getText().toString(),
+                wisdomET.getText().toString(), charismaET.getText().toString());
     }
     public Models.ProficiencyModel getProficiencyModel(){
         return Models.setProficiencyModel(savingThrowsStrengthCB.isChecked(), athleticsStrengthCB.isChecked(),
@@ -345,16 +350,28 @@ public class CharacterEditFragment extends Fragment {
         return Models.setGenderModel("Male");
     }
     public Models.ClassModel getClassModel(){
+        if (classSP.getSelectedItem().toString().equals(getString(R.string.create_class)))
+        {
+            return Models.setClassModel(classET.getText().toString());
+        }
         return Models.setClassModel(classSP.getSelectedItem().toString());
     }
     public Models.RaceModel getRaceModel(){
+        if (raceSP.getSelectedItem().toString().equals(getString(R.string.create_race)))
+        {
+            return Models.setRaceModel(raceET.getText().toString());
+        }
         return Models.setRaceModel(raceSP.getSelectedItem().toString());
     }
     public Models.AlignmentModel getAlignmentModel(){
+        if (alignmentSP.getSelectedItem().toString().equals(getString(R.string.create_alignment)))
+        {
+            return Models.setAlignmentModel(alignmentET.getText().toString());
+        }
         return Models.setAlignmentModel(alignmentSP.getSelectedItem().toString());
     }
 
-    public Models.CharacterModel getCharacterModel(){
+    public Models.CharacterModel populateModelFromView(){
         return Models.setCharacterModel(nameET.getText().toString(), levelET.getText().toString(),
                                         experienceET.getText().toString(), getClassModel(),
                                         getRaceModel(), getAlignmentModel(), getGenderModel(),

@@ -248,10 +248,10 @@ public class MainActivity extends AppCompatActivity {
         return Models.getNameListFromDB(DatabaseContract.Alignment.TABLE_NAME, new AlignmentModel(), db);
     }
     public List<String> getClassDatabaseItems() {
-        return Models.getNameListFromDB(DatabaseContract.Alignment.TABLE_NAME, new ClassModel(), db);
+        return Models.getNameListFromDB(DatabaseContract.CharacterClass.TABLE_NAME, new ClassModel(), db);
     }
     public List<String> getRaceDatabaseItems() {
-        return Models.getNameListFromDB(DatabaseContract.Alignment.TABLE_NAME, new RaceModel(), db);
+        return Models.getNameListFromDB(DatabaseContract.Race.TABLE_NAME, new RaceModel(), db);
     }
 
     public void generateCharacterModel()
