@@ -439,19 +439,9 @@ public final class DatabaseContract {
     }
 
     public static Cursor read(String tableName, String[] projection, SQLiteDatabase db) {
-        String selection = "*";
-        String[] selectionArgs = { "" };
-        String sortOrder = "";
+        String query = "SELECT * FROM " + tableName + " WHERE ?";
 
-        return db.query(
-                tableName,                                // The table to query
-                projection,                               // The columns to return
-                selection,                                // The columns for the WHERE clause
-                selectionArgs,                            // The values for the WHERE clause
-                null,                                     // don't group the rows
-                null,                                     // don't filter by row groups
-                sortOrder                                 // The sort order
-        );
+        return db.rawQuery(query, new String[] { "1=1" });
     }
 
     public static Cursor read(String tableName, long primaryKey, String[] projection, SQLiteDatabase db) {
