@@ -26,12 +26,6 @@
             android:id="@+id/character_fragment_container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".85" />
-
-        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/tab_fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".15" />
+            android:layout_weight="1" />
     </LinearLayout>
     </android.support.design.widget.CoordinatorLayout>

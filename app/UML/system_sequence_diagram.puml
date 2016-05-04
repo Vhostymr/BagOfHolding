@@ -1,5 +1,6 @@
 @startuml
 actor User
+Application -> Database: request character info
 Application <-- Database : Send character information
 Application --> User : Display details screen
 User -> Application : Select edit

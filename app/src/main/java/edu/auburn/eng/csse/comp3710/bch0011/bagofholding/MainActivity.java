@@ -21,10 +21,12 @@ public class MainActivity extends AppCompatActivity {
 
     FragmentManager fm;
     Button saveButton;
+    Button editButton;
     Button dbButton;
     CharacterDetailsFragment characterFragment1;
     CharacterEditFragment characterFragment;
     CharacterModel characterModel;
+    String currentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +38,13 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        generateCharacterModel();
+        Context context = getApplicationContext();
+        SQLiteDatabase db = getOpenDB(context);
+
+        //generateCharacterModel();
 
         saveButton = (Button) findViewById(R.id.saveButton);
+        editButton = (Button) findViewById(R.id.editButton);
         dbButton = (Button) findViewById(R.id.dbButton);
 
         dbButton.setOnClickListener(new Button.OnClickListener() {
@@ -49,7 +55,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if (findViewById(R.id.character_fragment_container) != null && savedInstanceState == null) {
+
+        Fragment fragment = fm.findFragmentById(R.id.character_fragment_container);
+
+        if (fragment instanceof CharacterDetailsFragment)
+        {
+            saveButton.setVisibility(View.GONE);
+            editButton.setVisibility(View.VISIBLE);
+        }
+
+        if (findViewById(R.id.character_fragment_container) != null && savedInstanceState == null && fragment == null) {
             // Create a new Fragment to be placed in the activity layout
             characterFragment = new CharacterEditFragment();
 
@@ -142,7 +157,18 @@ public class MainActivity extends AppCompatActivity {
                 db.close();
 
                 displayDetailsFragment();
+                saveButton.setVisibility(View.GONE);
+                editButton.setVisibility(View.VISIBLE);
+
             }
+        });
+        editButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                displayEditFragment();
+                editButton.setVisibility(View.GONE);
+                saveButton.setVisibility(View.VISIBLE);
+            }
+
         });
 
 
@@ -228,6 +254,28 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    public boolean displayEditFragment() {
+        Fragment fragment = fm.findFragmentById(R.id.character_fragment_container);
+        FragmentTransaction transaction= getSupportFragmentManager().beginTransaction();
+        CharacterEditFragment characterEditFragment = new CharacterEditFragment();
+
+        if (findViewById(R.id.character_fragment_container) != null && fragment == null) {
+            // In case this activity was started with special instructions from an
+            // intent, pass the Intent's extras to the fragment as arguments
+            characterEditFragment.setArguments(getIntent().getExtras());
+
+            // Add the fragment to the 'fragment_container' FrameLayout
+            transaction.add(R.id.character_fragment_container, characterEditFragment).commit();
+        }
+        else if (fragment != null) {
+            transaction.replace(R.id.character_fragment_container, characterEditFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+        return true;
+    }
+
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
 //        // Inflate the menu; this adds items to the action bar if it is present.
