@@ -38,25 +38,25 @@ public final class Utilities {
         return random.nextInt((max - min) + 1) + min;
     }
 
-    public static short getAbilityModifier(short abilityScore) {
+    public static int getAbilityModifier(int abilityScore) {
         double BASE = 10;
 
         double calculatedValue = (abilityScore - BASE)/2;
 
         //Force round down is necessary for negative numbers.
-        return (short) Math.floor(calculatedValue);
+        return (int) Math.floor(calculatedValue);
     }
 
-    public static short getProficiencyBonus(short level) {
+    public static Integer getProficiencyBonus(Integer level) {
         //Get proficiency from db.
         return 1;
     }
 
-    public static short calculateProficiency(short level, short abilityModifier, boolean isProficient) {
-        short result = abilityModifier;
+    public static Integer calculateProficiency(Integer level, Integer abilityModifier, boolean isProficient) {
+        Integer result = abilityModifier;
 
         if (isProficient) {
-            short proficiency = getProficiencyBonus(level);
+            Integer proficiency = getProficiencyBonus(level);
             result += proficiency;
         }
 
