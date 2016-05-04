@@ -115,12 +115,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createCharacter() {
-        boolean exists = existsInDB(CharacterClass.TABLE_NAME, "Wizard", db);
-        ClassModel classModel = setClassModel("Wizard");
+        boolean exists = existsInDB(CharacterClass.TABLE_NAME, characterFragment.populateModelFromView().getCharacterClass().getClassName(), db);
+        ClassModel classModel = setClassModel(characterFragment.populateModelFromView().getCharacterClass().getClassName());
         long primaryKey;
-
+        
         if (exists) {
-            primaryKey = getPrimaryKey(CharacterClass.TABLE_NAME, "Wizard", db);
+            primaryKey = getPrimaryKey(CharacterClass.TABLE_NAME, characterFragment.populateModelFromView().getCharacterClass().getClassName(), db);
         }
         else {
             primaryKey = create(CharacterClass.TABLE_NAME, setClassValues(classModel), db);
@@ -128,11 +128,11 @@ public class MainActivity extends AppCompatActivity {
 
         classModel.setClassID(primaryKey);
 
-        exists = existsInDB(Race.TABLE_NAME, "Drow", db);
-        RaceModel raceModel = setRaceModel("Drow");
+        exists = existsInDB(Race.TABLE_NAME, characterFragment.populateModelFromView().getRace().getRaceName(), db);
+        RaceModel raceModel = setRaceModel(characterFragment.populateModelFromView().getRace().getRaceName());
 
         if (exists) {
-            primaryKey = getPrimaryKey(Race.TABLE_NAME, "Drow", db);
+            primaryKey = getPrimaryKey(Race.TABLE_NAME, characterFragment.populateModelFromView().getRace().getRaceName(), db);
         }
         else {
             primaryKey = create(Race.TABLE_NAME, setRaceValues(raceModel), db);
@@ -140,11 +140,11 @@ public class MainActivity extends AppCompatActivity {
 
         raceModel.setRaceID(primaryKey);
 
-        exists = existsInDB(Gender.TABLE_NAME, "Male", db);
-        GenderModel genderModel = setGenderModel("Male");
+        exists = existsInDB(Gender.TABLE_NAME, characterFragment.populateModelFromView().getGender().getGenderName(), db);
+        GenderModel genderModel = setGenderModel(characterFragment.populateModelFromView().getGender().getGenderName());
 
         if (exists) {
-            primaryKey = getPrimaryKey(Gender.TABLE_NAME, "Male", db);
+            primaryKey = getPrimaryKey(Gender.TABLE_NAME, characterFragment.populateModelFromView().getGender().getGenderName(), db);
         }
         else {
             primaryKey = create(Gender.TABLE_NAME, setGenderValues(genderModel), db);
@@ -152,11 +152,11 @@ public class MainActivity extends AppCompatActivity {
 
         genderModel.setGenderID(primaryKey);
 
-        exists = existsInDB(Alignment.TABLE_NAME, "Lawful Evil", db);
-        AlignmentModel alignmentModel = setAlignmentModel("Lawful Evil");
+        exists = existsInDB(Alignment.TABLE_NAME, characterFragment.populateModelFromView().getAlignment().getAlignmentName(), db);
+        AlignmentModel alignmentModel = setAlignmentModel(characterFragment.populateModelFromView().getAlignment().getAlignmentName());
 
         if (exists) {
-            primaryKey = getPrimaryKey(Alignment.TABLE_NAME, "Alignment", db);
+            primaryKey = getPrimaryKey(Alignment.TABLE_NAME, characterFragment.populateModelFromView().getAlignment().getAlignmentName(), db);
         }
         else {
             primaryKey = create(Alignment.TABLE_NAME, setAlignmentValues(alignmentModel), db);
@@ -185,11 +185,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateCharacter(long primaryKey) {
-        boolean exists = existsInDB(CharacterClass.TABLE_NAME, "Wizard", db);
-        ClassModel classModel = setClassModel("Wizard");
+        boolean exists = existsInDB(CharacterClass.TABLE_NAME, characterFragment.populateModelFromView().getCharacterClass().getClassName(), db);
+        ClassModel classModel = setClassModel(characterFragment.populateModelFromView().getCharacterClass().getClassName());
 
         if (exists) {
-            primaryKey = getPrimaryKey(CharacterClass.TABLE_NAME, "Wizard", db);
+            primaryKey = getPrimaryKey(CharacterClass.TABLE_NAME, characterFragment.populateModelFromView().getCharacterClass().getClassName(), db);
         }
         else {
             primaryKey = create(CharacterClass.TABLE_NAME, setClassValues(classModel), db);
@@ -197,11 +197,11 @@ public class MainActivity extends AppCompatActivity {
 
         classModel.setClassID(primaryKey);
 
-        exists = existsInDB(Race.TABLE_NAME, "Drow", db);
-        RaceModel raceModel = setRaceModel("Drow");
+        exists = existsInDB(Race.TABLE_NAME, characterFragment.populateModelFromView().getRace().getRaceName(), db);
+        RaceModel raceModel = setRaceModel(characterFragment.populateModelFromView().getRace().getRaceName());
 
         if (exists) {
-            primaryKey = getPrimaryKey(Race.TABLE_NAME, "Drow", db);
+            primaryKey = getPrimaryKey(Race.TABLE_NAME, characterFragment.populateModelFromView().getRace().getRaceName(), db);
         }
         else {
             primaryKey = create(Race.TABLE_NAME, setRaceValues(raceModel), db);
@@ -209,11 +209,11 @@ public class MainActivity extends AppCompatActivity {
 
         raceModel.setRaceID(primaryKey);
 
-        exists = existsInDB(Gender.TABLE_NAME, "Male", db);
-        GenderModel genderModel = setGenderModel("Male");
+        exists = existsInDB(Gender.TABLE_NAME, characterFragment.populateModelFromView().getGender().getGenderName(), db);
+        GenderModel genderModel = setGenderModel(characterFragment.populateModelFromView().getGender().getGenderName());
 
         if (exists) {
-            primaryKey = getPrimaryKey(Gender.TABLE_NAME, "Male", db);
+            primaryKey = getPrimaryKey(Gender.TABLE_NAME, characterFragment.populateModelFromView().getGender().getGenderName(), db);
         }
         else {
             primaryKey = create(Gender.TABLE_NAME, setGenderValues(genderModel), db);
@@ -221,11 +221,11 @@ public class MainActivity extends AppCompatActivity {
 
         genderModel.setGenderID(primaryKey);
 
-        exists = existsInDB(Alignment.TABLE_NAME, "Lawful Evil", db);
-        AlignmentModel alignmentModel = setAlignmentModel("Lawful Evil");
+        exists = existsInDB(Alignment.TABLE_NAME, characterFragment.populateModelFromView().getAlignment().getAlignmentName(), db);
+        AlignmentModel alignmentModel = setAlignmentModel(characterFragment.populateModelFromView().getAlignment().getAlignmentName());
 
         if (exists) {
-            primaryKey = getPrimaryKey(Alignment.TABLE_NAME, "Alignment", db);
+            primaryKey = getPrimaryKey(Alignment.TABLE_NAME, characterFragment.populateModelFromView().getAlignment().getAlignmentName(), db);
         }
         else {
             primaryKey = create(Alignment.TABLE_NAME, setAlignmentValues(alignmentModel), db);
@@ -233,10 +233,10 @@ public class MainActivity extends AppCompatActivity {
 
         alignmentModel.setAlignmentID(primaryKey);
 
-        update(Stat.TABLE_NAME, characterModel.getStats().getStatID(), setStatValues(characterModel.getStats()), db);
-        update(SecondaryStats.TABLE_NAME, characterModel.getSecondaryStats().getSecondaryStatsID(), setSecondaryStatValues(characterModel.getSecondaryStats()), db);
-        update(Proficiency.TABLE_NAME, characterModel.getProficiencies().getProficiencyID(), setProficiencyValues(characterModel.getProficiencies()), db);
-        update(PlayerCharacter.TABLE_NAME, characterModel.getCharacterID(), setCharacterValues(characterModel), db);
+        update(Stat.TABLE_NAME, characterFragment.populateModelFromView().getStats().getStatID(), setStatValues(characterFragment.populateModelFromView().getStats()), db);
+        update(SecondaryStats.TABLE_NAME, characterFragment.populateModelFromView().getSecondaryStats().getSecondaryStatsID(), setSecondaryStatValues(characterFragment.populateModelFromView().getSecondaryStats()), db);
+        update(Proficiency.TABLE_NAME, characterFragment.populateModelFromView().getProficiencies().getProficiencyID(), setProficiencyValues(characterFragment.populateModelFromView().getProficiencies()), db);
+        update(PlayerCharacter.TABLE_NAME, characterFragment.populateModelFromView().getCharacterID(), setCharacterValues(characterFragment.populateModelFromView()), db);
     }
 
     public CharacterModel getCharacterModel()
