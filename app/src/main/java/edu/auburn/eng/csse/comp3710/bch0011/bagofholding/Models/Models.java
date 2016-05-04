@@ -122,6 +122,101 @@ public class Models {
         }
     }
 
+    //This class is used to get the CharacterModel from the DB. This is necessary because of the foreign key retrieval.
+    public static final class CharacterDBModel {
+        private long _id;
+        private String CharacterName;
+        private long CharacterLevel;
+        private long CharacterExperience;
+        private long RaceID;
+        private long ClassID;
+        private long AlignmentID;
+        private long GenderID;
+        private long StatsID;
+        private long SecondaryStatsID;
+        private long ProficiencyID;
+
+        public void setCharacterName(String CharacterName) {
+            this.CharacterName = CharacterName;
+        }
+
+        public String getCharacterName() {
+            return CharacterName;
+        }
+
+        public void setCharacterExperience(long CharacterExperience) {
+            this.CharacterExperience = CharacterExperience;
+        }
+
+        public long getCharacterExperience() {
+            return CharacterExperience;
+        }
+
+        public void setCharacterLevel(long CharacterLevel) {
+            this.CharacterLevel = CharacterLevel;
+        }
+
+        public long getCharacterLevel() {
+            return CharacterLevel;
+        }
+
+        public void setRaceID(long RaceID) {
+            this.RaceID = RaceID;
+        }
+
+        public long getRaceID() {
+            return RaceID;
+        }
+
+        public void setClassID(long ClassID) {
+            this.ClassID = ClassID;
+        }
+
+        public long getClassID() {
+            return ClassID;
+        }
+
+        public void setAlignmentID(long AlignmentID) {
+            this.AlignmentID = AlignmentID;
+        }
+
+        public long getAlignmentID() {
+            return AlignmentID;
+        }
+
+        public void setGenderID(long GenderID) {
+            this.GenderID = GenderID;
+        }
+
+        public long getGenderID() {
+            return GenderID;
+        }
+
+        public void setStatID(long StatsID) {
+            this.StatsID = StatsID;
+        }
+
+        public long getStatID() {
+            return StatsID;
+        }
+
+        public void setSecondaryStatsID(long SecondaryStatsID) {
+            this.SecondaryStatsID = SecondaryStatsID;
+        }
+
+        public long getSecondaryStatsID() {
+            return SecondaryStatsID;
+        }
+
+        public void setProficiencyID(long ProficiencyID) {
+            this.ProficiencyID = ProficiencyID;
+        }
+
+        public long getProficiencyID() {
+            return ProficiencyID;
+        }
+    }
+
     public static final class StatsModel {
         private long _id;
         private Integer Strength;
@@ -299,7 +394,7 @@ public class Models {
             return _id;
         }
 
-        public void setAlignmentName(String Alignment) {
+        public void setAlignmentName(String Name) {
             this.Name = Name;
         }
 
@@ -320,7 +415,7 @@ public class Models {
             return _id;
         }
 
-        public void setGenderName(String GenderName) {
+        public void setGenderName(String Name) {
             this.Name = Name;
         }
 

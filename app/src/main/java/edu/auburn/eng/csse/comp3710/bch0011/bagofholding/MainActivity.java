@@ -68,16 +68,16 @@ public class MainActivity extends AppCompatActivity {
                 StatsModel statsModel = new StatsModel();
                 SecondaryStatsModel secondaryStatsModel = new SecondaryStatsModel();
                 ProficiencyModel proficiencyModel = new ProficiencyModel();
-                CharacterModel characterModel = new CharacterModel();
+                CharacterDBModel characterDBModel = new CharacterDBModel();
 
-                getModelFromDB(PlayerCharacter.TABLE_NAME, characterModel, 2, db);
-                getModelFromDB(Race.TABLE_NAME, raceModel, characterModel.getRace().getRaceID(), db);
-                getModelFromDB(CharacterClass.TABLE_NAME, classModel, characterModel.getCharacterClass().getClassID(), db);
-                getModelFromDB(Alignment.TABLE_NAME, alignmentModel, characterModel.getAlignment().getAlignmentID(), db);
-                getModelFromDB(Gender.TABLE_NAME, genderModel, characterModel.getGender().getGenderID(), db);
-                getModelFromDB(Stat.TABLE_NAME, statsModel, characterModel.getStats().getStatID(), db);
-                getModelFromDB(SecondaryStats.TABLE_NAME, secondaryStatsModel, characterModel.getSecondaryStats().getSecondaryStatsID(), db);
-                getModelFromDB(Proficiency.TABLE_NAME, proficiencyModel, characterModel.getProficiencies().getProficiencyID(), db);
+                getModelFromDB(PlayerCharacter.TABLE_NAME, characterDBModel, 1, db);
+                getModelFromDB(Race.TABLE_NAME, raceModel, characterDBModel.getRaceID(), db);
+                getModelFromDB(CharacterClass.TABLE_NAME, classModel, characterDBModel.getClassID(), db);
+                getModelFromDB(Alignment.TABLE_NAME, alignmentModel, characterDBModel.getAlignmentID(), db);
+                getModelFromDB(Gender.TABLE_NAME, genderModel, characterDBModel.getGenderID(), db);
+                getModelFromDB(Stat.TABLE_NAME, statsModel, characterDBModel.getStatID(), db);
+                getModelFromDB(SecondaryStats.TABLE_NAME, secondaryStatsModel, characterDBModel.getSecondaryStatsID(), db);
+                getModelFromDB(Proficiency.TABLE_NAME, proficiencyModel, characterDBModel.getProficiencyID(), db);
 
 //
 //                boolean exists = existsInDB(CharacterClass.TABLE_NAME, "Wizard", db);

@@ -104,7 +104,7 @@ public final class Utilities {
                 }
 
                 else if (type.toString().toLowerCase().contains("boolean")) {
-                    fieldValue = Boolean.parseBoolean((String) fieldValue);
+                    fieldValue = "1".equals(fieldValue); //Java, you're the worst language. And SQLite isn't helping.
                 }
 
                 field.set(object, fieldValue);
