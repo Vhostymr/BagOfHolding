@@ -253,6 +253,10 @@ public class MainActivity extends AppCompatActivity {
     public List<String> getRaceDatabaseItems() {
         return Models.getNameListFromDB(DatabaseContract.Race.TABLE_NAME, new RaceModel(), db);
     }
+    public List<String> getGenderDatabaseItems() {
+        return Models.getNameListFromDB(DatabaseContract.Gender.TABLE_NAME, new GenderModel(), db);
+    }
+
 
     public void generateCharacterModel()
     {

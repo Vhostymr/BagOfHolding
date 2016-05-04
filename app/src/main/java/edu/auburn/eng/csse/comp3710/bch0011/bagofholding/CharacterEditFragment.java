@@ -26,6 +26,7 @@ public class CharacterEditFragment extends Fragment {
     ArrayList<String> alignmentList;
     ArrayList<String> raceList;
     ArrayList<String> classList;
+    ArrayList<String> genderList;
 
     ArrayAdapter<String> stringDataAdapter;
 
@@ -57,12 +58,14 @@ public class CharacterEditFragment extends Fragment {
         EditText alignmentET;
         EditText raceET;
         EditText classET;
+        EditText genderET;
 
     //Spinners
         //CharacterInfo
         Spinner alignmentSP;
         Spinner raceSP;
         Spinner classSP;
+        Spinner genderSP;
 
 
 
@@ -138,10 +141,12 @@ public class CharacterEditFragment extends Fragment {
         alignmentET = (EditText) view.findViewById(R.id.et_new_alignment);
         raceET = (EditText) view.findViewById(R.id.et_new_race);
         classET = (EditText) view.findViewById(R.id.et_new_class);
+        genderET = (EditText) view.findViewById(R.id.et_new_gender);
         //SpinnerSetters
         alignmentSP = (Spinner) view.findViewById(R.id.sp_alignment);
         raceSP = (Spinner) view.findViewById(R.id.sp_race);
         classSP = (Spinner) view.findViewById(R.id.sp_class);
+        genderSP = (Spinner) view.findViewById(R.id.sp_gender);
 
 
         //CheckBoxSetters
@@ -188,16 +193,19 @@ public class CharacterEditFragment extends Fragment {
             alignmentList = new ArrayList<>();
             raceList = new ArrayList<>();
             classList = new ArrayList<>();
+            genderList = new ArrayList<>();
 
             alignmentList.addAll(parentActivity.getAlignmentDatabaseItems());
             raceList.addAll(parentActivity.getRaceDatabaseItems());
             classList.addAll(parentActivity.getClassDatabaseItems());
+            genderList.addAll(parentActivity.getGenderDatabaseItems());
 
 
 
             alignmentList.add(getString(R.string.create_alignment));
             raceList.add(getString(R.string.create_race));
             classList.add(getString(R.string.create_class));
+            genderList.add(getString(R.string.create_gender));
 
             stringDataAdapter = new ArrayAdapter(getActivity().getBaseContext(), android.R.layout.simple_spinner_dropdown_item, alignmentList);
             stringDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -210,6 +218,10 @@ public class CharacterEditFragment extends Fragment {
             stringDataAdapter = new ArrayAdapter(getActivity().getBaseContext(), android.R.layout.simple_spinner_dropdown_item, classList);
             stringDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             classSP.setAdapter(stringDataAdapter);
+
+            stringDataAdapter = new ArrayAdapter(getActivity().getBaseContext(), android.R.layout.simple_spinner_dropdown_item, genderList);
+            stringDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            genderSP.setAdapter(stringDataAdapter);
 
 
             //alignmentSP.setText();
@@ -260,6 +272,20 @@ public class CharacterEditFragment extends Fragment {
         }
 
 
+        genderSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int postion, long id) {
+                if (genderSP.getSelectedItem().toString().equals(getString(R.string.create_gender))){
+                    genderET.setVisibility(View.VISIBLE);
+                }
+                else {
+                    genderET.setVisibility(View.GONE);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
+        });
         alignmentSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int postion, long id) {
@@ -347,7 +373,11 @@ public class CharacterEditFragment extends Fragment {
                 temporaryHitPointsET.getText().toString());
     }
     public Models.GenderModel getGenderModel(){
-        return Models.setGenderModel("Male");
+        if (genderSP.getSelectedItem().toString().equals(getString(R.string.create_gender)))
+        {
+            return Models.setGenderModel(genderET.getText().toString());
+        }
+        return Models.setGenderModel(genderSP.getSelectedItem().toString());
     }
     public Models.ClassModel getClassModel(){
         if (classSP.getSelectedItem().toString().equals(getString(R.string.create_class)))
