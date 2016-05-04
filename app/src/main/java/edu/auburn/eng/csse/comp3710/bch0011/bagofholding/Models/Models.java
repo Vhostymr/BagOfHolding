@@ -9,8 +9,8 @@ public class Models {
     public static final class CharacterModel {
         private long _id;
         private String CharacterName;
-        private Integer CharacterLevel;
-        private Integer CharacterExperience;
+        private long CharacterLevel;
+        private long CharacterExperience;
         private RaceModel Race;
         private ClassModel Class;
         private AlignmentModel Alignment;
@@ -49,19 +49,19 @@ public class Models {
             return CharacterName;
         }
 
-        public void setCharacterExperience(Integer CharacterExperience) {
+        public void setCharacterExperience(long CharacterExperience) {
             this.CharacterExperience = CharacterExperience;
         }
 
-        public Integer getCharacterExperience() {
+        public long getCharacterExperience() {
             return CharacterExperience;
         }
 
-        public void setCharacterLevel(Integer CharacterLevel) {
+        public void setCharacterLevel(long CharacterLevel) {
             this.CharacterLevel = CharacterLevel;
         }
 
-        public Integer getCharacterLevel() {
+        public long getCharacterLevel() {
             return CharacterLevel;
         }
 

@@ -79,6 +79,19 @@ public class MainActivity extends AppCompatActivity {
                 getModelFromDB(SecondaryStats.TABLE_NAME, secondaryStatsModel, characterDBModel.getSecondaryStatsID(), db);
                 getModelFromDB(Proficiency.TABLE_NAME, proficiencyModel, characterDBModel.getProficiencyID(), db);
 
+                CharacterModel characterModel = new CharacterModel();
+                characterModel.setCharacterName(characterDBModel.getCharacterName());
+                characterModel.setCharacterLevel(characterDBModel.getCharacterLevel());
+                characterModel.setCharacterExperience(characterDBModel.getCharacterExperience());
+                characterModel.setRace(raceModel);
+                characterModel.setCharacterClass(classModel);
+                characterModel.setAlignment(alignmentModel);
+                characterModel.setGender(genderModel);
+                characterModel.setStats(statsModel);
+                characterModel.setSecondaryStats(secondaryStatsModel);
+                characterModel.setProficiencies(proficiencyModel);
+                
+
 //
 //                boolean exists = existsInDB(CharacterClass.TABLE_NAME, "Wizard", db);
 //                ClassModel classModel = setClassModel("Wizard");
