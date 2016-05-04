@@ -110,8 +110,6 @@ public class CharacterEditFragment extends Fragment {
 
 
 
-
-
         //EditTextSetters
         strengthET = (EditText) view.findViewById(R.id.et_strength);
         dexterityET = (EditText) view.findViewById(R.id.et_dexterity);
@@ -238,9 +236,9 @@ public class CharacterEditFragment extends Fragment {
     }
 
     public Models.StatsModel getStatsModel(){
-        return Models.setStatsModel(strengthET.getText().toString(), charismaET.getText().toString(),
-                                                            constitutionET.getText().toString(), dexterityET.getText().toString(),
-                                                            intelligenceET.getText().toString(), wisdomET.getText().toString());
+        return Models.setStatsModel(strengthET.getText().toString(), dexterityET.getText().toString(),
+                                                            constitutionET.getText().toString(), intelligenceET.getText().toString(),
+                                                            wisdomET.getText().toString(), charismaET.getText().toString());
     }
     public Models.ProficiencyModel getProficiencyModel(){
         return Models.setProficiencyModel(savingThrowsStrengthCB.isChecked(), athleticsStrengthCB.isChecked(),

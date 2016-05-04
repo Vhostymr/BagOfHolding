@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -137,6 +139,8 @@ public class MainActivity extends AppCompatActivity {
                 create(PlayerCharacter.TABLE_NAME, setCharacterValues(characterModel), db);
 
                 db.close();
+
+                //displayDetailsFragment();
             }
         });
 
@@ -202,27 +206,27 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    public boolean DisplayDetailsFragment() {
-//        Fragment fragment = fm.findFragmentById(R.id.secondary_fragment_container);
-//        FragmentTransaction transaction= getSupportFragmentManager().beginTransaction();
-//        HistoryFragment historyFragment = new HistoryFragment();
-//
-//        if (findViewById(R.id.main_fragment_container) != null && fragment == null) {
-//            // In case this activity was started with special instructions from an
-//            // intent, pass the Intent's extras to the fragment as arguments
-//            historyFragment.setArguments(getIntent().getExtras());
-//
-//            // Add the fragment to the 'fragment_container' FrameLayout
-//            transaction.add(R.id.secondary_fragment_container, historyFragment).commit();
-//        }
-//        else if (fragment != null) {
-//            Bundle args = new Bundle();
-//            transaction.replace(R.id.secondary_fragment_container, historyFragment);
-//            transaction.addToBackStack(null);
-//            transaction.commit();
-//        }
-//        return true;
-//    }
+    public boolean displayDetailsFragment() {
+        Fragment fragment = fm.findFragmentById(R.id.character_fragment_container);
+        FragmentTransaction transaction= getSupportFragmentManager().beginTransaction();
+        CharacterDetailsFragment characterDetailsFragment = new CharacterDetailsFragment();
+
+        if (findViewById(R.id.character_fragment_container) != null && fragment == null) {
+            // In case this activity was started with special instructions from an
+            // intent, pass the Intent's extras to the fragment as arguments
+            characterDetailsFragment.setArguments(getIntent().getExtras());
+
+            // Add the fragment to the 'fragment_container' FrameLayout
+            transaction.add(R.id.character_fragment_container, characterDetailsFragment).commit();
+        }
+        else if (fragment != null) {
+            Bundle args = new Bundle();
+            transaction.replace(R.id.character_fragment_container, characterDetailsFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+        return true;
+    }
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
 //        // Inflate the menu; this adds items to the action bar if it is present.
