@@ -706,6 +706,20 @@ public class Models {
         return model;
     }
 
+    public static Object getModelFromDB(String tableName, Object model, SQLiteDatabase db) {
+        String[] projection = Utilities.getProperties(model);
+
+        Cursor c = read(tableName, projection, db);
+        if (c.moveToFirst()) {
+            for (String property : projection) {
+                String value = c.getString(c.getColumnIndex(property));
+                Utilities.setField(model, property, value);
+            }
+        }
+
+        return model;
+    }
+
     public static ClassModel setClassModel(String className) {
         ClassModel classModel = new ClassModel();
 

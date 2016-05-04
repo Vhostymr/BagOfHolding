@@ -9,36 +9,36 @@ import java.util.Random;
 
 public final class Utilities {
 
-    public static int RollD4() {
-        return GetRandomRoll(1, 4);
+    public static int rollD4() {
+        return getRandomRoll(1, 4);
     }
 
-    public static int RollD6() {
-        return GetRandomRoll(1, 6);
+    public static int rollD6() {
+        return getRandomRoll(1, 6);
     }
 
-    public static int RollD8() {
-        return GetRandomRoll(1, 8);
+    public static int rollD8() {
+        return getRandomRoll(1, 8);
     }
 
-    public static int RollD10() {
-        return GetRandomRoll(1, 10);
+    public static int rollD10() {
+        return getRandomRoll(1, 10);
     }
 
-    public static int RollD20() {
-        return GetRandomRoll(1, 20);
+    public static int rollD20() {
+        return getRandomRoll(1, 20);
     }
 
-    public static int RollD100() {
-        return GetRandomRoll(1, 100);
+    public static int rollD100() {
+        return getRandomRoll(1, 100);
     }
 
-    public static int GetRandomRoll(int min, int max){
+    public static int getRandomRoll(int min, int max){
         Random random = new Random();
         return random.nextInt((max - min) + 1) + min;
     }
 
-    public static short GetAbilityModifier(short abilityScore) {
+    public static short getAbilityModifier(short abilityScore) {
         double BASE = 10;
 
         double calculatedValue = (abilityScore - BASE)/2;
@@ -47,16 +47,16 @@ public final class Utilities {
         return (short) Math.floor(calculatedValue);
     }
 
-    public static short GetProficiencyBonus(short level) {
+    public static short getProficiencyBonus(short level) {
         //Get proficiency from db.
         return 1;
     }
 
-    public static short CalculateProficiency(short level, short abilityModifier, boolean isProficient) {
+    public static short calculateProficiency(short level, short abilityModifier, boolean isProficient) {
         short result = abilityModifier;
 
         if (isProficient) {
-            short proficiency = GetProficiencyBonus(level);
+            short proficiency = getProficiencyBonus(level);
             result += proficiency;
         }
 

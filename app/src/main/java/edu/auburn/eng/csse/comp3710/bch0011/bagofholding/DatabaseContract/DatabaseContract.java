@@ -438,6 +438,22 @@ public final class DatabaseContract {
         return db.insert(tableName, null, values);
     }
 
+    public static Cursor read(String tableName, String[] projection, SQLiteDatabase db) {
+        String selection = "*";
+        String[] selectionArgs = { "" };
+        String sortOrder = "";
+
+        return db.query(
+                tableName,                                // The table to query
+                projection,                               // The columns to return
+                selection,                                // The columns for the WHERE clause
+                selectionArgs,                            // The values for the WHERE clause
+                null,                                     // don't group the rows
+                null,                                     // don't filter by row groups
+                sortOrder                                 // The sort order
+        );
+    }
+
     public static Cursor read(String tableName, long primaryKey, String[] projection, SQLiteDatabase db) {
         String selection = "_id LIKE ?";
         String[] selectionArgs = { String.valueOf(primaryKey) };
