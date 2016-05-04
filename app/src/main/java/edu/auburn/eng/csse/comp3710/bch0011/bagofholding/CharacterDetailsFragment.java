@@ -167,16 +167,16 @@ public class CharacterDetailsFragment extends Fragment {
         nameTV.setText(cm.getCharacterName());
         levelTV.setText(String.valueOf(cm.getCharacterLevel()));
         experienceTV.setText(String.valueOf(cm.getCharacterExperience()));
-        alignmentTV.setText(String.valueOf(cm.getAlignment()));
-        raceTV.setText(String.valueOf(cm.getRace()));
-        classTV.setText(String.valueOf(cm.getClass()));
+        alignmentTV.setText(String.valueOf(cm.getAlignment().getAlignmentName()));
+        raceTV.setText(String.valueOf(cm.getRace().getRaceName()));
+        classTV.setText(String.valueOf(cm.getClass().getClass()));
 
-        strengthModifierTV.setText(Utilities.getAbilityModifier(cm.getStats().getStrength()));
+        strengthModifierTV.setText(String.valueOf(Utilities.getAbilityModifier(cm.getStats().getStrength())));
         strengthTV.setText(String.valueOf(cm.getStats().getStrength()));
         savingThrowsStrengthTV.setText(String.valueOf(cm.getProficiencies().getStrengthSavingThrow()));
         athleticsStrengthTV.setText(String.valueOf(cm.getProficiencies().getAthletics()));
 
-        intelligenceModifierTV.setText(String.valueOf(cm.getProficiencies().getIntelligenceSavingThrow()));
+        intelligenceModifierTV.setText(String.valueOf(Utilities.getAbilityModifier(cm.getStats().getIntelligence())));
         intelligenceTV.setText(String.valueOf(cm.getStats().getIntelligence()));
         savingThrowsIntelligenceTV.setText(String.valueOf(cm.getProficiencies().getIntelligenceSavingThrow()));
         arcanaIntelligenceTV.setText(String.valueOf(cm.getProficiencies().getArcana()));
@@ -185,12 +185,14 @@ public class CharacterDetailsFragment extends Fragment {
         natureIntelligenceTV.setText(String.valueOf(cm.getProficiencies().getNature()));
         religionIntelligenceTV.setText(String.valueOf(cm.getProficiencies().getReligion()));
 
+        dexterityModifierTV.setText(String.valueOf(Utilities.getAbilityModifier(cm.getStats().getDexterity())));
         dexterityTV.setText(String.valueOf(cm.getStats().getDexterity()));
         savingThrowsDexterityTV.setText(String.valueOf(cm.getProficiencies().getDexteritySavingThrow()));
         acrobaticsDexterityTV.setText(String.valueOf(cm.getProficiencies().getAcrobatics()));
         sleightOfHandDexterityTV.setText(String.valueOf(cm.getProficiencies().getSleightOfHand()));
         stealthDexterityTV.setText(String.valueOf(cm.getProficiencies().getDexteritySavingThrow()));
 
+        wisdomModifierTV.setText(String.valueOf(Utilities.getAbilityModifier(cm.getStats().getWisdom())));
         wisdomTV.setText(String.valueOf(cm.getStats().getWisdom()));
         savingThrowsWisdomTV.setText(String.valueOf(cm.getProficiencies().getWisdomSavingThrow()));
         animalHandlingWisdomTV.setText(String.valueOf(cm.getProficiencies().getAnimalHandling()));
@@ -199,11 +201,11 @@ public class CharacterDetailsFragment extends Fragment {
         perceptionWisdomTV.setText(String.valueOf(cm.getProficiencies().getPerception()));
         survivalWisdomTV.setText(String.valueOf(cm.getProficiencies().getSurvival()));
 
-        constitutionModifierTV.setText(Utilities.getAbilityModifier(cm.getStats().getConstitution()));
+        constitutionModifierTV.setText(String.valueOf(Utilities.getAbilityModifier(cm.getStats().getConstitution())));
         constitutionTV.setText(String.valueOf(cm.getStats().getConstitution()));
         savingThrowsConstitutionTV.setText(String.valueOf(cm.getProficiencies().getConstitutionSavingThrow()));
 
-        charismaModifierTV.setText(Utilities.getAbilityModifier(cm.getStats().getCharisma()));
+        charismaModifierTV.setText(String.valueOf(Utilities.getAbilityModifier(cm.getStats().getCharisma())));
         charismaTV.setText(String.valueOf(cm.getStats().getCharisma()));
         savingThrowsCharismaTV.setText(String.valueOf(cm.getProficiencies().getCharismaSavingThrows()));
         deceptionCharismaTV.setText(String.valueOf(cm.getProficiencies().getDeception()));

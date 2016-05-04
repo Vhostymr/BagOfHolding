@@ -1,0 +1,14 @@
+@startuml
+actor User
+Application <-- Database : Send character information
+Application --> User : Display details screen
+User -> Application : Select edit
+Application --> User : Display edit screen
+User -> Application : Edit information
+User -> Application : Click Save
+Application -> Database : Sends information to database
+Database --> Database : Information stored
+Application --> User : Display detailed character information
+
+
+@enduml
