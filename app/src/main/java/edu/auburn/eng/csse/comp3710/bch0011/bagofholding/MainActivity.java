@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 getModelFromDB(Proficiency.TABLE_NAME, proficiencyModel, characterDBModel.getProficiencyID(), db);
 
                 CharacterModel characterModel = new CharacterModel();
+                characterModel.setCharacterID(characterDBModel.getCharacterID());
                 characterModel.setCharacterName(characterDBModel.getCharacterName());
                 characterModel.setCharacterLevel(characterDBModel.getCharacterLevel());
                 characterModel.setCharacterExperience(characterDBModel.getCharacterExperience());
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 characterModel.setStats(statsModel);
                 characterModel.setSecondaryStats(secondaryStatsModel);
                 characterModel.setProficiencies(proficiencyModel);
-                
+
 
 //
 //                boolean exists = existsInDB(CharacterClass.TABLE_NAME, "Wizard", db);

@@ -136,6 +136,14 @@ public class Models {
         private long SecondaryStatsID;
         private long ProficiencyID;
 
+        public void setCharacterID(long _id) {
+            this._id = _id;
+        }
+
+        public long getCharacterID() {
+            return _id;
+        }
+
         public void setCharacterName(String CharacterName) {
             this.CharacterName = CharacterName;
         }
