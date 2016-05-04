@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         Context context = getApplicationContext();
         db = getOpenDB(context);
 
-        //generateCharacterModel();
+        generateCharacterModel();
 
         saveButton = (Button) findViewById(R.id.saveButton);
         editButton = (Button) findViewById(R.id.editButton);
@@ -84,88 +84,20 @@ public class MainActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
 
-                Context context = v.getContext();
-                //context.deleteDatabase(CharacterSheetDbHelper.DATABASE_NAME); //For Testing
-                SQLiteDatabase db = getOpenDB(context);
-
-                boolean exists = existsInDB(CharacterClass.TABLE_NAME, "Wizard", db);
-                ClassModel classModel = setClassModel("Wizard");
-                long primaryKey;
-
-                if (exists) {
-                    primaryKey = getPrimaryKey(CharacterClass.TABLE_NAME, "Wizard", db);
+                if (characterModel == null) {
+                    createCharacter();
                 }
+
                 else {
-                    primaryKey = create(CharacterClass.TABLE_NAME, setClassValues(classModel), db);
+                    updateCharacter(characterModel.getCharacterID());
                 }
-
-                classModel.setClassID(primaryKey);
-
-                exists = existsInDB(Race.TABLE_NAME, "Drow", db);
-                RaceModel raceModel = setRaceModel("Drow");
-
-                if (exists) {
-                    primaryKey = getPrimaryKey(Race.TABLE_NAME, "Drow", db);
-                }
-                else {
-                    primaryKey = create(Race.TABLE_NAME, setRaceValues(raceModel), db);
-                }
-
-                raceModel.setRaceID(primaryKey);
-
-                exists = existsInDB(Gender.TABLE_NAME, "Male", db);
-                GenderModel genderModel = setGenderModel("Male");
-
-                if (exists) {
-                    primaryKey = getPrimaryKey(Gender.TABLE_NAME, "Male", db);
-                }
-                else {
-                    primaryKey = create(Gender.TABLE_NAME, setGenderValues(genderModel), db);
-                }
-
-                genderModel.setGenderID(primaryKey);
-
-                exists = existsInDB(Alignment.TABLE_NAME, "Lawful Evil", db);
-                AlignmentModel alignmentModel = setAlignmentModel("Lawful Evil");
-
-                if (exists) {
-                    primaryKey = getPrimaryKey(Alignment.TABLE_NAME, "Alignment", db);
-                }
-                else {
-                    primaryKey = create(Alignment.TABLE_NAME, setAlignmentValues(alignmentModel), db);
-                }
-
-                alignmentModel.setAlignmentID(primaryKey);
-
-                StatsModel statsModel = characterFragment.getStatsModel();
-                primaryKey = create(Stat.TABLE_NAME, setStatValues(statsModel), db);
-                statsModel.setStatID(primaryKey);
-
-                SecondaryStatsModel secondaryStatsModel = setSecondaryStatsModel("18", "15", "13", "11", "10");
-                primaryKey = create(SecondaryStats.TABLE_NAME, setSecondaryStatValues(secondaryStatsModel), db);
-                secondaryStatsModel.setSecondaryStatsID(primaryKey);
-
-                ProficiencyModel proficiencyModel = setProficiencyModel(true, false, true, true, false, true, true, false,
-                        true, true, false, true, true, false, false, false,
-                        true, false, true, true, false, true, true, true);
-                primaryKey = create(Proficiency.TABLE_NAME, setProficiencyValues(proficiencyModel), db);
-                proficiencyModel.setProficiencyID(primaryKey);
-
-                characterModel = setCharacterModel("Gromph Baenre", "50", "45000", classModel,
-                        raceModel, alignmentModel, genderModel,
-                        statsModel, secondaryStatsModel, proficiencyModel);
-
-
-                create(PlayerCharacter.TABLE_NAME, setCharacterValues(characterModel), db);
-
-                db.close();
 
                 displayDetailsFragment();
                 saveButton.setVisibility(View.GONE);
                 editButton.setVisibility(View.VISIBLE);
-
             }
         });
+
         editButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 displayEditFragment();
@@ -174,23 +106,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
-
-
-
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
-
-
     }
+
     @Override
     protected void onDestroy(){
         super.onDestroy();
@@ -198,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createCharacter() {
-
         boolean exists = existsInDB(CharacterClass.TABLE_NAME, "Wizard", db);
         ClassModel classModel = setClassModel("Wizard");
         long primaryKey;
@@ -265,10 +181,62 @@ public class MainActivity extends AppCompatActivity {
         characterModel = setCharacterModel("Gromph Baenre", "50", "45000", classModel,
                 raceModel, alignmentModel, genderModel,
                 statsModel, secondaryStatsModel, proficiencyModel);
-
-
         create(PlayerCharacter.TABLE_NAME, setCharacterValues(characterModel), db);
+    }
 
+    public void updateCharacter(long primaryKey) {
+        boolean exists = existsInDB(CharacterClass.TABLE_NAME, "Wizard", db);
+        ClassModel classModel = setClassModel("Wizard");
+
+        if (exists) {
+            primaryKey = getPrimaryKey(CharacterClass.TABLE_NAME, "Wizard", db);
+        }
+        else {
+            primaryKey = create(CharacterClass.TABLE_NAME, setClassValues(classModel), db);
+        }
+
+        classModel.setClassID(primaryKey);
+
+        exists = existsInDB(Race.TABLE_NAME, "Drow", db);
+        RaceModel raceModel = setRaceModel("Drow");
+
+        if (exists) {
+            primaryKey = getPrimaryKey(Race.TABLE_NAME, "Drow", db);
+        }
+        else {
+            primaryKey = create(Race.TABLE_NAME, setRaceValues(raceModel), db);
+        }
+
+        raceModel.setRaceID(primaryKey);
+
+        exists = existsInDB(Gender.TABLE_NAME, "Male", db);
+        GenderModel genderModel = setGenderModel("Male");
+
+        if (exists) {
+            primaryKey = getPrimaryKey(Gender.TABLE_NAME, "Male", db);
+        }
+        else {
+            primaryKey = create(Gender.TABLE_NAME, setGenderValues(genderModel), db);
+        }
+
+        genderModel.setGenderID(primaryKey);
+
+        exists = existsInDB(Alignment.TABLE_NAME, "Lawful Evil", db);
+        AlignmentModel alignmentModel = setAlignmentModel("Lawful Evil");
+
+        if (exists) {
+            primaryKey = getPrimaryKey(Alignment.TABLE_NAME, "Alignment", db);
+        }
+        else {
+            primaryKey = create(Alignment.TABLE_NAME, setAlignmentValues(alignmentModel), db);
+        }
+
+        alignmentModel.setAlignmentID(primaryKey);
+
+        update(Stat.TABLE_NAME, characterModel.getStats().getStatID(), setStatValues(characterModel.getStats()), db);
+        update(SecondaryStats.TABLE_NAME, characterModel.getSecondaryStats().getSecondaryStatsID(), setSecondaryStatValues(characterModel.getSecondaryStats()), db);
+        update(Proficiency.TABLE_NAME, characterModel.getProficiencies().getProficiencyID(), setProficiencyValues(characterModel.getProficiencies()), db);
+        update(PlayerCharacter.TABLE_NAME, characterModel.getCharacterID(), setCharacterValues(characterModel), db);
     }
 
     public CharacterModel getCharacterModel()
@@ -288,11 +256,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void generateCharacterModel()
     {
-
-        Context context = getApplicationContext();
-        //context.deleteDatabase(CharacterSheetDbHelper.DATABASE_NAME); //For Testing
-        SQLiteDatabase db = getOpenDB(context);
-
         RaceModel raceModel = new RaceModel();
         ClassModel classModel = new ClassModel();
         AlignmentModel alignmentModel = new AlignmentModel();
@@ -323,7 +286,6 @@ public class MainActivity extends AppCompatActivity {
         characterModel.setStats(statsModel);
         characterModel.setSecondaryStats(secondaryStatsModel);
         characterModel.setProficiencies(proficiencyModel);
-
     }
 
     public boolean displayDetailsFragment() {
@@ -368,26 +330,4 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-////        if (id == R.id.action_settings) {
-////            return true;
-////        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 }

@@ -460,14 +460,14 @@ public final class DatabaseContract {
         );
     }
 
-    public static int update(String tableName, int primaryKey, ContentValues values, SQLiteDatabase db) {
+    public static long update(String tableName, long primaryKey, ContentValues values, SQLiteDatabase db) {
         String selection = "_ID LIKE ?";
         String[] selectionArgs = { String.valueOf(primaryKey) };
 
         return db.update(tableName, values, selection, selectionArgs);
     }
 
-    public static void delete(String tableName, int primaryKey, SQLiteDatabase db) {
+    public static void delete(String tableName, long primaryKey, SQLiteDatabase db) {
         String selection = "_ID LIKE ?";
         String[] selectionArgs = { String.valueOf(primaryKey) };
 

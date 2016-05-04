@@ -817,7 +817,7 @@ public class Models {
         return proficiencyModel;
     }
 
-    public static CharacterModel setCharacterModel(String characterName, String characterLevel, String characterClass,
+    public static CharacterModel setCharacterModel(String characterName, String characterLevel, String characterExperience,
                                                    ClassModel classModel, RaceModel raceModel,
                                                    AlignmentModel alignmentModel, GenderModel genderModel,
                                                    StatsModel statsModel, SecondaryStatsModel secondaryStatsModel,
@@ -826,7 +826,7 @@ public class Models {
         CharacterModel characterModel = new CharacterModel();
         characterModel.setCharacterName(characterName);
         characterModel.setCharacterLevel(Integer.parseInt(characterLevel));
-        characterModel.setCharacterExperience(Integer.parseInt(characterClass));
+        characterModel.setCharacterExperience(Integer.parseInt(characterExperience));
         characterModel.setCharacterClass(classModel);
         characterModel.setRace(raceModel);
         characterModel.setAlignment(alignmentModel);
