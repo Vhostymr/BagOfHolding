@@ -31,7 +31,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|right"
                         android:layout_marginLeft="10dp"
-                        android:text="Name"
+                        android:text="@string/name_label"
                         android:textSize="17sp" />
 
                     <EditText
@@ -56,7 +56,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|right"
                         android:layout_marginLeft="10dp"
-                        android:text="Level"
+                        android:text="@string/level_label"
                         android:textSize="17sp" />
 
                     <EditText
@@ -82,7 +82,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|right"
                         android:layout_marginLeft="10dp"
-                        android:text="Experience Points"
+                        android:text="@string/experience_points_label"
                         android:textSize="17sp" />
 
                     <EditText
@@ -110,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|right"
                     android:layout_marginLeft="10dp"
-                    android:text="Alignment"
+                    android:text="@string/alignment_label"
                     android:textSize="17sp" />
 
                 <Spinner
@@ -119,18 +119,26 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp" />
-                <!--<EditText-->
-                <!--android:id="@+id/et_alignment"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="bottom"-->
-                <!--android:layout_marginLeft="20dp"-->
-                <!--android:layout_marginRight="20dp"-->
-                <!--android:gravity="right"-->
-                <!--android:singleLine="true" />-->
 
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="visible">
 
+                <EditText
+                    android:id="@+id/Alighnmenttsetset"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:inputType="number"
+                    android:singleLine="true" />
+
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -142,7 +150,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|right"
                     android:layout_marginLeft="10dp"
-                    android:text="Race"
+                    android:text="@string/race_label"
                     android:textSize="17sp" />
 
                 <Spinner
@@ -151,15 +159,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp" />
-                <!--<EditText-->
-                <!--android:id="@+id/race"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="bottom"-->
-                <!--android:layout_marginLeft="20dp"-->
-                <!--android:layout_marginRight="20dp"-->
-                <!--android:gravity="right"-->
-                <!--android:singleLine="true" />-->
 
             </LinearLayout>
             <LinearLayout
@@ -173,7 +172,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|right"
                     android:layout_marginLeft="10dp"
-                    android:text="Class"
+                    android:text="@string/class_label"
                     android:textSize="17sp" />
 
                 <Spinner
@@ -182,20 +181,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp" />
-                <!--<EditText-->
-                <!--android:id="@+id/class_type"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="bottom"-->
-                <!--android:layout_marginLeft="20dp"-->
-                <!--android:layout_marginRight="20dp"-->
-                <!--android:gravity="right"-->
-                <!--android:singleLine="true" />-->
 
             </LinearLayout>
-
-
-
 
             <View
                 android:layout_width="match_parent"
@@ -576,6 +563,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -583,7 +571,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|right"
                         android:layout_marginLeft="10dp"
-                        android:text="Armor Class"
+                        android:text="@string/armor_class_label"
                         android:textSize="17sp" />
 
                     <EditText
@@ -601,6 +589,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -608,7 +597,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|right"
                         android:layout_marginLeft="10dp"
-                        android:text="Initiative"
+                        android:text="@string/initiative_label"
                         android:textSize="17sp" />
 
                     <EditText
@@ -626,6 +615,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -633,7 +623,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|right"
                         android:layout_marginLeft="10dp"
-                        android:text="Speed"
+                        android:text="@string/speed_label"
                         android:textSize="17sp" />
 
                     <EditText
@@ -651,6 +641,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -658,7 +649,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|right"
                         android:layout_marginLeft="10dp"
-                        android:text="Max Hit Points"
+                        android:text="@string/max_hit_points_label"
                         android:textSize="17sp" />
 
                     <EditText
@@ -676,6 +667,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -683,7 +675,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|right"
                         android:layout_marginLeft="10dp"
-                        android:text="Temporary Hit Points"
+                        android:text="@string/temporary_hit_points_label"
                         android:textSize="17sp" />
 
                     <EditText

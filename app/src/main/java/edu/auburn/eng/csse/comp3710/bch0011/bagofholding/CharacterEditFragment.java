@@ -5,9 +5,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import java.util.ArrayList;
 
 import edu.auburn.eng.csse.comp3710.bch0011.bagofholding.Models.Models;
 
@@ -15,6 +18,13 @@ import edu.auburn.eng.csse.comp3710.bch0011.bagofholding.Models.Models;
 public class CharacterEditFragment extends Fragment {
 
     MainActivity parentActivity;
+
+    ArrayList<String> alignmentList;
+    ArrayList<String> raceList;
+    ArrayList<String> classList;
+
+    ArrayAdapter<String> stringDataAdapter;
+
 
     //Edit Text Fields
 
@@ -154,7 +164,67 @@ public class CharacterEditFragment extends Fragment {
         performanceCharismaCB = (CheckBox) view.findViewById(R.id.cb_performance_charisma);
         persuasionCharismaCB = (CheckBox) view.findViewById(R.id.cb_persuasion_charisma);
 
+        alignmentList = new ArrayList<>();
+        raceList = new ArrayList<>();
+        classList = new ArrayList<>();
 
+        alignmentList.add("Create new alignment");
+        raceList.add("Create new race");
+        classList.add("Create new Alignment");
+
+        stringDataAdapter = new ArrayAdapter(getActivity().getBaseContext(), android.R.layout.simple_spinner_dropdown_item, alignmentList);
+        stringDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        alignmentSP.setAdapter(stringDataAdapter);
+
+        Models.CharacterModel cm = parentActivity.getCharacterModel();
+        nameET.setText(cm.getCharacterName());
+        levelET.setText(String.valueOf(cm.getCharacterLevel()));
+        experienceET.setText(String.valueOf(cm.getCharacterExperience()));
+
+        //alignmentSP.setText();
+        //raceSP.setText();
+        //classTV.setText();
+        strengthET.setText(String.valueOf(cm.getStats().getStrength()));
+        savingThrowsStrengthCB.setChecked(cm.getProficiencies().getStrengthSavingThrow());
+        athleticsStrengthCB.setChecked(cm.getProficiencies().getAthletics());
+
+        intelligenceET.setText(String.valueOf(cm.getStats().getIntelligence()));
+        savingThrowsIntelligenceCB.setChecked(cm.getProficiencies().getIntelligenceSavingThrow());
+        arcanaIntelligenceCB.setChecked(cm.getProficiencies().getArcana());
+        historyIntelligenceCB.setChecked(cm.getProficiencies().getHistory());
+        investigationIntelligenceCB.setChecked(cm.getProficiencies().getInvestigation());
+        natureIntelligenceCB.setChecked(cm.getProficiencies().getNature());
+        religionIntelligenceCB.setChecked(cm.getProficiencies().getReligion());
+
+        dexterityET.setText(String.valueOf(cm.getStats().getDexterity()));
+        savingThrowsDexterityCB.setChecked(cm.getProficiencies().getDexteritySavingThrow());
+        acrobaticsDexterityCB.setChecked(cm.getProficiencies().getAcrobatics());
+        sleightOfHandDexterityCB.setChecked(cm.getProficiencies().getSleightOfHand());
+        stealthDexterityCB.setChecked(cm.getProficiencies().getStealth());
+
+        wisdomET.setText(String.valueOf(cm.getStats().getWisdom()));
+        savingThrowsWisdomCB.setChecked(cm.getProficiencies().getWisdomSavingThrow());
+        animalHandlingWisdomCB.setChecked(cm.getProficiencies().getAnimalHandling());
+        insightWisdomCB.setChecked(cm.getProficiencies().getInsight());
+        medicineWisdomCB.setChecked(cm.getProficiencies().getMedicine());
+        perceptionWisdomCB.setChecked(cm.getProficiencies().getPerception());
+        survivalWisdomCB.setChecked(cm.getProficiencies().getSurvival());
+
+        constitutionET.setText(String.valueOf(cm.getStats().getConstitution()));
+        savingThrowsConstitutionCB.setChecked(cm.getProficiencies().getConstitutionSavingThrow());
+
+        charismaET.setText(String.valueOf(cm.getStats().getCharisma()));
+        savingThrowsCharismaCB.setChecked(cm.getProficiencies().getCharismaSavingThrows());
+        deceptionCharismaCB.setChecked(cm.getProficiencies().getDeception());
+        intimidationCharismaCB.setChecked(cm.getProficiencies().getIntimidation());
+        performanceCharismaCB.setChecked(cm.getProficiencies().getPerformance());
+        persuasionCharismaCB.setChecked(cm.getProficiencies().getPersuasion());
+
+        armorClassET.setText(String.valueOf(cm.getSecondaryStats().getArmorClass()));
+        initiativeET.setText(String.valueOf(cm.getSecondaryStats().getInitiative()));
+        speedET.setText(String.valueOf(cm.getSecondaryStats().getSpeed()));
+        maxHitPointsET.setText(String.valueOf(cm.getSecondaryStats().getMaxHP()));
+        temporaryHitPointsET.setText(String.valueOf(cm.getSecondaryStats().getTempHP()));
 
         return view;
     }

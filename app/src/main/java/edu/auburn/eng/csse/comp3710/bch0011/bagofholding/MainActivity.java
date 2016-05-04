@@ -13,6 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
+import edu.auburn.eng.csse.comp3710.bch0011.bagofholding.Models.Models;
+
 public class MainActivity extends AppCompatActivity {
 
     FragmentManager fm;
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if (findViewById(R.id.character_fragment_container) != null) {
+        if (findViewById(R.id.character_fragment_container) != null && savedInstanceState == null) {
             // Create a new Fragment to be placed in the activity layout
             characterFragment = new CharacterEditFragment();
 
@@ -58,113 +60,115 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Context context = v.getContext();
-                //context.deleteDatabase(CharacterSheetDbHelper.DATABASE_NAME); //For Testing
+                context.deleteDatabase(CharacterSheetDbHelper.DATABASE_NAME); //For Testing
                 SQLiteDatabase db = getOpenDB(context);
 
-                RaceModel raceModel = new RaceModel();
-                ClassModel classModel = new ClassModel();
-                AlignmentModel alignmentModel = new AlignmentModel();
-                GenderModel genderModel = new GenderModel();
-                StatsModel statsModel = new StatsModel();
-                SecondaryStatsModel secondaryStatsModel = new SecondaryStatsModel();
-                ProficiencyModel proficiencyModel = new ProficiencyModel();
-                CharacterDBModel characterDBModel = new CharacterDBModel();
+//                RaceModel raceModel = new RaceModel();
+//                ClassModel classModel = new ClassModel();
+//                AlignmentModel alignmentModel = new AlignmentModel();
+//                GenderModel genderModel = new GenderModel();
+//                StatsModel statsModel = new StatsModel();
+//                SecondaryStatsModel secondaryStatsModel = new SecondaryStatsModel();
+//                ProficiencyModel proficiencyModel = new ProficiencyModel();
+//                CharacterDBModel characterDBModel = new CharacterDBModel();
+//
+//                getModelFromDB(PlayerCharacter.TABLE_NAME, characterDBModel, 1, db);
+//                getModelFromDB(Race.TABLE_NAME, raceModel, characterDBModel.getRaceID(), db);
+//                getModelFromDB(CharacterClass.TABLE_NAME, classModel, characterDBModel.getClassID(), db);
+//                getModelFromDB(Alignment.TABLE_NAME, alignmentModel, characterDBModel.getAlignmentID(), db);
+//                getModelFromDB(Gender.TABLE_NAME, genderModel, characterDBModel.getGenderID(), db);
+//                getModelFromDB(Stat.TABLE_NAME, statsModel, characterDBModel.getStatID(), db);
+//                getModelFromDB(SecondaryStats.TABLE_NAME, secondaryStatsModel, characterDBModel.getSecondaryStatsID(), db);
+//                getModelFromDB(Proficiency.TABLE_NAME, proficiencyModel, characterDBModel.getProficiencyID(), db);
+//
+//                CharacterModel characterModel = new CharacterModel();
+//                characterModel.setCharacterID(characterDBModel.getCharacterID());
+//                characterModel.setCharacterName(characterDBModel.getCharacterName());
+//                characterModel.setCharacterLevel(characterDBModel.getCharacterLevel());
+//                characterModel.setCharacterExperience(characterDBModel.getCharacterExperience());
+//                characterModel.setRace(raceModel);
+//                characterModel.setCharacterClass(classModel);
+//                characterModel.setAlignment(alignmentModel);
+//                characterModel.setGender(genderModel);
+//                characterModel.setStats(statsModel);
+//                characterModel.setSecondaryStats(secondaryStatsModel);
+//                characterModel.setProficiencies(proficiencyModel);
 
-                getModelFromDB(PlayerCharacter.TABLE_NAME, characterDBModel, 1, db);
-                getModelFromDB(Race.TABLE_NAME, raceModel, characterDBModel.getRaceID(), db);
-                getModelFromDB(CharacterClass.TABLE_NAME, classModel, characterDBModel.getClassID(), db);
-                getModelFromDB(Alignment.TABLE_NAME, alignmentModel, characterDBModel.getAlignmentID(), db);
-                getModelFromDB(Gender.TABLE_NAME, genderModel, characterDBModel.getGenderID(), db);
-                getModelFromDB(Stat.TABLE_NAME, statsModel, characterDBModel.getStatID(), db);
-                getModelFromDB(SecondaryStats.TABLE_NAME, secondaryStatsModel, characterDBModel.getSecondaryStatsID(), db);
-                getModelFromDB(Proficiency.TABLE_NAME, proficiencyModel, characterDBModel.getProficiencyID(), db);
+///HASDFSAJFS:LDFJASJDGFASDJGALSDJGASDLKGJALKGJALGJAKLJGKALSDGJAKSLDGJADSKGJADKSGJALKSGJALKSDGJAKSDGJADKGJAG
+//
+                boolean exists = existsInDB(CharacterClass.TABLE_NAME, "Wizard", db);
+                ClassModel classModel = setClassModel("Wizard");
+                long primaryKey;
 
-                CharacterModel characterModel = new CharacterModel();
-                characterModel.setCharacterID(characterDBModel.getCharacterID());
-                characterModel.setCharacterName(characterDBModel.getCharacterName());
-                characterModel.setCharacterLevel(characterDBModel.getCharacterLevel());
-                characterModel.setCharacterExperience(characterDBModel.getCharacterExperience());
-                characterModel.setRace(raceModel);
-                characterModel.setCharacterClass(classModel);
-                characterModel.setAlignment(alignmentModel);
-                characterModel.setGender(genderModel);
-                characterModel.setStats(statsModel);
-                characterModel.setSecondaryStats(secondaryStatsModel);
-                characterModel.setProficiencies(proficiencyModel);
+                if (exists) {
+                    primaryKey = getPrimaryKey(CharacterClass.TABLE_NAME, "Wizard", db);
+                }
+                else {
+                    primaryKey = create(CharacterClass.TABLE_NAME, setClassValues(classModel), db);
+                }
 
+                classModel.setClassID(primaryKey);
 
-//
-//                boolean exists = existsInDB(CharacterClass.TABLE_NAME, "Wizard", db);
-//                ClassModel classModel = setClassModel("Wizard");
-//                long primaryKey;
-//
-//                if (exists) {
-//                    primaryKey = getPrimaryKey(CharacterClass.TABLE_NAME, "Wizard", db);
-//                }
-//                else {
-//                    primaryKey = create(CharacterClass.TABLE_NAME, setClassValues(classModel), db);
-//                }
-//
-//                classModel.setClassID(primaryKey);
-//
-//                exists = existsInDB(Race.TABLE_NAME, "Drow", db);
-//                RaceModel raceModel = setRaceModel("Drow");
-//
-//                if (exists) {
-//                    primaryKey = getPrimaryKey(Race.TABLE_NAME, "Drow", db);
-//                }
-//                else {
-//                    primaryKey = create(Race.TABLE_NAME, setRaceValues(raceModel), db);
-//                }
-//
-//                raceModel.setRaceID(primaryKey);
-//
-//                exists = existsInDB(Gender.TABLE_NAME, "Male", db);
-//                GenderModel genderModel = setGenderModel("Male");
-//
-//                if (exists) {
-//                    primaryKey = getPrimaryKey(Gender.TABLE_NAME, "Male", db);
-//                }
-//                else {
-//                    primaryKey = create(Gender.TABLE_NAME, setGenderValues(genderModel), db);
-//                }
-//
-//                genderModel.setGenderID(primaryKey);
-//
-//                exists = existsInDB(Alignment.TABLE_NAME, "Lawful Evil", db);
-//                AlignmentModel alignmentModel = setAlignmentModel("Lawful Evil");
-//
-//                if (exists) {
-//                    primaryKey = getPrimaryKey(Alignment.TABLE_NAME, "Alignment", db);
-//                }
-//                else {
-//                    primaryKey = create(Alignment.TABLE_NAME, setAlignmentValues(alignmentModel), db);
-//                }
-//
-//                alignmentModel.setAlignmentID(primaryKey);
-//
-//                StatsModel statsModel = characterFragment.getStatsModel();
-//                primaryKey = create(Stat.TABLE_NAME, setStatValues(statsModel), db);
-//                statsModel.setStatID(primaryKey);
-//
-//                SecondaryStatsModel secondaryStatsModel = setSecondaryStatsModel("18", "15", "13", "11", "10");
-//                primaryKey = create(SecondaryStats.TABLE_NAME, setSecondaryStatValues(secondaryStatsModel), db);
-//                secondaryStatsModel.setSecondaryStatsID(primaryKey);
-//
-//                ProficiencyModel proficiencyModel = setProficiencyModel(true, false, true, true, false, true, true, false,
-//                        true, true, false, true, true, false, false, false,
-//                        true, false, true, true, false, true, true, true);
-//                primaryKey = create(Proficiency.TABLE_NAME, setProficiencyValues(proficiencyModel), db);
-//                proficiencyModel.setProficiencyID(primaryKey);
-//
-//                CharacterModel characterModel = setCharacterModel("Gromph Baenre", "50", "45000", classModel,
-//                        raceModel, alignmentModel, genderModel,
-//                        statsModel, secondaryStatsModel, proficiencyModel);
-//                create(PlayerCharacter.TABLE_NAME, setCharacterValues(characterModel), db);
+                exists = existsInDB(Race.TABLE_NAME, "Drow", db);
+                RaceModel raceModel = setRaceModel("Drow");
+
+                if (exists) {
+                    primaryKey = getPrimaryKey(Race.TABLE_NAME, "Drow", db);
+                }
+                else {
+                    primaryKey = create(Race.TABLE_NAME, setRaceValues(raceModel), db);
+                }
+
+                raceModel.setRaceID(primaryKey);
+
+                exists = existsInDB(Gender.TABLE_NAME, "Male", db);
+                GenderModel genderModel = setGenderModel("Male");
+
+                if (exists) {
+                    primaryKey = getPrimaryKey(Gender.TABLE_NAME, "Male", db);
+                }
+                else {
+                    primaryKey = create(Gender.TABLE_NAME, setGenderValues(genderModel), db);
+                }
+
+                genderModel.setGenderID(primaryKey);
+
+                exists = existsInDB(Alignment.TABLE_NAME, "Lawful Evil", db);
+                AlignmentModel alignmentModel = setAlignmentModel("Lawful Evil");
+
+                if (exists) {
+                    primaryKey = getPrimaryKey(Alignment.TABLE_NAME, "Alignment", db);
+                }
+                else {
+                    primaryKey = create(Alignment.TABLE_NAME, setAlignmentValues(alignmentModel), db);
+                }
+
+                alignmentModel.setAlignmentID(primaryKey);
+
+                StatsModel statsModel = characterFragment.getStatsModel();
+                primaryKey = create(Stat.TABLE_NAME, setStatValues(statsModel), db);
+                statsModel.setStatID(primaryKey);
+
+                SecondaryStatsModel secondaryStatsModel = setSecondaryStatsModel("18", "15", "13", "11", "10");
+                primaryKey = create(SecondaryStats.TABLE_NAME, setSecondaryStatValues(secondaryStatsModel), db);
+                secondaryStatsModel.setSecondaryStatsID(primaryKey);
+
+                ProficiencyModel proficiencyModel = setProficiencyModel(true, false, true, true, false, true, true, false,
+                        true, true, false, true, true, false, false, false,
+                        true, false, true, true, false, true, true, true);
+                primaryKey = create(Proficiency.TABLE_NAME, setProficiencyValues(proficiencyModel), db);
+                proficiencyModel.setProficiencyID(primaryKey);
+
+                CharacterModel characterModel = setCharacterModel("Gromph Baenre", "50", "45000", classModel,
+                        raceModel, alignmentModel, genderModel,
+                        statsModel, secondaryStatsModel, proficiencyModel);
+                create(PlayerCharacter.TABLE_NAME, setCharacterValues(characterModel), db);
 
                 db.close();
             }
         });
+
+
 
 
 
@@ -181,6 +185,44 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public CharacterModel getCharacterModel()
+    {
+        Context context = getApplicationContext();
+        //context.deleteDatabase(CharacterSheetDbHelper.DATABASE_NAME); //For Testing
+        SQLiteDatabase db = getOpenDB(context);
+
+        RaceModel raceModel = new RaceModel();
+        ClassModel classModel = new ClassModel();
+        AlignmentModel alignmentModel = new AlignmentModel();
+        GenderModel genderModel = new GenderModel();
+        StatsModel statsModel = new StatsModel();
+        SecondaryStatsModel secondaryStatsModel = new SecondaryStatsModel();
+        ProficiencyModel proficiencyModel = new ProficiencyModel();
+        CharacterDBModel characterDBModel = new CharacterDBModel();
+
+        getModelFromDB(PlayerCharacter.TABLE_NAME, characterDBModel, 1, db);
+        getModelFromDB(Race.TABLE_NAME, raceModel, characterDBModel.getRaceID(), db);
+        getModelFromDB(CharacterClass.TABLE_NAME, classModel, characterDBModel.getClassID(), db);
+        getModelFromDB(Alignment.TABLE_NAME, alignmentModel, characterDBModel.getAlignmentID(), db);
+        getModelFromDB(Gender.TABLE_NAME, genderModel, characterDBModel.getGenderID(), db);
+        getModelFromDB(Stat.TABLE_NAME, statsModel, characterDBModel.getStatID(), db);
+        getModelFromDB(SecondaryStats.TABLE_NAME, secondaryStatsModel, characterDBModel.getSecondaryStatsID(), db);
+        getModelFromDB(Proficiency.TABLE_NAME, proficiencyModel, characterDBModel.getProficiencyID(), db);
+
+        CharacterModel characterModel = new CharacterModel();
+        characterModel.setCharacterID(characterDBModel.getCharacterID());
+        characterModel.setCharacterName(characterDBModel.getCharacterName());
+        characterModel.setCharacterLevel(characterDBModel.getCharacterLevel());
+        characterModel.setCharacterExperience(characterDBModel.getCharacterExperience());
+        characterModel.setRace(raceModel);
+        characterModel.setCharacterClass(classModel);
+        characterModel.setAlignment(alignmentModel);
+        characterModel.setGender(genderModel);
+        characterModel.setStats(statsModel);
+        characterModel.setSecondaryStats(secondaryStatsModel);
+        characterModel.setProficiencies(proficiencyModel);
+        return characterModel;
+    }
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
 //        // Inflate the menu; this adds items to the action bar if it is present.

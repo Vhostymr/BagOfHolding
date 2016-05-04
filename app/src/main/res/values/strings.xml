@@ -2,6 +2,24 @@
     <string name="app_name">Bag Of Holding</string>
     <string name="action_settings">Settings</string>
 
+    <!--Field names-->
+    <string name="name_label">Name</string>
+    <string name="level_label">Level</string>
+    <string name="experience_points_label">Experience Points</string>
+    <string name="alignment_label">Alignment</string>
+    <string name="race_label">Race</string>
+    <string name="class_label">Class</string>
+
+    <string name="armor_class_label">Armor Class</string>
+    <string name="initiative_label">Initiative</string>
+    <string name="speed_label">Speed</string>
+    <string name="max_hit_points_label">Max Hit Points</string>
+    <string name="temporary_hit_points_label">Temporary Hit Points</string>
+
+    <string name="passive_insight_label">Passive Insight</string>
+    <string name="passive_perception_label">Passive Perception</string>
+
+
 
     <!--Primary Stats-->
     <string name="strength">Strength</string>
@@ -32,6 +50,10 @@
     <string name="intimidation">Intimidation</string>
     <string name="performance">Performance</string>
     <string name="persuasion">Persuasion</string>
+
+
+    <!--Add new field-->
+    <string name="enter_alignment">Enter new alignment</string>
 
     <!--  Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
