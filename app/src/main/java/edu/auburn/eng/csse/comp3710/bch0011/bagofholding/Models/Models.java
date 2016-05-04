@@ -3,6 +3,10 @@ import static edu.auburn.eng.csse.comp3710.bch0011.bagofholding.DatabaseContract
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.auburn.eng.csse.comp3710.bch0011.bagofholding.Utilities.Utilities;
 
 public class Models {
@@ -706,18 +710,19 @@ public class Models {
         return model;
     }
 
-    public static Object getModelFromDB(String tableName, Object model, SQLiteDatabase db) {
+    public static List<String> getNameListFromDB(String tableName, Object model, SQLiteDatabase db) {
         String[] projection = Utilities.getProperties(model);
-
+        List<String> list = new ArrayList<>();
         Cursor c = read(tableName, projection, db);
-        if (c.moveToFirst()) {
-            for (String property : projection) {
-                String value = c.getString(c.getColumnIndex(property));
-                Utilities.setField(model, property, value);
-            }
+        c.moveToFirst();
+        while (c.isAfterLast() == false) {
+            String name = c.getString(c.getColumnIndex("Name"));
+
+            list.add(name);
+            c.moveToNext();
         }
 
-        return model;
+        return list;
     }
 
     public static ClassModel setClassModel(String className) {
