@@ -181,8 +181,6 @@ public class CharacterEditFragment extends Fragment {
         performanceCharismaCB = (CheckBox) view.findViewById(R.id.cb_performance_charisma);
         persuasionCharismaCB = (CheckBox) view.findViewById(R.id.cb_persuasion_charisma);
 
-
-
         //Spinners
         alignmentList = new ArrayList<>();
         raceList = new ArrayList<>();
@@ -193,8 +191,6 @@ public class CharacterEditFragment extends Fragment {
         raceList.addAll(parentActivity.getRaceDatabaseItems());
         classList.addAll(parentActivity.getClassDatabaseItems());
         genderList.addAll(parentActivity.getGenderDatabaseItems());
-
-
 
         alignmentList.add(getString(R.string.create_alignment));
         raceList.add(getString(R.string.create_race));
@@ -217,20 +213,12 @@ public class CharacterEditFragment extends Fragment {
         stringDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         genderSP.setAdapter(stringDataAdapter);
 
-        
-
         cm = parentActivity.getCharacterModel();
         if (cm != null && cm.getCharacterID() != 0) {
             nameET.setText(cm.getCharacterName());
             levelET.setText(String.valueOf(cm.getCharacterLevel()));
             experienceET.setText(String.valueOf(cm.getCharacterExperience()));
 
-
-
-
-            //alignmentSP.setText();
-            //raceSP.setText();
-            //classTV.setText();
             strengthET.setText(String.valueOf(cm.getStats().getStrength()));
             savingThrowsStrengthCB.setChecked(cm.getProficiencies().getStrengthSavingThrow());
             athleticsStrengthCB.setChecked(cm.getProficiencies().getAthletics());
@@ -272,7 +260,6 @@ public class CharacterEditFragment extends Fragment {
             speedET.setText(String.valueOf(cm.getSecondaryStats().getSpeed()));
             maxHitPointsET.setText(String.valueOf(cm.getSecondaryStats().getMaxHP()));
             temporaryHitPointsET.setText(String.valueOf(cm.getSecondaryStats().getTempHP()));
-
         }
 
 
@@ -406,7 +393,16 @@ public class CharacterEditFragment extends Fragment {
     }
 
     public Models.CharacterModel populateModelFromView(){
-        return Models.setCharacterModel(cm.getCharacterID(), nameET.getText().toString(), levelET.getText().toString(),
+        if (cm == null) {
+            cm = new Models.CharacterModel();
+            cm.setCharacterID(0);
+            return Models.setCharacterModel(cm.getCharacterID(), nameET.getText().toString(), levelET.getText().toString(),
+                    experienceET.getText().toString(), getClassModel(),
+                    getRaceModel(), getAlignmentModel(), getGenderModel(),
+                    getStatsModel(), getSecondaryStatsModel(), getProficiencyModel());
+        }
+
+        return Models.setCharacterModel(parentActivity.characterModel.getCharacterID(), nameET.getText().toString(), levelET.getText().toString(),
                                         experienceET.getText().toString(), getClassModel(),
                                         getRaceModel(), getAlignmentModel(), getGenderModel(),
                                         getStatsModel(), getSecondaryStatsModel(), getProficiencyModel());

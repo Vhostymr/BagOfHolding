@@ -87,7 +87,7 @@ public class CharacterDetailsFragment extends Fragment {
     TextView persuasionCharismaTV;
 
     TextView passivePerceptionTV;
-    TextView passiveInsight;
+    TextView passiveInsightTV;
 
 
     public CharacterDetailsFragment() {
@@ -110,7 +110,7 @@ public class CharacterDetailsFragment extends Fragment {
         wisdomTV = (TextView) view.findViewById(R.id.tv_wisdom);
         charismaTV = (TextView) view.findViewById(R.id.tv_charisma);
         strengthModifierTV = (TextView) view.findViewById(R.id.tv_strength_modifier);
-        dexterityModifierTV = (TextView) view.findViewById(R.id.tv_strength_modifier);
+        dexterityModifierTV = (TextView) view.findViewById(R.id.tv_dexterity_modifier);
         constitutionModifierTV = (TextView) view.findViewById(R.id.tv_constitution_modifier);
         intelligenceModifierTV = (TextView) view.findViewById(R.id.tv_intelligence_modifier);
         wisdomModifierTV = (TextView) view.findViewById(R.id.tv_wisdom_modifier);
@@ -158,8 +158,8 @@ public class CharacterDetailsFragment extends Fragment {
         performanceCharismaTV = (TextView) view.findViewById(R.id.tv_performance_charisma);
         persuasionCharismaTV = (TextView) view.findViewById(R.id.tv_persuasion_charisma);
 
-        passiveInsight = (TextView) view.findViewById(R.id.tv_passive_insight);
-        passiveInsight = (TextView) view.findViewById(R.id.tv_passive_perception);
+        passiveInsightTV = (TextView) view.findViewById(R.id.tv_passive_insight);
+        passivePerceptionTV = (TextView) view.findViewById(R.id.tv_passive_perception);
 
 
         Models.CharacterModel cm = parentActivity.getCharacterModel();
@@ -214,8 +214,8 @@ public class CharacterDetailsFragment extends Fragment {
             performanceCharismaTV.setText(String.valueOf(cm.getProficiencies().getPerformance()));
             persuasionCharismaTV.setText(String.valueOf(cm.getProficiencies().getPersuasion()));
 
-            //passiveInsight.setText(String.valueOf(Utilities.get(cm.getStats().getStrength())));
-            //passivePerceptionTV.setText(String.valueOf("N/A"));
+            passiveInsightTV.setText(String.valueOf(Utilities.getPassiveBonus(cm.getCharacterLevel(), cm.getStats().getWisdom(), cm.getProficiencies().getInsight())));
+            passivePerceptionTV.setText(String.valueOf(Utilities.getPassiveBonus(cm.getCharacterLevel(), cm.getStats().getWisdom(), cm.getProficiencies().getPerception())));
             armorClassTV.setText(String.valueOf(cm.getSecondaryStats().getArmorClass()));
             initiativeTV.setText(String.valueOf(cm.getSecondaryStats().getInitiative()));
             speedTV.setText(String.valueOf(cm.getSecondaryStats().getSpeed()));

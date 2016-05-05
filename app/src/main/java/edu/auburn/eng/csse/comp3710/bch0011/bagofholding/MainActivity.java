@@ -189,7 +189,8 @@ public class MainActivity extends AppCompatActivity {
                 String.valueOf(characterModel.getCharacterExperience()), classModel,
                 raceModel, alignmentModel, genderModel,
                 statsModel, secondaryStatsModel, proficiencyModel);
-        create(PlayerCharacter.TABLE_NAME, setCharacterValues(characterModel), db);
+        primaryKey = create(PlayerCharacter.TABLE_NAME, setCharacterValues(characterModel), db);
+        characterModel.setCharacterID(primaryKey);
     }
 
     public void updateCharacter(long primaryKey) {
@@ -247,6 +248,12 @@ public class MainActivity extends AppCompatActivity {
         update(SecondaryStats.TABLE_NAME, characterModel.getSecondaryStats().getSecondaryStatsID(), setSecondaryStatValues(characterModel.getSecondaryStats()), db);
         update(Proficiency.TABLE_NAME, characterModel.getProficiencies().getProficiencyID(), setProficiencyValues(characterModel.getProficiencies()), db);
         update(PlayerCharacter.TABLE_NAME, characterModel.getCharacterID(), setCharacterValues(characterModel), db);
+
+        characterModel = setCharacterModel(characterModel.getCharacterID(), characterModel.getCharacterName(),
+                String.valueOf(characterModel.getCharacterLevel()),
+                String.valueOf(characterModel.getCharacterExperience()), classModel,
+                raceModel, alignmentModel, genderModel,
+                characterModel.getStats(), characterModel.getSecondaryStats(), characterModel.getProficiencies());
     }
 
     public CharacterModel getCharacterModel()

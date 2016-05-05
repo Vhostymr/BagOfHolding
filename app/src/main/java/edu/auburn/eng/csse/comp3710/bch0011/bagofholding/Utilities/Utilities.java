@@ -47,19 +47,25 @@ public final class Utilities {
         return (int) Math.floor(calculatedValue);
     }
 
-    public static Integer getProficiencyBonus(Integer level) {
+    public static long getProficiencyBonus(long level) {
         return ((level - 1) / 4) + 2;
     }
 
-    public static Integer calculateProficiency(Integer level, Integer abilityModifier, boolean isProficient) {
-        Integer result = abilityModifier;
+    public static long calculateProficiency(long level, long abilityModifier, boolean isProficient) {
+        long result = abilityModifier;
 
         if (isProficient) {
-            Integer proficiency = getProficiencyBonus(level);
+            long proficiency = getProficiencyBonus(level);
             result += proficiency;
         }
 
         return result;
+    }
+
+    public static long getPassiveBonus(long level, long abilityModifier, boolean isProficient) {
+        long result = calculateProficiency(level, abilityModifier, isProficient);
+
+        return result + 10;
     }
 
     public static boolean isWholeNumber(String string) {
