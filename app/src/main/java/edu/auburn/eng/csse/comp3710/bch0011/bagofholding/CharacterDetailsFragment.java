@@ -175,20 +175,25 @@ public class CharacterDetailsFragment extends Fragment {
             strengthModifierTV.setText(String.valueOf(
                     Utilities.getAbilityModifier(
                             cm.getStats().getStrength()
-                    )));
+                    )
+            ));
             strengthTV.setText(String.valueOf(
                     cm.getStats().getStrength()
             ));
             savingThrowsStrengthTV.setText(String.valueOf(
                     Utilities.calculateProficiency(
                             cm.getCharacterLevel(),
-                            cm.getStats().getStrength(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getStrength()
+                            ),
                             cm.getProficiencies().getStrengthSavingThrow()
                     )));
             athleticsStrengthTV.setText(String.valueOf(
                     Utilities.calculateProficiency(
                             cm.getCharacterLevel(),
-                            cm.getStats().getStrength(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getStrength()
+                            ),
                             cm.getProficiencies().getAthletics()
                     )));
 
@@ -202,37 +207,49 @@ public class CharacterDetailsFragment extends Fragment {
             savingThrowsIntelligenceTV.setText(String.valueOf(
                     Utilities.calculateProficiency(
                             cm.getCharacterLevel(),
-                            cm.getStats().getIntelligence(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getIntelligence()
+                            ),
                             cm.getProficiencies().getIntelligenceSavingThrow()
                     )));
             arcanaIntelligenceTV.setText(String.valueOf(
                     Utilities.calculateProficiency(
                             cm.getCharacterLevel(),
-                            cm.getStats().getIntelligence(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getIntelligence()
+                            ),
                             cm.getProficiencies().getArcana()
                     )));
             historyIntelligenceTV.setText(String.valueOf(
                     Utilities.calculateProficiency(
                             cm.getCharacterLevel(),
-                            cm.getStats().getIntelligence(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getIntelligence()
+                            ),
                             cm.getProficiencies().getHistory()
                     )));
             investigationIntelligenceTV.setText(String.valueOf(
                     Utilities.calculateProficiency(
                             cm.getCharacterLevel(),
-                            cm.getStats().getIntelligence(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getIntelligence()
+                            ),
                             cm.getProficiencies().getInvestigation()
                     )));
             natureIntelligenceTV.setText(String.valueOf(
                     Utilities.calculateProficiency(
                             cm.getCharacterLevel(),
-                            cm.getStats().getIntelligence(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getIntelligence()
+                            ),
                             cm.getProficiencies().getNature()
                     )));
             religionIntelligenceTV.setText(String.valueOf(
                     Utilities.calculateProficiency(
                             cm.getCharacterLevel(),
-                            cm.getStats().getIntelligence(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getIntelligence()
+                            ),
                             cm.getProficiencies().getReligion()
                     )));
             dexterityModifierTV.setText(String.valueOf(
@@ -245,25 +262,33 @@ public class CharacterDetailsFragment extends Fragment {
             savingThrowsDexterityTV.setText(String.valueOf(
                     Utilities.calculateProficiency(
                             cm.getCharacterLevel(),
-                            cm.getStats().getDexterity(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getDexterity()
+                            ),
                             cm.getProficiencies().getDexteritySavingThrow()
                     )));
             acrobaticsDexterityTV.setText(String.valueOf(
                     Utilities.calculateProficiency(
                             cm.getCharacterLevel(),
-                            cm.getStats().getDexterity(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getDexterity()
+                            ),
                             cm.getProficiencies().getAcrobatics()
                     )));
             sleightOfHandDexterityTV.setText(String.valueOf(
                     Utilities.calculateProficiency(
                             cm.getCharacterLevel(),
-                            cm.getStats().getDexterity(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getDexterity()
+                            ),
                             cm.getProficiencies().getSleightOfHand()
                     )));
             stealthDexterityTV.setText(String.valueOf(
                     Utilities.calculateProficiency(
                             cm.getCharacterLevel(),
-                            cm.getStats().getDexterity(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getDexterity()
+                            ),
                             cm.getProficiencies().getStealth()
                     )));
 
@@ -277,37 +302,49 @@ public class CharacterDetailsFragment extends Fragment {
             savingThrowsWisdomTV.setText(String.valueOf(
                     Utilities.calculateProficiency(
                             cm.getCharacterLevel(),
-                            cm.getStats().getWisdom(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getWisdom()
+                            ),
                             cm.getProficiencies().getWisdomSavingThrow()
                     )));
             animalHandlingWisdomTV.setText(String.valueOf(
                     Utilities.calculateProficiency(
                             cm.getCharacterLevel(),
-                            cm.getStats().getWisdom(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getWisdom()
+                            ),
                             cm.getProficiencies().getAnimalHandling()
                     )));
             insightWisdomTV.setText(String.valueOf(
                     Utilities.calculateProficiency(
                             cm.getCharacterLevel(),
-                            cm.getStats().getWisdom(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getWisdom()
+                            ),
                             cm.getProficiencies().getInsight()
                     )));
             medicineWisdomTV.setText(String.valueOf(
                     Utilities.calculateProficiency(
                             cm.getCharacterLevel(),
-                            cm.getStats().getWisdom(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getWisdom()
+                            ),
                             cm.getProficiencies().getMedicine()
                     )));
             perceptionWisdomTV.setText(String.valueOf(
                     Utilities.calculateProficiency(
                             cm.getCharacterLevel(),
-                            cm.getStats().getWisdom(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getWisdom()
+                            ),
                             cm.getProficiencies().getPerception()
                     )));
             survivalWisdomTV.setText(String.valueOf(
                     Utilities.calculateProficiency(
                             cm.getCharacterLevel(),
-                            cm.getStats().getWisdom(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getWisdom()
+                            ),
                             cm.getProficiencies().getSurvival()
                     )));
             constitutionModifierTV.setText(String.valueOf(
@@ -320,7 +357,9 @@ public class CharacterDetailsFragment extends Fragment {
             savingThrowsConstitutionTV.setText(String.valueOf(
                     Utilities.calculateProficiency(
                             cm.getCharacterLevel(),
-                            cm.getStats().getConstitution(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getConstitution()
+                            ),
                             cm.getProficiencies().getConstitutionSavingThrow()
                     )));
 
@@ -334,44 +373,58 @@ public class CharacterDetailsFragment extends Fragment {
             savingThrowsCharismaTV.setText(String.valueOf(
                     Utilities.calculateProficiency(
                             cm.getCharacterLevel(),
-                            cm.getStats().getCharisma(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getCharisma()
+                            ),
                             cm.getProficiencies().getCharismaSavingThrows()
                     )));
             deceptionCharismaTV.setText(String.valueOf(
                     Utilities.calculateProficiency(
                             cm.getCharacterLevel(),
-                            cm.getStats().getCharisma(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getCharisma()
+                            ),
                             cm.getProficiencies().getDeception()
                     )));
             intimidationCharismaTV.setText(String.valueOf(
                     Utilities.calculateProficiency(
                             cm.getCharacterLevel(),
-                            cm.getStats().getCharisma(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getCharisma()
+                            ),
                             cm.getProficiencies().getIntimidation()
                     )));
             performanceCharismaTV.setText(String.valueOf(
                     Utilities.calculateProficiency(
                             cm.getCharacterLevel(),
-                            cm.getStats().getCharisma(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getCharisma()
+                            ),
                             cm.getProficiencies().getPerformance()
                     )));
             persuasionCharismaTV.setText(String.valueOf(
                     Utilities.calculateProficiency(
                             cm.getCharacterLevel(),
-                            cm.getStats().getCharisma(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getCharisma()
+                            ),
                             cm.getProficiencies().getPersuasion()
                     )));
 
             passiveInsightTV.setText(String.valueOf(
                     Utilities.getPassiveBonus(
                             cm.getCharacterLevel(),
-                            cm.getStats().getWisdom(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getWisdom()
+                            ),
                             cm.getProficiencies().getInsight()
                     )));
             passivePerceptionTV.setText(String.valueOf(
                     Utilities.getPassiveBonus(
                             cm.getCharacterLevel(),
-                            cm.getStats().getWisdom(),
+                            Utilities.getAbilityModifier(
+                                    cm.getStats().getWisdom()
+                            ),
                             cm.getProficiencies().getPerception()
                     )));
 
