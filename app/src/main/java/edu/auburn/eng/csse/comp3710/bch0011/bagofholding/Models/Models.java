@@ -817,13 +817,14 @@ public class Models {
         return proficiencyModel;
     }
 
-    public static CharacterModel setCharacterModel(String characterName, String characterLevel, String characterExperience,
+    public static CharacterModel setCharacterModel(long characterID, String characterName, String characterLevel, String characterExperience,
                                                    ClassModel classModel, RaceModel raceModel,
                                                    AlignmentModel alignmentModel, GenderModel genderModel,
                                                    StatsModel statsModel, SecondaryStatsModel secondaryStatsModel,
                                                    ProficiencyModel proficiencyModel) {
 
         CharacterModel characterModel = new CharacterModel();
+        characterModel.setCharacterID(characterID);
         characterModel.setCharacterName(characterName);
         characterModel.setCharacterLevel(Integer.parseInt(characterLevel));
         characterModel.setCharacterExperience(Integer.parseInt(characterExperience));

@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         boolean exists = existsInDB(CharacterClass.TABLE_NAME, characterFragment.populateModelFromView().getCharacterClass().getClassName(), db);
         ClassModel classModel = setClassModel(characterFragment.populateModelFromView().getCharacterClass().getClassName());
         long primaryKey;
-        
+
         if (exists) {
             primaryKey = getPrimaryKey(CharacterClass.TABLE_NAME, characterFragment.populateModelFromView().getCharacterClass().getClassName(), db);
         }
