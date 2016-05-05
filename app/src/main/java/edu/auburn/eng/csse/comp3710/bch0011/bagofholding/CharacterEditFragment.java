@@ -22,6 +22,7 @@ import edu.auburn.eng.csse.comp3710.bch0011.bagofholding.Utilities.Utilities;
 public class CharacterEditFragment extends Fragment {
 
     MainActivity parentActivity;
+    Models.CharacterModel cm;
 
     ArrayList<String> alignmentList;
     ArrayList<String> raceList;
@@ -183,7 +184,7 @@ public class CharacterEditFragment extends Fragment {
 
 
 
-        Models.CharacterModel cm = parentActivity.getCharacterModel();
+        cm = parentActivity.getCharacterModel();
         if (cm != null) {
             nameET.setText(cm.getCharacterName());
             levelET.setText(String.valueOf(cm.getCharacterLevel()));
@@ -402,7 +403,7 @@ public class CharacterEditFragment extends Fragment {
     }
 
     public Models.CharacterModel populateModelFromView(){
-        return Models.setCharacterModel(nameET.getText().toString(), levelET.getText().toString(),
+        return Models.setCharacterModel(cm.getCharacterID(), nameET.getText().toString(), levelET.getText().toString(),
                                         experienceET.getText().toString(), getClassModel(),
                                         getRaceModel(), getAlignmentModel(), getGenderModel(),
                                         getStatsModel(), getSecondaryStatsModel(), getProficiencyModel());
