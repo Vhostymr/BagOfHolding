@@ -43,9 +43,14 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Context context = getApplicationContext();
+        context.deleteDatabase(CharacterSheetDbHelper.DATABASE_NAME);
         db = getOpenDB(context);
 
         generateCharacterModel();
+
+        if (characterModel.getCharacterID() == 0) {
+            characterModel = null;
+        }
 
         saveButton = (Button) findViewById(R.id.saveButton);
         editButton = (Button) findViewById(R.id.editButton);

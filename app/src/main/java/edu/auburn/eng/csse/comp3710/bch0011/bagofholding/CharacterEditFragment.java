@@ -185,7 +185,7 @@ public class CharacterEditFragment extends Fragment {
 
 
         cm = parentActivity.getCharacterModel();
-        if (cm != null) {
+        if (cm != null && cm.getCharacterID() != 0) {
             nameET.setText(cm.getCharacterName());
             levelET.setText(String.valueOf(cm.getCharacterLevel()));
             experienceET.setText(String.valueOf(cm.getCharacterExperience()));
