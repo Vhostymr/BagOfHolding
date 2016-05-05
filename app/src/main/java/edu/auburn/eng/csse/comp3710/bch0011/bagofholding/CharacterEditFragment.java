@@ -183,6 +183,41 @@ public class CharacterEditFragment extends Fragment {
 
 
 
+        //Spinners
+        alignmentList = new ArrayList<>();
+        raceList = new ArrayList<>();
+        classList = new ArrayList<>();
+        genderList = new ArrayList<>();
+
+        alignmentList.addAll(parentActivity.getAlignmentDatabaseItems());
+        raceList.addAll(parentActivity.getRaceDatabaseItems());
+        classList.addAll(parentActivity.getClassDatabaseItems());
+        genderList.addAll(parentActivity.getGenderDatabaseItems());
+
+
+
+        alignmentList.add(getString(R.string.create_alignment));
+        raceList.add(getString(R.string.create_race));
+        classList.add(getString(R.string.create_class));
+        genderList.add(getString(R.string.create_gender));
+
+        stringDataAdapter = new ArrayAdapter(getActivity().getBaseContext(), android.R.layout.simple_spinner_dropdown_item, alignmentList);
+        stringDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        alignmentSP.setAdapter(stringDataAdapter);
+
+        stringDataAdapter = new ArrayAdapter(getActivity().getBaseContext(), android.R.layout.simple_spinner_dropdown_item, raceList);
+        stringDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        raceSP.setAdapter(stringDataAdapter);
+
+        stringDataAdapter = new ArrayAdapter(getActivity().getBaseContext(), android.R.layout.simple_spinner_dropdown_item, classList);
+        stringDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        classSP.setAdapter(stringDataAdapter);
+
+        stringDataAdapter = new ArrayAdapter(getActivity().getBaseContext(), android.R.layout.simple_spinner_dropdown_item, genderList);
+        stringDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        genderSP.setAdapter(stringDataAdapter);
+
+        
 
         cm = parentActivity.getCharacterModel();
         if (cm != null && cm.getCharacterID() != 0) {
@@ -190,39 +225,7 @@ public class CharacterEditFragment extends Fragment {
             levelET.setText(String.valueOf(cm.getCharacterLevel()));
             experienceET.setText(String.valueOf(cm.getCharacterExperience()));
 
-            //Spinners
-            alignmentList = new ArrayList<>();
-            raceList = new ArrayList<>();
-            classList = new ArrayList<>();
-            genderList = new ArrayList<>();
 
-            alignmentList.addAll(parentActivity.getAlignmentDatabaseItems());
-            raceList.addAll(parentActivity.getRaceDatabaseItems());
-            classList.addAll(parentActivity.getClassDatabaseItems());
-            genderList.addAll(parentActivity.getGenderDatabaseItems());
-
-
-
-            alignmentList.add(getString(R.string.create_alignment));
-            raceList.add(getString(R.string.create_race));
-            classList.add(getString(R.string.create_class));
-            genderList.add(getString(R.string.create_gender));
-
-            stringDataAdapter = new ArrayAdapter(getActivity().getBaseContext(), android.R.layout.simple_spinner_dropdown_item, alignmentList);
-            stringDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            alignmentSP.setAdapter(stringDataAdapter);
-
-            stringDataAdapter = new ArrayAdapter(getActivity().getBaseContext(), android.R.layout.simple_spinner_dropdown_item, raceList);
-            stringDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            raceSP.setAdapter(stringDataAdapter);
-
-            stringDataAdapter = new ArrayAdapter(getActivity().getBaseContext(), android.R.layout.simple_spinner_dropdown_item, classList);
-            stringDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            classSP.setAdapter(stringDataAdapter);
-
-            stringDataAdapter = new ArrayAdapter(getActivity().getBaseContext(), android.R.layout.simple_spinner_dropdown_item, genderList);
-            stringDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            genderSP.setAdapter(stringDataAdapter);
 
 
             //alignmentSP.setText();
