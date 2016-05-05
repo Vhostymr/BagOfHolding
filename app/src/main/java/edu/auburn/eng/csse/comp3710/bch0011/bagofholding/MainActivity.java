@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager fm;
     Button saveButton;
     Button editButton;
-    Button dbButton;
+//    Button dbButton;
     CharacterDetailsFragment characterFragment1;
     CharacterEditFragment characterFragment;
     CharacterModel characterModel;
@@ -54,15 +54,15 @@ public class MainActivity extends AppCompatActivity {
 
         saveButton = (Button) findViewById(R.id.saveButton);
         editButton = (Button) findViewById(R.id.editButton);
-        dbButton = (Button) findViewById(R.id.dbButton);
+//        dbButton = (Button) findViewById(R.id.dbButton);
 
-        dbButton.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-
-                Intent dbmanager = new Intent(getApplicationContext(), AndroidDatabaseManager.class);
-                startActivity(dbmanager);
-            }
-        });
+//        dbButton.setOnClickListener(new Button.OnClickListener() {
+//            public void onClick(View v) {
+//
+//                Intent dbmanager = new Intent(getApplicationContext(), AndroidDatabaseManager.class);
+//                startActivity(dbmanager);
+//            }
+//        });
 
 
         Fragment fragment = fm.findFragmentById(R.id.character_fragment_container);

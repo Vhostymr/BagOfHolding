@@ -13,14 +13,14 @@
         android:id="@+id/textView2"
         android:layout_gravity="left"
         android:textColor="#FFF"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="dbShow"
-        android:id="@+id/dbButton"
-        android:layout_gravity="right"
-        android:textColor="#000"/>
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+        <!--android:text="dbShow"-->
+        <!--android:id="@+id/dbButton"-->
+        <!--android:layout_gravity="right"-->
+        <!--android:textColor="#000"/>-->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,7 +28,9 @@
         android:text="Save"
         android:id="@+id/saveButton"
         android:layout_gravity="right"
-        android:textColor="#000"/>
+        android:textColor="#fff"
+        android:background="#EC2127"
+        android:layout_marginRight="10dp"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,7 +39,9 @@
         android:text="Edit"
         android:id="@+id/editButton"
         android:layout_gravity="right"
-        android:textColor="#000"/>
+        android:textColor="#fff"
+        android:background="#EC2127"
+        android:layout_marginRight="10dp"/>
     <!--<TextView-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
