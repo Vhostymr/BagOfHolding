@@ -119,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
         db.close();
     }
 
+
     public void createCharacter() {
         long primaryKey;
 
