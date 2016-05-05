@@ -2,13 +2,15 @@
 actor User
 actor Database
 rectangle {
-User -> (View character)
 User -> (Save character)
+User -> (View character)
 User -> (Create Class/Race/Alignment)
-(Create Class/Race/Alignment) .> (Edit character information):uses
+(Create Class/Race/Alignment) .> (Edit character information): uses
 User -> (Edit character information)
 
 Database -up-> (Display Character)
 Database -up-> (Save character)
+Database -up-> (Save Class/Race/Alignment)
+(Save Class/Race/Alignment) .> (Save character) : uses
 }
 @enduml
