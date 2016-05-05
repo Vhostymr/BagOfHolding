@@ -1,0 +1,16 @@
+Release Notes
+
+Aaron Scherer
+Brandon Hurler
+RayShawn Ware
+
+Bag of Holding
+
+For our project we decided to design an application that would keep track of information for a Dungeons & Dragons character. It would store basic information about the character such as his/her name, level, and stats. There are two fragments that are used to view the character, a character view screen and a character edit screen. The created character is saved in a database as persistant storage.
+
+Our original plan, if we had time, was to have the ability to save as many characters as you wanted. Although the code was created in a way that this would be easy to implement later, we did not have time to set this up. We plan to continue working on this project in the future and implement this.
+
+In our code you will notice that we have a java file that lets us view the database. This was used for testing purposes and we have commented out the button that launched it. The code does not have any significance in the actual running of our code. You will notice a commented out button in the main activity for this.
+
+
+Currently, we have an issue where if a character is submitted with blank information, the app crashes. This wouldn't be too hard to fix in the future but we ran out of time.
