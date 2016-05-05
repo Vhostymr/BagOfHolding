@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Context context = getApplicationContext();
-        context.deleteDatabase(CharacterSheetDbHelper.DATABASE_NAME);
+        //context.deleteDatabase(CharacterSheetDbHelper.DATABASE_NAME);
         db = getOpenDB(context);
 
         generateCharacterModel();
@@ -247,13 +247,14 @@ public class MainActivity extends AppCompatActivity {
         update(Stat.TABLE_NAME, characterModel.getStats().getStatID(), setStatValues(characterModel.getStats()), db);
         update(SecondaryStats.TABLE_NAME, characterModel.getSecondaryStats().getSecondaryStatsID(), setSecondaryStatValues(characterModel.getSecondaryStats()), db);
         update(Proficiency.TABLE_NAME, characterModel.getProficiencies().getProficiencyID(), setProficiencyValues(characterModel.getProficiencies()), db);
-        update(PlayerCharacter.TABLE_NAME, characterModel.getCharacterID(), setCharacterValues(characterModel), db);
 
         characterModel = setCharacterModel(characterModel.getCharacterID(), characterModel.getCharacterName(),
                 String.valueOf(characterModel.getCharacterLevel()),
                 String.valueOf(characterModel.getCharacterExperience()), classModel,
                 raceModel, alignmentModel, genderModel,
                 characterModel.getStats(), characterModel.getSecondaryStats(), characterModel.getProficiencies());
+
+        update(PlayerCharacter.TABLE_NAME, characterModel.getCharacterID(), setCharacterValues(characterModel), db);
     }
 
     public CharacterModel getCharacterModel()

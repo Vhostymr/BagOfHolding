@@ -676,7 +676,7 @@ public class Models {
         }
     }
 
-    public static StatsModel setStatsModel(String strength, String dexterity, String constitution, String intelligence, String wisdom, String charisma) {
+    public static StatsModel setStatsModel(long primaryKey, String strength, String dexterity, String constitution, String intelligence, String wisdom, String charisma) {
         StatsModel statsModel = new StatsModel();
 
         strength = Utilities.isWholeNumber(strength) ? strength : "0";
@@ -686,6 +686,7 @@ public class Models {
         wisdom = Utilities.isWholeNumber(wisdom) ? wisdom : "0";
         charisma = Utilities.isWholeNumber(charisma) ? charisma : "0";
 
+        statsModel.setStatID(primaryKey);
         statsModel.setStrength(Integer.parseInt(strength));
         statsModel.setDexterity(Integer.parseInt(dexterity));
         statsModel.setConstitution(Integer.parseInt(constitution));
@@ -757,7 +758,12 @@ public class Models {
         return alignmentModel;
     }
 
-    public static SecondaryStatsModel setSecondaryStatsModel(String armorClass, String initiative, String speed, String maxHP, String tempHP) {
+    public static SecondaryStatsModel setSecondaryStatsModel(long primaryKey,
+                                                             String armorClass,
+                                                             String initiative,
+                                                             String speed,
+                                                             String maxHP,
+                                                             String tempHP) {
         SecondaryStatsModel secondaryStatsModel = new SecondaryStatsModel();
 
         armorClass = Utilities.isWholeNumber(armorClass) ? armorClass : "0";
@@ -766,6 +772,7 @@ public class Models {
         maxHP = Utilities.isWholeNumber(maxHP) ? maxHP : "0";
         tempHP = Utilities.isWholeNumber(tempHP) ? tempHP : "0";
 
+        secondaryStatsModel.setSecondaryStatsID(primaryKey);
         secondaryStatsModel.setArmorClass(Integer.parseInt(armorClass));
         secondaryStatsModel.setInitiative(Integer.parseInt(initiative));
         secondaryStatsModel.setSpeed(Integer.parseInt(speed));
@@ -775,7 +782,8 @@ public class Models {
         return secondaryStatsModel;
     }
 
-    public static ProficiencyModel setProficiencyModel(boolean hasStrengthSavingThrow, boolean hasAthletics, boolean hasDexteritySavingThrow,
+    public static ProficiencyModel setProficiencyModel(long primaryKey,
+                                                       boolean hasStrengthSavingThrow, boolean hasAthletics, boolean hasDexteritySavingThrow,
                                                        boolean hasAcrobatics, boolean hasSleightOfHand, boolean hasStealth, boolean hasConstitutionSavingThrow,
                                                        boolean hasIntelligenceSavingThrow, boolean hasArcana, boolean hasHistory, boolean hasInvestigation,
                                                        boolean hasNature, boolean hasReligion, boolean hasWisdomSavingThrow, boolean hasAnimalHandling,
@@ -783,6 +791,8 @@ public class Models {
                                                        boolean hasDeception, boolean hasIntimidation, boolean hasPerformance, boolean hasPersuasion) {
 
         ProficiencyModel proficiencyModel = new ProficiencyModel();
+
+        proficiencyModel.setProficiencyID(primaryKey);
 
         proficiencyModel.setStrengthSavingThrow(hasStrengthSavingThrow);
         proficiencyModel.setAthletics(hasAthletics);

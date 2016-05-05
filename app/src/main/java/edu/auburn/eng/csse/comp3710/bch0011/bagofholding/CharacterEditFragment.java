@@ -340,12 +340,24 @@ public class CharacterEditFragment extends Fragment {
 
         String test = strengthET.getText().toString();
 
-        return Models.setStatsModel(strengthET.getText().toString(), dexterityET.getText().toString(),
+        long id = 0;
+        if (parentActivity.characterModel != null) {
+            id = parentActivity.characterModel.getStats().getStatID();
+        }
+        return Models.setStatsModel(
+                id,
+                strengthET.getText().toString(), dexterityET.getText().toString(),
                 constitutionET.getText().toString(), intelligenceET.getText().toString(),
                 wisdomET.getText().toString(), charismaET.getText().toString());
     }
     public Models.ProficiencyModel getProficiencyModel(){
-        return Models.setProficiencyModel(savingThrowsStrengthCB.isChecked(), athleticsStrengthCB.isChecked(),
+        long id = 0;
+        if (parentActivity.characterModel != null) {
+            id = parentActivity.characterModel.getProficiencies().getProficiencyID();
+        }
+        return Models.setProficiencyModel(
+                id,
+                savingThrowsStrengthCB.isChecked(), athleticsStrengthCB.isChecked(),
                 savingThrowsDexterityCB.isChecked(), acrobaticsDexterityCB.isChecked(),
                 sleightOfHandDexterityCB.isChecked(), stealthDexterityCB.isChecked(),
                 savingThrowsConstitutionCB.isChecked(), savingThrowsIntelligenceCB.isChecked(),
@@ -359,7 +371,13 @@ public class CharacterEditFragment extends Fragment {
                 performanceCharismaCB.isChecked(), persuasionCharismaCB.isChecked());
     }
     public Models.SecondaryStatsModel getSecondaryStatsModel(){
-        return Models.setSecondaryStatsModel(armorClassET.getText().toString(), initiativeET.getText().toString(),
+        long id = 0;
+        if (parentActivity.characterModel != null) {
+            id = parentActivity.characterModel.getSecondaryStats().getSecondaryStatsID();
+        }
+        return Models.setSecondaryStatsModel(
+                id,
+                armorClassET.getText().toString(), initiativeET.getText().toString(),
                 speedET.getText().toString(), maxHitPointsET.getText().toString(),
                 temporaryHitPointsET.getText().toString());
     }
