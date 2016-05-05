@@ -15,10 +15,11 @@ Our original plan, if we had time, was to have the ability to save as many chara
 Although the code was created in a way that this would be easy to implement later, we did not have time to set this up.
 We plan to continue working on this project in the future and implement this.
 
-In our code you will notice that we have a java file that lets us view the database.
+In our code you will notice that we have a java file that lets us view the database, and was obtained online.
 This was used for testing purposes and we have commented out the button that launched it.
 The code does not have any significance in the actual running of our code.
 You will notice a commented out button in the main activity for this.
+This would not be in a production version of the product but remains in for development.
 
 
 Currently, we have an issue where if a character is submitted with blank information, the app crashes.
