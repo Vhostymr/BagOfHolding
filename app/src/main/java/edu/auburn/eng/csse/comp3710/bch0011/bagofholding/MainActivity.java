@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Context context = getApplicationContext();
-        //context.deleteDatabase(CharacterSheetDbHelper.DATABASE_NAME);
+        context.deleteDatabase(CharacterSheetDbHelper.DATABASE_NAME);
         db = getOpenDB(context);
 
         generateCharacterModel();
